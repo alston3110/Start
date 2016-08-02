@@ -4988,10 +4988,6 @@ gst-launch-1.0 playbin uri=file:///home/a.mp4 video-sink="imxg2dvideosink frameb
 	
 	
 	
-	
-	
-	
-	
 =================================== ADLink prepare ==========================================				
 1. BSP				
 2. GitHub	freescale user bb patch files			
