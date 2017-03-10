@@ -1,0 +1,5 @@
+61ee1992f6bfb89878d75a470384512f  efm32cmd
+99f330562b7d085945c5ca73ec54f76a  rootfs.tar.bz2
+9ec6059a8c5b2026f1c1984d636fe0a1  u-boot.imx
+d16a26f5717d6e850fcd0128deb2c241  uImage.bin
+df7b06cfa4c1222685bb1e9dd35c4e60  uImage.dtb
