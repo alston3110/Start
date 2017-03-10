@@ -1,0 +1,165 @@
+#!/bin/sh
+
+boot_test() {
+    case "$1" in
+	01)
+		./04_boot/BOOT_COLD
+		break
+		;;
+	02)
+		./04_boot/BOOT_STOP
+		break
+		;;
+	qq)
+		exit 1
+		sleep 1
+		;;	
+    	
+    esac
+}
+
+wifi_method_select(){
+        case "$1" in
+                01)
+                        ./PFT_03_WIFI_Scan
+                        sleep 1
+                        ;;
+                02)
+			echo -e "Please keyin Ap security mode(ex, wep or wpa) : "
+			read security
+			echo -e "Please keyin AP SSID : "
+			read ssid
+			echo -e "Please keyin AP passwd : "
+			read appasswd
+                        echo -e "Please keyin serverip : "
+                        read serverip
+                        echo -e "Please keyin id name : "
+                        read serverid
+                        echo -e "Please keyin id passwd : "
+                        read serverpw
+                        ./PFT_03_WIFI_Server $security $ssid $appasswd $serverip $serverid $serverpw
+                        sleep 1
+                        ;;
+        esac
+}
+
+net_method_select(){
+	case "$1" in
+		01)
+			echo -e "Please keyin Ip for test : (ex, 192.168.1.1)"
+			read pingip
+			./PFT_01_ETH0_Ping $pingip
+			sleep 1
+			;;
+		02)
+			echo -e "Please keyin serverip : "
+			read serverip
+			echo -e "Please keyin id name : "
+			read serverid
+			echo -e "Please keyin id passwd : "
+			read serverpw
+			./PFT_01_ETH0_Server $serverip $serverid $serverpw
+			sleep 1
+			;;
+	esac
+}
+
+pcba_test() {
+	cd 01_PCBA
+    	case "$1" in
+		01) 
+			echo -e "Please select test method : \n01_Ping \n02_Server"
+                	read method1
+			net_method_select $method1
+			sleep 1
+			;;
+		02) 
+			echo -e "Please select test method : \n01_Scan \n02_Server"
+			read method2
+			wifi_method_select $method2
+			sleep 1
+			;;
+		03) 
+			./PFT_07_LVDS0
+			sleep 1
+			;;
+		04) 
+			./PFT_12_CAN_CLIENT
+			sleep 1
+			;;
+		05) 
+			./PFT_13_CAN_SERVER 
+			sleep 1
+			;;
+		06) 
+			./PFT_19_USB
+			sleep 1
+			;;
+		07)
+			./PFT_21_SDCARD
+			sleep 1
+			;;
+		08)
+			./PFT_22_EMMC
+			sleep 1
+			;;
+		99) 
+			cat ../version
+			sleep 1
+			;;		
+		qq) 	
+			cd ../
+			echo -e "\nStop function Test"
+			exit 1
+			sleep 1
+		;;
+    esac
+    cd ../
+}
+
+select_mode() {
+   case "$1" in
+	01)
+		while true ;do
+			echo -e "\nInput Test Item : \n01_ETH0 \n02_WIFI \n03_LVDS0 \n04_CAN_CLIENT \n05_CAN_SERVER \n06_USB \n07_SDCARD \n08_EMMC \nqq.Exit"
+			read cItem				
+			pcba_test $cItem
+		done
+		break
+		;;
+	02)
+		./02_BurnIn/loading
+		break
+		;;
+	03)
+		echo -e "Please Setting loading time (ex, 10m or 60m or 120m or 3600m) : "
+		read Ltime
+		./03_performance/loading $Ltime & 
+		break
+		;;
+	04)
+		while true ;do
+			echo -e "Select Boot Test : \n01_Start Boot test \n02_Stop Boot test \nqq_EXIT"
+			read boot_mode
+			boot_test $boot_mode
+		done
+		break
+		;;
+	qq)
+		exit 1
+		sleep 1
+		;;
+    esac
+}
+
+
+
+pcba=$(cat version | grep PCBA)
+while true ;do
+    echo -e "Version : $pcba "
+    echo -e "Please Enter test mode : \n01_PCBA \n02_BurnIn \n03_Performance \n04_BOOT \nqq_EXIT"
+    read mode1 
+    select_mode $mode1
+done
+
+

@@ -1,0 +1,38 @@
+#!/bin/sh
+
+if [ $(ifconfig | grep "can" | wc -l) -eq 0 ]; then
+	ip link set can0 up type can bitrate 125000
+fi
+
+if [ -f pp.log ]; then
+	rm pp.log 
+	sync
+	sleep 1
+fi
+
+cansniffer can0 >> pp.log &
+
+echo "Canbus server : wait information !!"
+
+while [ -d /proc/$1 ]; do
+if [ $(cat pp.log | grep "1E.10.10" | wc -l) -gt 1 ]; then
+	pid=$(ps ax | grep "cansniffer can0" | grep -v grep | awk '{print $1}')
+	kill $pid
+	rm pp.log
+	sync
+	sleep 1
+	echo "get client request" 
+	cansend can0 500#1E.10.10
+	cansend can0 500#1E.10.10
+	cansend can0 500#1E.10.10
+	cansniffer can0 >> pp.log &
+fi
+done
+
+echo "disable canbus_server"
+pid=$(ps ax | grep "candump can0" | grep -v grep | awk '{print $1}')
+kill $pid
+rm pp.log
+sync
+sleep 2
+

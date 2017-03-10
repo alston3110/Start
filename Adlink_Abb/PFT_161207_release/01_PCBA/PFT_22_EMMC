@@ -1,0 +1,57 @@
+#!/bin/sh
+
+mmc=mmcblk0p1
+checksum=0
+
+if [ $(ls /dev/$mmc 2> /dev/null | wc -l) = 0 ]; then
+	echo "EMMC /dev/$mmc : no device "
+	exit 0	
+fi
+
+if [ $(mount | grep "/dev/$mmc on /run/media/$mmc" | wc -l) -gt 0 ]; then
+	file_path=$(mount | grep "/dev/$mmc on /" | awk '{print $3}')
+elif [ $(mount | grep "/dev/$mmc on / " | wc -l) -eq 1 ]; then
+	file_path=$(mount | grep "/dev/$mmc on /" | awk '{print $3}')
+	echo "EMMC / : file system.. "
+fi
+
+if [ ! -z $file_path ]; then
+	if [ ! -d $file_path/EMMC_TEST ]; then
+		mkdir $file_path/EMMC_TEST
+		chmod 755 $file_path/EMMC_TEST
+		sync
+        else
+                rm -rf $file_path/EMMC_TEST/*
+                sync
+	
+	fi
+        if [ -f ../dinosaur-1024x768-888.rgb ]; then
+                checksum=$(md5sum ../dinosaur-1024x768-888.rgb | awk '{print $1}')
+                cp -avrf ../dinosaur-1024x768-888.rgb $file_path/EMMC_TEST/EMMC_date
+                sync
+        else
+                echo "EMMC $mmc : compare date lose"
+                exit 0
+        fi
+	#echo $(date) > $file_path/EMMC_TEST/EMMC_date
+fi
+checksum1=$(md5sum $file_path/EMMC_TEST/EMMC_date | awk '{print $1}')
+
+if [ -z $file_path ];then
+	echo "EMMC $mmc : can't found"
+else
+	if  [ $checksum1 == $checksum ]; then
+		echo "EMMC $mmc : PASS" 
+	else
+		echo "EMMC $mmc : ...." 
+	fi		
+fi
+if [ -d $file_path/EMMC_TEST ]; then
+        rm -rf $file_path/EMMC_TEST
+        sync
+fi
+
+
+sync
+
+exit 0

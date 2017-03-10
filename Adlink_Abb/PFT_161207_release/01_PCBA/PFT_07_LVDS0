@@ -1,0 +1,25 @@
+#!/bin/sh
+echo "Start PCBA_Function_Test = Lvds0 test "
+
+func_LVDS() {
+	echo 0 > /sys/class/graphics/fb0/blank
+	echo 24 > /sys/class/graphics/fb0/bits_per_pixel
+	dd if=../Color24.rgb of=/dev/fb0
+	sleep 10
+	dd if=../White24.rgb of=/dev/fb0
+	sleep 10
+	dd if=../Black24.rgb of=/dev/fb0
+	sleep 10
+
+	dd if=../dinosaur-1024x768-888.rgb of=/dev/fb0 
+
+	sleep 10
+
+	dd if=../wall-1024x768-565.rgb of=/dev/fb0 
+        echo 16 > /sys/class/graphics/fb0/bits_per_pixel
+
+#	echo 16 > /sys/class/graphics/fb0/bits_per_pixel
+#	gst-launch-1.0 playbin uri=file:$(pwd)/001.MP4 video-sink="imxg2dvideosink framebuffer=/dev/fb0" &
+}
+
+func_LVDS

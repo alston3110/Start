@@ -1,0 +1,22 @@
+#!/bin/sh
+#//Alston-20160408-Release!! for Reboot test//at Ubuntu system#
+echo "Stop Reboot Test"
+
+if [ -f /etc/rc.local.bak ]; then
+        mv /etc/rc.local.bak /etc/rc.local
+        sync
+fi
+
+echo "============================================" > /dev/ttymxc1 
+
+if [ -f $(pwd)/count ]; then 
+	count=$(cat $(pwd)/count)
+	echo "Stop Boot test, Remove( $count ) "
+	rm $(pwd)/count
+	sync
+fi
+
+echo "============================================" > /dev/ttymxc1 
+sync
+
+

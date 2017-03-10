@@ -1,0 +1,26 @@
+#!/bin/sh
+
+echo "Start PCBA_Function_Test = Scan wifi "
+
+if [ $(iwconfig 2>/dev/null | grep -o "^\w*" | wc -l ) = 0 ]; then
+	echo "PFT_WIFI	  : no device "
+	modprobe ath9k 
+fi
+
+while [ -d /proc/$1 ]; do
+	if [ $(ifconfig | grep "wlan" | wc -l ) = 0 ]; then
+		ifconfig $(iwconfig 2>/dev/null | grep -o "^\w*" ) up
+		sleep 18
+	fi
+
+	echo "$2.WIFI     : ($(iwlist $(ifconfig | grep "wlan" | awk '{print $1}') scan | grep Cell | wc -l))"
+#	ifconfig $(iwconfig 2>/dev/null | grep -o "^\w*") down
+
+	sleep 5 
+	exit 0
+done
+
+echo "$2.disable PFT_WIFI"
+sync
+
+exit 0

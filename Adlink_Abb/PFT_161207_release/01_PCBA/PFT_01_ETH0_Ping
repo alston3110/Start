@@ -1,0 +1,34 @@
+#!/bin/sh
+
+eth=eth0 
+echo "Start PCBA_Function_Test = $eth "
+echo "Ping $1"
+
+if [ $(ifconfig | grep $eth | wc -l) = 0 ]; then
+	ifconfig $eth up 
+	sleep 18 
+fi
+
+ip=$(ifconfig $eth 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://')
+# echo "ip=$ip"
+
+
+udhcpc -i $eth & 
+#dhclient $eth & 
+sleep 10
+
+if [ "$(ifconfig $eth | awk 'sub(/inet addr:/,""){print $1}' | wc -l)" -eq "0" ]; then
+	pid=$(ps ax | grep "udhcpc -i $eth" | grep -v grep | awk '{print $1}')
+#	echo "pid=$pid" 
+	kill $pid
+	echo "ETH $eth   : no link"
+	exit 0
+fi
+
+if [ "$(ping -I $eth -w 5 $1 | grep $1 | wc -l)" -gt "2" ];then
+	echo "ETH $eth   : PASS"
+else
+	echo "ETH $eth   : ...."
+fi
+
+

@@ -1,0 +1,38 @@
+#!/bin/sh
+
+if [ $(ls /dev/$3 2> /dev/null | wc -l) = 0 ]; then
+	echo "USB /dev/$3 : no device " | tee -a $4 
+	continue	
+fi
+
+if [ $(mount | grep "/dev/$3 on /run/media/$3" | wc -l) -gt 0 ]; then
+	file_path=$(mount | grep "/dev/$3 on /" | awk '{print $3}')
+fi
+
+if [ ! -z $file_path ]; then
+	if [ ! -d $file_path/USB_TEST ]; then
+		mkdir $file_path/USB_TEST
+		chmod 755 $file_path/USB_TEST
+		sync
+	fi
+	echo $(date) > $file_path/USB_TEST/USB_date
+fi
+
+while [ -d /proc/$1 ]; do
+	if [ -z $file_path ];then
+		echo "$2.USB $3 : can't found" | tee -a $4
+	else
+		if  [ -f $file_path/USB_TEST/USB_date ];then
+			echo "$2.USB $3 : PASS" | tee -a $4
+		else
+			echo "$2.USB $3 : ...." | tee -a $4
+		fi		
+	fi
+	sleep 10
+	sync
+done
+
+echo "$2.disable Rel_USB" | tee -a $4
+sync
+
+exit 0

@@ -1,0 +1,74 @@
+#!/bin/sh
+
+echo "BurnIn $0 test "
+
+if [ $(ifconfig | grep "Bcast:" | wc -l) -gt 0 ]; then
+	ntpdate time.stdtime.gov.tw
+#	ntpd -q -n -p time.stdtime.gov.tw 
+	echo "write to RTC time"
+	hwclock -w
+#	timedatectl set-local-rtc 1
+else
+	echo "skip rtc update"
+fi	
+
+klevel="${2:-4}"
+echo "$klevel 4 1 7" > /proc/sys/kernel/printk
+
+DIR=$0
+#NEWDIR=${DIR%main.sh}
+#cd $NEWDIR
+
+MAINPID=$$
+model=BurnIn_Test
+button=$(ls ./ | grep "$model" | wc -l)
+model="$model"-"$button".log
+>> ./"$model"
+
+echo "01.enable Rel_ETH0"
+$(pwd)/02_BurnIn/Rel_ETH $MAINPID 01 eth0 $model &
+sleep 1
+
+echo "02.enable Rel_USB sda1"
+$(pwd)/02_BurnIn/Rel_USB $MAINPID 02 sda1 $model &
+sleep 1
+
+echo "03.enable Rel_USB sdb1"
+$(pwd)/02_BurnIn/Rel_USB $MAINPID 03 sdb1 $model &
+sleep 1
+
+echo "04.enable Rel_USB sdc1"
+$(pwd)/02_BurnIn/Rel_USB $MAINPID 04 sdc1 $model &
+sleep 1
+
+echo "05.enable Rel_WIFI"
+$(pwd)/02_BurnIn/Rel_WIFI $MAINPID 05 WIFI $model &
+sleep 1
+
+echo "06.enable Rel_SDCARD"
+$(pwd)/02_BurnIn/Rel_SDCARD $MAINPID 06 mmcblk1p1 $model &
+sleep 1
+
+echo "07.enable Rel_EMMC"
+$(pwd)/02_BurnIn/Rel_EMMC $MAINPID 07 mmcblk0p1 $model &
+sleep 1
+
+echo "08.enable Rel_CAN_CLIENT" 
+$(pwd)/02_BurnIn/Rel_CAN_CLIENT $MAINPID 08 can0 $model &
+sleep 1
+
+sleep 5
+
+while [ "1" ]; do
+	clear
+	echo "==============================" | tee -a $model 
+	ps | grep $(pwd)/ADLINK 
+	date | tee -a $model	
+	cat version | grep PCBA
+	echo "==============================" | tee -a $model 
+	sleep 20
+done
+
+exit 0
+
+	

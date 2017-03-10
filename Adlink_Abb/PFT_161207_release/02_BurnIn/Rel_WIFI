@@ -1,0 +1,23 @@
+#!/bin/sh
+
+if [ $(iwconfig 2>/dev/null | grep -o "^\w*" | wc -l ) = 0 ]; then
+	echo "PITX_WIFI	  : no device " | tee -a $4
+	modprobe ath9k 
+fi
+
+while [ -d /proc/$1 ]; do
+	if [ $(ifconfig | grep "wlan" | wc -l ) = 0 ]; then
+		ifconfig $(iwconfig 2>/dev/null | grep -o "^\w*" ) up
+		sleep 18
+	fi
+
+	echo "$2.WIFI     : ($(iwlist $(ifconfig | grep "wlan" | awk '{print $1}') scan | grep Cell | wc -l))" | tee -a $4
+#	ifconfig $(iwconfig 2>/dev/null | grep -o "^\w*") down
+
+	sleep 5 
+done
+
+echo "$2.disable Rel_WIFI" | tee -a $4
+sync
+
+exit 0

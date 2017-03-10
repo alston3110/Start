@@ -1,0 +1,36 @@
+#!/bin/sh
+result=0
+if [ $(ifconfig | grep "can" | wc -l) -eq 0 ]; then 
+	ip link set can0 up type can bitrate 125000	
+fi
+
+cansend can0 500#1E.10.10
+
+cansniffer can0 >> pp.log & 
+
+for loop in 0 1 2
+do 
+sleep 3 
+
+if [ $(cat pp.log | grep "1E.10.10" | wc -l) -gt 1 ]; then
+	echo "Canbus   : PASS!!"
+	result=1
+	break;
+else 
+	cansend can0 500#1E.10.10	
+fi
+
+done
+
+if [ $result -eq 1 ]; then
+	echo "CanBus  : PASS"
+else
+	echo "CanBus  : FAIL"
+fi
+sleep 1
+rm pp.log
+sync
+
+#pid=$(ps ax | grep "cansniffer can0" | grep -v grep | awk '{print $1}')
+#kill $pid
+ 

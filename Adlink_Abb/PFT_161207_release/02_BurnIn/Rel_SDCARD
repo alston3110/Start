@@ -1,0 +1,43 @@
+#!/bin/sh
+
+if [ $(ls /dev/$3 2> /dev/null | wc -l) = 0 ]; then
+	echo "SDCARD /dev/$3 : no device " | tee -a $4 
+	continue	
+fi
+
+if [ $(mount | grep "/dev/$3 on /" | wc -l) -gt 0 ]; then
+	file_path=$(mount | grep "/dev/$3 on /" | awk '{print $3}')
+	if [ $( ls $file_path/$3 2> /dev/null | wc -l) -eq 0 ]; then 
+		mkdir -p $file_path/$3
+	fi 	
+fi
+
+if [ ! -z $file_path ]; then
+	if [ ! -d $file_path/$3/USB_TEST ]; then
+		mkdir $file_path/$3/USB_TEST
+		chmod 755 $file_path/$3/USB_TEST
+		sync
+	fi
+	echo $(date) > $file_path/$3/USB_TEST/SD_date
+fi
+
+while [ -d /proc/$1 ]; do
+		if [ -z $file_path ];then
+			echo "$2.SDCARD   : can't found" | tee -a $4
+		else
+			sleep 2
+			if  [ -f $file_path/$3/USB_TEST/SD_date ];then
+				echo "$2.SDCARD   : PASS" | tee -a $4
+			else
+				echo "$2.SDCARD   : ...." | tee -a $4
+			fi
+			sleep 2
+		fi
+		sleep 10
+		sync
+done
+
+echo "$2.disable Rel_SDCARD" | tee -a $4
+sync
+
+exit 0

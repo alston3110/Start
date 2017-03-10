@@ -1,0 +1,15 @@
+#!/bin/sh
+
+
+while [ -d /proc/$1 ]; do
+#	echo "$2.MCU_RTC  : ($(timedatectl status | grep "RTC time" )"
+echo "$2.MCU_RTC : $(hwclock -r | awk '{print $1 " " $2 " " $3 " " $4 " " $5}')"
+	sleep 10 
+        sync
+done
+
+echo "$2.disable Rel_MCU_RTC"
+sync
+
+exit 0
+

@@ -1,0 +1,54 @@
+#!/bin/sh
+echo "Start PCBA_Function_Test = Usb test "
+
+checksum=0
+
+for USB in sda1 sdb1 sdc1 
+do
+
+if [ $(ls /dev/$USB 2> /dev/null | wc -l) = 0 ]; then
+	echo "USB /dev/$USB : no device "
+	continue	
+fi
+
+if [ $(mount | grep "/dev/$USB on /run/media/$USB" | wc -l) -gt 0 ]; then
+        file_path=$(mount | grep "/dev/$USB on /" | awk '{print $3}')
+fi
+
+if [ ! -z $file_path ]; then
+        if [ ! -d $file_path/USB_TEST ]; then
+                mkdir $file_path/USB_TEST
+                chmod 755 $file_path/USB_TEST
+                sync
+	else
+		rm -rf $file_path/USB_TEST/*
+		sync
+        fi
+
+	if [ -f ../dinosaur-1024x768-888.rgb ]; then
+		checksum=$(md5sum ../dinosaur-1024x768-888.rgb | awk '{print $1}')
+		cp ../dinosaur-1024x768-888.rgb $file_path/USB_TEST/USB_date
+		sync
+	else
+		echo "USB $USB : compare date lose"
+		exit 0
+	fi
+	#echo $(date) > $file_path/USB_TEST/USB_date
+fi
+
+checksum1=$(md5sum $file_path/USB_TEST/USB_date | awk '{print $1}')
+if  [ $checksum1 == $checksum ]; then 
+	echo "USB $USB : PASS"
+else
+	echo "USB $USB : ...."
+fi		
+
+if [ -d $file_path/USB_TEST ]; then
+	rm -rf $file_path/USB_TEST
+	sync
+fi
+
+sleep 2
+sync
+
+done

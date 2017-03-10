@@ -1,0 +1,102 @@
+#!/bin/sh
+
+security=$1
+wifiap=$2 
+wifipw=$3
+ftpip=$4
+ftpid=$5
+ftppw=$6
+
+#security=wep
+#wifiap=1726 
+#wifipw=1234567890123
+#ftpip=192.168.11.2
+#ftpid=ftp_tester
+#ftppw=adlink
+
+wifi_retry=3
+text=none
+
+echo "Start PCBA_Function_Test = Connect wifi Server"
+
+if [ $(iwconfig 2>/dev/null | grep -o "^\w*" | wc -l ) = 0 ]; then
+	echo "PFT_WIFI	  : no device "
+	modprobe ath9k 
+fi
+
+wifi=$(iwconfig 2>/dev/null | grep -o "^\w*" )
+
+ifconfig $wifi up
+sleep 3
+
+if [ $(iwlist wlan0 scan | grep $wifiap | wc -l) -eq 0 ]; then
+        echo "WIFI $wifi : Scan WIFI AP Fail"
+        exit 0
+fi
+
+if [ -f ./download_wifi ]; then
+        rm ./download_wifi
+        sync
+fi
+
+if [ -f wlan0.conf ]; then
+	rm wlan0.conf	
+	sync
+fi
+
+touch wlan0.conf
+echo "ctrl_interface=/var/run/wpa_supplicant" > wlan0.conf
+echo "ctrl_interface_group=0" >> wlan0.conf
+echo "update_config=1" >> wlan0.conf
+echo "network={" >> wlan0.conf
+if [ $security = "wep" ]; then
+	echo ssid=\"${wifiap}\" >> wlan0.conf
+	echo key_mgmt=NONE >> wlan0.conf
+	echo wep_key0=\"${wifipw}\" >> wlan0.conf
+elif [ $security = "wpa" ]; then
+        echo ssid=\"${wifiap}\" >> wlan0.conf
+        echo key_mgmt=WPA-PSK >> wlan0.conf
+        echo psk=\"${wifipw}\" >> wlan0.conf
+else
+	echo "security no support"
+	exit 0
+fi 
+echo } >> wlan0.conf
+
+wpa_supplicant -i $wifi -c wlan0.conf &  
+sleep 8
+udhcpc -i $wifi  
+sleep 3
+
+wifitimes=0
+while [ ! $(ifconfig $wifi | grep "inet addr" | wc -l ) = 1 ] && [ ! $wifitimes = $wifi_retry ]; do
+	sleep 1
+	wifitimes=$(expr $wifitimes + 1)
+done
+
+sleep 5
+
+if [ "$(ping -c 3 $ftpip | grep seq | wc -l)" -gt "2" ]; then
+	ftpget -u $ftpid -p $ftppw $ftpip download_wifi TEST_WIFI
+	text=$(cat ./download_wifi)
+else
+	text=none
+fi
+
+killall udhcpc 	
+killall wpa_supplicant	
+ifconfig $wifi down 
+
+if [ -f ./download_wifi ]; then
+        rm ./download_wifi
+        sync
+        if [ $text = ftp_pass ]; then
+                echo "WIFI $wifi   : PASS"
+        else
+                echo "WIFI $wifi   : FAIL"
+        fi
+else
+        echo "WIFI $wifi   : FAIL"
+fi
+
+
