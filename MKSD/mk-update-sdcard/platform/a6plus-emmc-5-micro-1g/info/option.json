@@ -1,0 +1,27 @@
+{
+    "unit" : 512 ,
+	"mbr" : 131072 ,
+	"p0" : {
+		"mbr"              : [     0 ,      1 ,     2 , ""                             ] ,
+		"bootloader"       : [     2 ,   1535 ,  1534 , "system/u-boot.imx"            ] ,
+		"setting-data"     : [  1536 ,   1537 ,     2 , "setting.dat"                  ] ,
+		"recovery-kernel"  : [  2048 ,  23551 , 21504 , "system/uImage-recovery"       ] ,
+		"recovery-dtb"     : [ 23552 ,  24575 ,  1024 , "system/recovery.dtb"          ] ,
+		"argv"             : [ 24576 ,  25599 ,  1024 , "u-boot.arg"                   ] ,
+		"dtb"              : [ 25600 ,  26623 ,  1024 , "system/recovery.dtb"          ] ,
+		"kernel"           : [ 26624 ,  49151 , 22528 , "system/uImage-recovery"       ] ,
+		"ramdisk"          : [ 49152 ,  53247 ,  4096 , ""                             ] ,
+		"recovery-ramdisk" : [ 53248 ,  61439 ,  8192 , ""                             ] ,
+		"update-ramdisk"   : [ 61440 ,  81919 , 20480 , "system/uramdisk-recovery.img" ] ,
+		"logo"             : [122880 , 126975 ,  4096 , ""                             ]
+	} ,
+
+	"cp-files" : [
+		"system/check_code" ,
+		"system/autorun.sh" ,
+		"system/efm32cmd" ,
+		"system/uImage-recovery" ,
+		"system/recovery.dtb" ,
+		"system/uramdisk-recovery.img" 	
+	]
+}

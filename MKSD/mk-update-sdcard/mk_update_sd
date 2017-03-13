@@ -1,0 +1,750 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# ----------------------------------------------------------------------
+# pyudev
+# python-parted
+# ----------------------------------------------------------------------
+
+# import library
+import os
+import sys
+import subprocess
+import types
+import argparse
+import datetime
+import ConfigParser
+import pyudev
+import fcntl
+import struct
+import shutil
+import json
+import hashlib
+import ctypes
+import binascii
+import cmd
+import re
+
+# ----------------------------------------------------------------------
+# 
+global mMKUpdateSDPlatformList              
+global mMKUpdateSDPlatformSelect            
+global mMKUpdateSDPlatformBasePath          
+global mMKUpdateSDZipFileName 
+global mMKUpdateSDPlatformStorageInfo       
+
+global mMKUpdateSDPlatformStorageUnit       
+global mMKUpdateSDPlatformStorageMBRSize    
+global mMKUpdateSDPlatformStorageP0Info     
+global mMKUpdateSDPlatformStorageP0BurnFlag 
+global mMKUpdateSDPlatformCPFileList
+
+mMKUpdateSDPlatformList              = []
+mMKUpdateSDPlatformSelect            = ""
+mMKUpdateSDPlatformBasePath          = ""
+mMKUpdateSDZipFileName               = "rtx-default"
+mMKUpdateSDPlatformStorageInfo       = []
+
+mMKUpdateSDPlatformStorageUnit       = 0
+mMKUpdateSDPlatformStorageMBRSize    = 0
+mMKUpdateSDPlatformStorageP0Info     = []
+mMKUpdateSDPlatformStorageP0BurnFlag = False
+mMKUpdateSDPlatformCPFileList        = []
+
+# ----------------------------------------------------------------------
+# exit
+def fMKUpdateSD_LogShow(*_mMsg):
+    _ShowStr = ""
+    if _mMsg != None:
+        for _mItem in _mMsg:
+            _ShowStr = _ShowStr + {
+                types.NoneType    : "<<None>>" ,
+                types.BooleanType : "False" if _mItem else "True" ,
+                types.IntType     : str(_mItem) ,
+                types.LongType    : str(_mItem) ,
+                types.FloatType   : str(_mItem) ,
+                types.StringType  : _mItem ,
+            }.get(type(_mItem),"<<Unsupport>>")
+    
+    if len(_ShowStr):
+        print _ShowStr
+
+def fMKUpdateSD_LogExit(*_mMsg):
+    fMKUpdateSD_LogShow( "[Error] : " , *_mMsg )
+    exit(0)
+
+def fMKUpdateSD_LogError(*_mMsg):
+    fMKUpdateSD_LogShow( "[Error] : " , *_mMsg )
+
+def fMKUpdateSD_LogWarning(*_mMsg):
+    fMKUpdateSD_LogShow( "[Warning] : " , *_mMsg )
+
+def fMKUpdateSD_LogInfo(*_mMsg):
+    fMKUpdateSD_LogShow( "[Info] : " , *_mMsg )
+
+def fMKUpdateSD_GetBaseInfo():
+    global mMKUpdateSDPlatformStorageUnit
+    global mMKUpdateSDPlatformStorageMBRSize
+    global mMKUpdateSDPlatformStorageP0Info
+    global mMKUpdateSDPlatformStorageP0BurnFlag
+    global mMKUpdateSDPlatformCPFileList
+
+    with open( mMKUpdateSDPlatformBasePath + "info/option.json" ) as mJsonFile:
+        _mOptions = json.load( mJsonFile )
+
+    for _CheckItem in ['unit','mbr','p0']:
+        if not _CheckItem in _mOptions:
+            fMKUpdateSD_LogExit( "Can't find the ({}) in the info/option.json.".format(_CheckItem) )
+            return False
+
+    mMKUpdateSDPlatformStorageUnit    = _mOptions['unit']
+    mMKUpdateSDPlatformStorageMBRSize = _mOptions['mbr'] * mMKUpdateSDPlatformStorageUnit
+    mMKUpdateSDPlatformStorageP0Info  = _mOptions['p0']
+
+    #print mMKUpdateSDPlatformStorageP0Info
+    if mMKUpdateSDPlatformStorageUnit == 0 :
+        fMKUpdateSD_LogExit( "This value ({}) is a mistake.".format(mMKUpdateSDPlatformStorageUnit) )
+        return False
+
+    if mMKUpdateSDPlatformStorageMBRSize < 1024 :
+        fMKUpdateSD_LogExit( "This value ({}<1024) is a mistake.".format(mMKUpdateSDPlatformStorageMBRSize) )
+        return False
+
+    for _P0InfoKey,_P0InfoData in mMKUpdateSDPlatformStorageP0Info.iteritems():
+        if _P0InfoData[3] != '':
+            if _P0InfoData[3][0] == '/':
+                _mCheckFileName = _P0InfoData[3]
+            else:
+                _mCheckFileName = mMKUpdateSDPlatformBasePath + _P0InfoData[3]
+            if os.path.getsize(_mCheckFileName) > (_P0InfoData[2]*mMKUpdateSDPlatformStorageUnit):
+                fMKUpdateSD_LogExit( "The file ({}) size is over limit size ({}) in the info/option.json".format(_mCheckFileName,(_P0InfoData[2]*mMKUpdateSDPlatformStorageUnit)) )
+            else:
+                mMKUpdateSDPlatformStorageP0BurnFlag = True
+
+    if 'cp-files' in _mOptions:
+        for _CPFile in _mOptions['cp-files']:
+            if _CPFile[0] == '/':
+                mMKUpdateSDPlatformCPFileList.append(_CPFile)
+            else:
+                mMKUpdateSDPlatformCPFileList.append(mMKUpdateSDPlatformBasePath + _CPFile)
+
+    return True
+
+# ----------------------------------------------------------------------
+# get all file size 
+def fMKUpdateSD_GetFilesSize( _mFolder = './files'):
+    global mMKUpdateSDPlatformStorageMBRSize
+    
+    _mFolderSize = int(subprocess.check_output(['du','-shb', _mFolder]).split()[0])
+    _mTotalSize = (((_mFolderSize+mMKUpdateSDPlatformStorageMBRSize+4095)/4096)*4096)+(4096*32768)
+
+    return (_mTotalSize)
+
+# ----------------------------------------------------------------------
+#
+def fMKUpdateSD_IsMount(_mName):
+    for _mReadLine in file('/proc/mounts'):
+        _mWords = [_mWord.decode('string_escape') for _mWord in _mReadLine.split()[:3]]
+        if _mName in _mWords[1]:
+            return True
+    return False
+
+# ----------------------------------------------------------------------
+#
+def fMKUpdateSD_IsPartition(_mName):
+    with open("/proc/partitions", "r") as _mFileFP :
+        for _mReadLine in _mFileFP.readlines()[2:]: # skip header lines
+            _mWords = [ _mWord.strip() for _mWord in _mReadLine.split() ]
+            
+            #_mDiskMajor = int(_mWords[0])
+            #_mDiskMinor = int(_mWords[1])
+            #_mDiskSize  = int(_mWords[2])
+            _mGetName  = _mWords[3]
+            
+            _mDiskNode = "/dev/" + _mGetName
+            if _mName == _mDiskNode:
+                return True
+    return False
+
+# ----------------------------------------------------------------------
+# main
+def fMKUpdateSD_Main():
+
+    _mMountOutPath = os.path.realpath('out')
+    if fMKUpdateSD_IsMount(_mMountOutPath):
+        os.system("umount " + _mMountMntPath )
+
+    _mDiskTotalSize = fMKUpdateSD_GetFilesSize()
+   
+    # ------------------------------------------------------------------
+    fMKUpdateSD_LogInfo("Make up the file system , the size is ",_mDiskTotalSize," bytes")
+    _mSystemCmd = "dd if=/dev/zero of={} bs=4096 count={}".format("sys/update.bin",(_mDiskTotalSize/4096))
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+    os.system( 'sync' )
+    
+    # ------------------------------------------------------------------
+    _mLoopName = subprocess.check_output(['losetup','-f'])
+    _mLoopName = _mLoopName.split('\n')[0]
+    
+    _mSystemCmd = "losetup {} sys/update.bin".format(_mLoopName)
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+    if not fMKUpdateSD_IsPartition(_mLoopName):
+        fMKUpdateSD_LogExit("Can't losetup {}".format(_mLoopName))
+    
+    # ------------------------------------------------------------------
+    fMKUpdateSD_LogInfo("Format the file disk (sys/update.bin) ")
+
+    _mSystemCmd = "fdisk {} << EOF\nn\np\n1\n+{}M\n\nt\nc\nw\nEOF".format(_mLoopName,mMKUpdateSDPlatformStorageMBRSize/1048576)
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )    
+
+    _mLoopPartitionName = subprocess.check_output(['losetup','-f'])
+    _mLoopPartitionName = _mLoopPartitionName.split('\n')[0]
+
+    _mSystemCmd = "losetup -o {} -f {}".format(mMKUpdateSDPlatformStorageMBRSize,_mLoopName)
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+    if not fMKUpdateSD_IsPartition(_mLoopPartitionName):
+        _mSystemCmd = "losetup -d {}".format(_mLoopName)
+        fMKUpdateSD_LogInfo( _mSystemCmd )
+        os.system( _mSystemCmd )
+        fMKUpdateSD_LogExit("Can't losetup {}".format(_mLoopPartitionName))    
+    
+    # ------------------------------------------------------------------
+    _mSystemCmd = "mkfs.vfat {} -n UPDATE".format(_mLoopPartitionName)
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+    os.system( 'sync' )
+    
+    # ------------------------------------------------------------------
+    _mSystemCmd = "mount {} ./out".format(_mLoopPartitionName)
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+    os.system( 'sync' )
+
+    # ------------------------------------------------------------------
+    if mMKUpdateSDPlatformStorageP0BurnFlag :
+        for _P0InfoKey,_P0InfoData in mMKUpdateSDPlatformStorageP0Info.iteritems():
+            if _P0InfoData[3] != '':
+                if _P0InfoData[3][0] == '/':
+                    _mDownloadFileName = _P0InfoData[3]
+                else:
+                    _mDownloadFileName = mMKUpdateSDPlatformBasePath + _P0InfoData[3]
+                _mSystemCmd = "dd if={} of={} bs={} seek={}".format(_mDownloadFileName,_mLoopName,mMKUpdateSDPlatformStorageUnit,_P0InfoData[0])
+                fMKUpdateSD_LogInfo( _mSystemCmd )
+                os.system( _mSystemCmd )    
+                os.system( 'sync' ) 
+    
+
+    # ------------------------------------------------------------------
+    if len(mMKUpdateSDPlatformCPFileList):
+        for _mCPFile in mMKUpdateSDPlatformCPFileList:
+            _mSystemCmd = "cp -vf {} ./out/.".format(_mCPFile)
+            fMKUpdateSD_LogInfo( _mSystemCmd )
+            os.system( _mSystemCmd )
+    
+    # ------------------------------------------------------------------
+    _mSystemCmd = "cp -vRrf ./files/* ./out/."
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+
+    # ------------------------------------------------------------------
+    _mSystemCmd = "umount {}".format(_mLoopPartitionName)
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+    os.system( 'sync' )
+    
+    # ------------------------------------------------------------------
+    _mSystemCmd = "losetup -d {}".format(_mLoopPartitionName)
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+    _mSystemCmd = "losetup -d {}".format(_mLoopName)
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+
+    # ------------------------------------------------------------------
+    _MD5SUM = hashlib.md5(open("sys/update.bin", 'rb').read()).hexdigest()
+    _mFileFD = open("sys/file.lst", 'w')
+    _mFileFD.write( _MD5SUM )
+    _mFileFD.write( "  update.bin" )
+    _mFileFD.close()
+
+    shutil.make_archive( mMKUpdateSDZipFileName , 'zip', 'sys' )
+
+    # ------------------------------------------------------------------
+    _mSystemCmd = "rm -f sys/update.bin"
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+
+    _mSystemCmd = "rm -f sys/file.lst"
+    fMKUpdateSD_LogInfo( _mSystemCmd )
+    os.system( _mSystemCmd )
+
+# ----------------------------------------------------------------------
+# u-boot argument edit
+# ----------------------------------------------------------------------
+# u-boot argument struct
+class oUBootArgData(ctypes.Structure):
+    _fields_ = [
+        ("ulCRC32"                  , ctypes.c_uint),
+        ("ubText"                   , ctypes.c_ubyte*((8*1024)-4))
+        ]
+# ----------------------------------------------------------------------
+# UBootArg shell cmd
+class oUBootArgShell(cmd.Cmd):
+    global mMKUpdateSDPlatformStorageP0Info
+    global mMKUpdateSDPlatformBasePath
+
+    def __init__( self ):
+        cmd.Cmd.__init__(self)
+        self.prompt = '[U-Boot] $ '
+        self.intro = '\nWelcome to the U-Boot Argument shell.   Type help or ? to list commands.\n'
+        _mFileName = mMKUpdateSDPlatformStorageP0Info["argv"][3]
+        self.mUBootArgDataFields = oUBootArgData()
+        self.mFileName = ""
+        self.mUBootArgStrDict = {}
+        
+        if _mFileName != '':
+            if _mFileName != '/':
+                self.mFileName = mMKUpdateSDPlatformBasePath + _mFileName
+            try:
+                _mInFD = open(self.mFileName, "rb")
+            except IOError:
+                fMKUpdateSD_LogExit("Can't open file ({})".format(self.mFileName))
+            else:
+                from zlib import crc32
+                _mInFD.readinto(self.mUBootArgDataFields)
+                _mInFD.close()
+                _mCRC32 = (crc32(self.mUBootArgDataFields.ubText,0)&0xffffffff)
+                if self.mUBootArgDataFields.ulCRC32 != _mCRC32:
+                    fMKUpdateSD_LogExit("CRC32 Check error ({})".format(self.mFileName))
+                _mIndex = 0
+                _mStr = ""
+                while _mIndex < len(self.mUBootArgDataFields.ubText):
+                    if self.mUBootArgDataFields.ubText[_mIndex] == 0:
+                        if len(_mStr) :
+                            _mStrSplit = _mStr.split('=',1)
+                            #print _mStrSplit
+                            self.mUBootArgStrDict[_mStrSplit[0]] = _mStrSplit[1]
+                            _mStr = ""
+                    else:
+                        _mStr = _mStr + unichr(self.mUBootArgDataFields.ubText[_mIndex])
+                    _mIndex += 1
+        else:
+            fMKUpdateSD_LogExit("The U-Boot argument Data file is not exist.")
+            exit(0)
+
+    def do_printenv(self, _mArg):
+        'print environment variables\n' \
+        'printenv [-a]\n'\
+        '    - print [all] values of all environment variables\n' \
+        'printenv name ...\n' \
+        '    - print value of environment variable "name"'
+        _mPrintAll = 0
+        if len(_mArg) == 0:
+            _mPrintAll = 1
+        else:
+            _mArgv = _mArg.split()
+            if len(_mArgv) == 1:
+                if _mArgv[0] == '-a':
+                    _mPrintAll = 1
+                else:
+                    _mPrintAll = 2
+        if _mPrintAll == 0:
+            print "Please see the help"
+        else:
+            if _mPrintAll == 1:
+                _mSorted = sorted(self.mUBootArgStrDict.items())
+                for _Item in _mSorted:
+                    print "{}={}".format(_Item[0],_Item[1])
+            else:
+                if _mPrintAll == 2:
+                    if _mArgv[0] in self.mUBootArgStrDict.keys() :
+                        print "{}={}".format(_mArgv[0],self.mUBootArgStrDict[_mArgv[0]])
+                    else:
+                        print "Can't find \"{}\" in the argument".format(_mArgv[0])
+                else:
+                    print "Please see the help"
+
+
+    def do_setenv(self, _mArg):
+        'set environment variables\n' \
+        'setenv name value ...\n' \
+        '    - set environment variable "name" to "value ..."\n' \
+        'setenv name\n'
+        '    - delete environment variable "name"'
+        if len(_mArg) != 0:
+            _mArgv = _mArg.split(' ',1)
+            if _mArgv[0] in self.mUBootArgStrDict.keys() :
+                if len(_mArgv) == 1:
+                    del self.mUBootArgStrDict[_mArgv[0]]
+                if len(_mArgv) == 2:
+                    _mCheck = 0 
+                    _mIndex = 0 
+                    while _mIndex < len(_mArgv[1]):
+                        if _mArgv[1][_mIndex] == '\'':
+                            _mCheck += 1
+                        _mIndex += 1
+                    if _mCheck == 2:
+                        _mData = re.sub('\'', '', _mArgv[1])
+                        del self.mUBootArgStrDict[_mArgv[0]]
+                        self.mUBootArgStrDict[_mArgv[0]] = _mData
+                    else:
+                        print "Please see the help"
+            else:
+                print "Can't find \"{}\" in the argument".format(_mArgv[0])
+        else:
+            print "Please see the help"
+
+    def do_saveenv(self, _mArg):
+        'save environment variables\n' \
+        'saveenv\n' \
+        '    - save environment\n' \
+        
+        _mSorted = sorted(self.mUBootArgStrDict.items())
+
+        _mIndex = 0 
+        for _Item in _mSorted:
+            _mLoop = 0 
+            while _mLoop < len(_Item[0]):
+                self.mUBootArgDataFields.ubText[_mIndex] = ord(_Item[0][_mLoop])
+                _mLoop += 1
+                _mIndex += 1
+
+            self.mUBootArgDataFields.ubText[_mIndex] = ord('=')
+            _mIndex += 1
+
+            _mLoop = 0
+            while _mLoop < len(_Item[1]):
+                self.mUBootArgDataFields.ubText[_mIndex] = ord(_Item[1][_mLoop])
+                _mLoop += 1
+                _mIndex += 1
+
+            self.mUBootArgDataFields.ubText[_mIndex] = 0
+            _mIndex += 1
+
+        while _mIndex < ((8*1024)-4):
+            self.mUBootArgDataFields.ubText[_mIndex] = 0
+            _mIndex += 1
+
+        from zlib import crc32
+        _mCRC32 = (crc32(self.mUBootArgDataFields.ubText,0)&0xffffffff)
+        self.mUBootArgDataFields.ulCRC32 = _mCRC32 
+
+        #_mBackUpFileName = self.mFileName + ".bk"
+        #shutil.copyfile(self.mFileName, _mBackUpFileName)
+        with open(self.mFileName, "wb") as _mOutFD:
+            _mOutFD.write(self.mUBootArgDataFields)
+        print('Write & Bye! Bye!')
+        return True
+    
+    def do_q(self, _mArg):
+        'Quit the U-Boot Argument Shell'
+        print('Bye! Bye!')
+        return True
+
+
+# ----------------------------------------------------------------------
+# edit u-boot argument
+def fMKUpdateSD_EditUBoot():
+    oUBootArgShell().cmdloop()
+    exit(0)
+
+# ----------------------------------------------------------------------
+# setting arg edit
+# ----------------------------------------------------------------------
+# setting data struct
+class oSettingData(ctypes.Structure):
+    _fields_ = [
+        ("ulCheckCode"              , ctypes.c_uint),
+        ("ubMagicCode"              , ctypes.c_ubyte*16),
+        ("ubMAC01"                  , ctypes.c_ubyte*8),
+        ("ubMAC02"                  , ctypes.c_ubyte*8),
+        ("ubMAC03"                  , ctypes.c_ubyte*8),
+        ("ubMAC04"                  , ctypes.c_ubyte*8),
+        ("ubProductName"            , ctypes.c_char*128),
+        ("ubProductSerialNO"        , ctypes.c_char*64),
+        ("ubBSPVersion"             , ctypes.c_char*32),
+        ("ulPasswordLen"            , ctypes.c_uint),
+        ("ubPassword"               , ctypes.c_char*32),
+        ("ulFunction"               , ctypes.c_uint),
+        ("ulCmd"                    , ctypes.c_uint),
+        ("ulStatus"                 , ctypes.c_uint),
+        ("ulDataExistInfo"          , ctypes.c_uint),
+        ("sLVDSVal"                 , ctypes.c_ubyte*64),
+        ("ubRecv01"                 , ctypes.c_ubyte*120),
+        ("ubProductSerialNO_Vendor" , ctypes.c_char*64),
+        ("ubMAC01_Vendor"           , ctypes.c_ubyte*8),
+        ("ubMAC02_Vendor"           , ctypes.c_ubyte*8),
+        ("ubMAC03_Vendor"           , ctypes.c_ubyte*8),
+        ("ubMAC04_Vendor"           , ctypes.c_ubyte*8),
+        ("ubRecv02"                 , ctypes.c_ubyte*416),
+        ]
+# ----------------------------------------------------------------------
+# setting data shell cmd
+class oSettingDataShell(cmd.Cmd):
+    global mMKUpdateSDPlatformStorageP0Info
+    global mMKUpdateSDPlatformBasePath
+
+    mFunctionItems = [ ['password'  , int('00000001',16)] ,
+                       ['change'    , int('00000002',16)] ,
+                       ['extsd'     , int('00000004',16)] ,
+                       ['usb'       , int('00000008',16)] ,
+                       ['menu'      , int('00000010',16)] ,
+                       ['storage'   , int('00000020',16)] ,
+                       ['selfmagic' , int('00000040',16)] ]
+
+    def __init__( self ):
+        cmd.Cmd.__init__(self)
+        self.prompt = '[Setting] $ '
+        self.intro = '\nWelcome to the Setting-Data shell.   Type help or ? to list commands.\n'
+        _mFileName = mMKUpdateSDPlatformStorageP0Info["setting-data"][3]
+        self.mSettingDataFields = oSettingData()
+        self.mFileName = ""
+
+        if _mFileName != '':
+            if _mFileName != '/':
+                self.mFileName = mMKUpdateSDPlatformBasePath + _mFileName
+            try:
+                _mInFD = open(self.mFileName, "rb")
+            except IOError:
+                fMKUpdateSD_LogExit("Can't open file ({})".format(self.mFileName))
+            else:
+                _mInFD.readinto(self.mSettingDataFields)
+                if self.mSettingDataFields.ulCheckCode != int("5aa5aa55",16) :
+                    fMKUpdateSD_LogExit("Check Code error({}!={})".format(self.mSettingDataFields.ulCheckCode,int("5aa5aa55",16)))
+        else:
+            fMKUpdateSD_LogExit("The Setting Data file is not exist.")
+            exit(0)
+
+    def do_function(self, _mArg):
+    	'set function that is enable or disable\n' \
+    	'    function password  <enable/disable>\n' \
+        '    function change    <enable/disable>\n' \
+        '    function extsd     <enable/disable>\n' \
+        '    function usb       <enable/disable>\n' \
+        '    function menu      <enable/disable>\n' \
+        '    function storage   <enable/disable>\n' \
+        '    function selfmagic <enable/disable>\n'
+        if len(_mArg) == 0:
+            for _mItem in self.mFunctionItems:
+                if self.mSettingDataFields.ulFunction & _mItem[1]:
+                    print "    {:16} [enable]".format(_mItem[0])
+                else:
+                    print "    {:16} [disable]".format(_mItem[0])
+        else:
+            _mArgv = _mArg.split()
+            if len(_mArgv) != 2:
+                print "Command error :\nex.\n    function password enable\nor\n    function password disable\nPlease see the help\n"
+            else :
+                _Check = False
+                for _Item in self.mFunctionItems:
+                    if _Item[0] == _mArgv[0]:
+                        _Check = True
+                        break ;
+                if _Check:
+                    if _mArgv[1] == 'enable':
+                        self.mSettingDataFields.ulFunction |= _Item[1]
+                        print "{:16} [enable]".format(_mItem[0])
+                    if _mArgv[1] == 'disable':
+                        self.mSettingDataFields.ulFunction &= (~_Item[1])
+                        print "{:16} [disable]".format(_mItem[0])
+
+    def do_mac(self, _mArg):
+        'set mac address\n' \
+        '    mac 0 <000000000000>\n' \
+        '    mac 1 <000000000000>\n' \
+        '    mac 2 <000000000000>\n' \
+        '    mac 3 <000000000000>\n'
+        _MacList = [self.mSettingDataFields.ubMAC01,self.mSettingDataFields.ubMAC02,self.mSettingDataFields.ubMAC03,self.mSettingDataFields.ubMAC04]
+        if len(_mArg) == 0:
+            _ListIndex = 0 
+            for _MacItem in _MacList:
+                _Index = 0
+                _MacStr = "    mac {} <".format(_ListIndex)
+                if len(_MacItem) > 2 :
+                    while _Index < len(_MacItem)-2:
+                        _MacStr = _MacStr + "{:02}".format(_MacItem[_Index])
+                        _Index += 1
+                    _MacStr = _MacStr + ">"
+                    print _MacStr
+                _ListIndex += 1
+        else:
+            _mArgv = _mArg.split()
+            if len(_mArgv) != 2:
+                print "Command error :\nex.\n    mac [0-3] 003d1f013d70\nPlease see the help\n"
+            else :
+                try:
+                    _MacIndex = int(_mArgv[0])
+                except ValueError:
+                    print "Command error :\nex.\n    mac [0-3] 003d1f013d70\nPlease see the help\n"
+                else:
+                    if self.is_valid_macaddr802(_mArgv[1]):
+                        if len(_mArgv[1]) == 12:
+                            _InMacData = re.findall('..',_mArgv[1])
+                        else:
+                            _SplitChar = _mArgv[1][2]
+                            _InMacData = _mArgv[1].split(_SplitChar)
+                        _MacItem = _MacList[_MacIndex]
+
+                        _Index = 0
+                        if len(_MacItem) > 2 :
+                            while _Index < len(_MacItem)-2:
+                                print _Index
+                                _MacItem[_Index] = int(_InMacData[_Index],16)
+                                _Index += 1
+                    else:
+                        print "Command error :\nex.\n    mac [0-3] 003d1f013d70\nPlease see the help\n"
+                    
+    def do_w(self, _mArg):
+        'save setting data'
+        #_mBackUpFileName = self.mFileName + ".bk"
+        #shutil.copyfile(self.mFileName, _mBackUpFileName)
+        try:
+            _mOutFD = open(self.mFileName, "wb")
+        except IOError:
+            fMKUpdateSD_LogExit("Can't open file ({})".format(self.mFileName))
+        else:        
+            _mOutFD.write(self.mSettingDataFields)
+        print('Write & Bye! Bye!')
+        return True
+    
+    def do_q(self, _mArg):
+        'Quit the Setting-Data Shell'
+        print('Bye! Bye!')
+        return True
+
+    def is_valid_macaddr802(self, _mValue):
+        _mAllowed = re.compile(r"""
+                               (
+                                   ^([0-9A-F]{2}[-]){5}([0-9A-F]{2})$
+                                  |^([0-9A-F]{2}[:]){5}([0-9A-F]{2})$
+                                  |^([0-9A-F]{2}){5}([0-9A-F]{2})$
+                               )
+                               """,
+                               re.VERBOSE|re.IGNORECASE)
+
+        if _mAllowed.match(_mValue) is None:
+            return False
+        else:
+            return True
+
+# ----------------------------------------------------------------------
+# edit setting data
+def fMKUpdateSD_EditSetting():
+    oSettingDataShell().cmdloop()
+    exit(0)
+
+# ----------------------------------------------------------------------
+# main
+def main():
+    fMKUpdateSD_Main()
+
+
+# ----------------------------------------------------------------------
+# 
+if __name__ == "__main__":
+
+    # ------------------------------------------------------------------
+    # check the out folder is exist or not , if not building it
+    for _mCheckFolder in ['out','files']:
+        if not os.path.exists(_mCheckFolder):
+            os.makedirs(_mCheckFolder)
+
+    # check the platform,files,sys folder is exist or not
+    for _mCheckFolder in ['platform','files','sys']:
+        if not os.path.exists(_mCheckFolder):
+            fMKUpdateSD_LogExit( "The folder ({}) is not exist.".format(_mCheckFolder) )
+
+	# ------------------------------------------------------------------
+    # get the args
+    _mArgParser = argparse.ArgumentParser()
+    #_mArgParser.add_argument('-p' , "--platform" , type=str, nargs=1 , default=["a6plus"] , help='set the platform')
+    #_mArgParser.add_argument('-c' , "--console" , action="store_true" , help='run in console mode')
+    _mArgParser.add_argument('-l' , "--list" , action="store_true" , help='list all support platform')
+    _mArgParser.add_argument('-n' , "--project" , type=str, nargs=1 , help='set the project name')
+    _mArgParser.add_argument('-p' , "--platform" , type=str, nargs=1 , help='set the platform')
+    _mArgParser.add_argument('-e' , "--edit" , type=str,choices=['u-boot','setting'] , help='edit the setting or u-boot data')
+    _mArgs = _mArgParser.parse_args()
+
+    # ------------------------------------------------------------------
+    # read config file and set the argv
+    if os.path.exists('.mk_update_sd.rc') :
+        _mConfigParser = ConfigParser.ConfigParser()
+        _mConfigParser.readfp( open( '.mk_update_sd.rc' ) )
+        if _mConfigParser.has_option('Options','platform'):
+            mMKUpdateSDPlatformSelect = _mConfigParser.get('Options','platform')
+        if _mConfigParser.has_option('Options','zipfilename'):
+            mMKUpdateSDZipFileName = _mConfigParser.get('Options','zipfilename')
+  
+	# ------------------------------------------------------------------
+    # Set the information from the args   
+    if _mArgs.platform != None:
+        mMKUpdateSDPlatformSelect = _mArgs.platform[0]
+
+    if _mArgs.project != None:
+        mMKUpdateSDZipFileName = _mArgs.project[0]
+
+	# ------------------------------------------------------------------
+    # add date
+    _mDate = datetime.datetime.now()
+    mMKUpdateSDZipFileName = mMKUpdateSDZipFileName + "-" + str(_mDate.year) + "-" + str(_mDate.month) + "-" + str(_mDate.day)
+        
+    # ------------------------------------------------------------------
+    # Get the platform list
+    for _mFolderName in os.listdir("platform"):
+        if os.path.exists( "platform/" + _mFolderName ) and \
+           os.path.exists( "platform/" + _mFolderName + "/info" ) and \
+           os.path.exists( "platform/" + _mFolderName + "/system" ) and \
+           os.path.exists( "platform/" + _mFolderName + "/info/option.json" ):
+            mMKUpdateSDPlatformList.append(_mFolderName)
+        else:
+            if not os.path.exists( "platform/" + _mFolderName ):
+                fMKUpdateSD_LogWarning( "Can't find " , "platform/" , _mFolderName )
+            if not os.path.exists( "platform/" + _mFolderName + "/info" ):
+                fMKUpdateSD_LogWarning( "Can't find " , "platform/" , _mFolderName , "/info" )
+            if not os.path.exists( "platform/" + _mFolderName + "/system" ):
+                fMKUpdateSD_LogWarning( "Can't find " , "platform/" , _mFolderName , "/system" )
+            if not os.path.exists( "platform/" + _mFolderName + "/info/option.json" ):
+                fMKUpdateSD_LogWarning( "Can't find " , "platform/" , _mFolderName , "/info/option.json" )
+
+    if len(mMKUpdateSDPlatformList) == 0:
+        fMKUpdateSD_LogExit( "The platform folder is not exist." )
+
+    if _mArgs.list != None:
+        if _mArgs.list :
+            print "List the support partform:"
+            _mIndex = 1
+            for _mItem in mMKUpdateSDPlatformList:
+                print "    {}. {}".format(_mIndex,_mItem)
+                _mIndex += 1
+            exit(0)
+
+    if not mMKUpdateSDPlatformSelect in mMKUpdateSDPlatformList:
+        fMKUpdateSD_LogExit( "Can't find the platform ({}) in the support platform list ({}).".format(mMKUpdateSDPlatformSelect,mMKUpdateSDPlatformList) )
+
+    mMKUpdateSDPlatformBasePath = "platform/" + mMKUpdateSDPlatformSelect + "/"
+
+    fMKUpdateSD_GetBaseInfo()
+
+    # ------------------------------------------------------------------
+    # check edit
+    if _mArgs.edit != None:
+        if _mArgs.edit == 'u-boot':
+            fMKUpdateSD_EditUBoot()
+        if _mArgs.edit == 'setting':
+            fMKUpdateSD_EditSetting()
+
+    # ------------------------------------------------------------------
+    # change to root run
+    if os.geteuid() != 0:
+        #print "Script not started as root. Running sudo.."
+        mArgs = ['sudo', sys.executable] + sys.argv + [os.environ]
+        # the next line replaces the currently-running process with the sudo
+        os.execlpe('sudo', *mArgs)
+    if os.geteuid() != 0:
+        exit(0)
+    
+    main()

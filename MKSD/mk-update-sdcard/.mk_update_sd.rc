@@ -1,0 +1,3 @@
+[Options]
+platform=abb-emmc-5-micro-1g
+zipfilename=rtx-abb-yocto
