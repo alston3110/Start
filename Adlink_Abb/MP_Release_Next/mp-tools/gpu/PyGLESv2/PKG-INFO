@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: PyGLESv2
+Version: 0.1.0
+Summary: PyGLESv2 is the Python bindings to OpenGL ES 2.0 and EGL.
+Home-page: UNKNOWN
+Author: Takahiro Okayama
+Author-email: okazoh.tk@gmail.com
+License: New BSD license
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires: ctypes

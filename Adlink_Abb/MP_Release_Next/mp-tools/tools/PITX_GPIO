@@ -1,0 +1,29 @@
+#!/bin/sh
+gpio=0
+
+func_GPIO_dir() {
+	echo out > /sys/devices/soc0/soc.1/2000000.aips-bus/20ac000.gpio/gpio/gpio130/direction 
+	echo in > /sys/devices/soc0/soc.1/2000000.aips-bus/20a4000.gpio/gpio/gpio82/direction 
+}
+GPIO_out_high() {
+	echo 1 > /sys/devices/soc0/soc.1/2000000.aips-bus/20ac000.gpio/gpio/gpio130/value 
+}
+
+GPIO_out_low() {
+	echo 0 > /sys/devices/soc0/soc.1/2000000.aips-bus/20ac000.gpio/gpio/gpio130/value 
+}
+
+func_GPIO_dir
+GPIO_out_high
+
+if [ $(cat /sys/devices/soc0/soc.1/2000000.aips-bus/20a4000.gpio/gpio/gpio82/value) > 260000 ]; then
+	GPIO_out_low
+	if [ $(cat /sys/devices/soc0/soc.1/2000000.aips-bus/20a4000.gpio/gpio/gpio82/value) = 0 ]; then 
+		gpio=1	
+	else
+		gpio=0	
+	fi
+fi 
+
+return $gpio 
+

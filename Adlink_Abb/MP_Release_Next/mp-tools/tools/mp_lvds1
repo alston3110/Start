@@ -1,0 +1,10 @@
+#!/bin/sh
+echo "Start PCBA_Function_Test = Lvds1 test "
+
+func_LVDS() {
+	echo 0 > /sys/class/graphics/fb2/blank
+	echo 16 > /sys/class/graphics/fb2/bits_per_pixel
+    dd if=./tools/wall-1024x768-565.rgb of=/dev/fb2
+}
+
+func_LVDS

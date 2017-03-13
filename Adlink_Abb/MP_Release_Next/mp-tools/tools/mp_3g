@@ -1,0 +1,65 @@
+#!/bin/bash
+
+. ./tools/info_config
+
+result=0
+count=10
+
+ADD_TTYNAME=/dev/tty3GModem
+
+TASK=./tools/wvdial
+WVCONF=./tools/wvdial.conf
+WV_OUTPUT=/tmp/3g.log
+
+if [ -z ${enable_3g} ]; then
+    enable_3g=0
+fi
+
+if [ -z ${port_3g} ]; then
+    port_3g=/dev/ttyACM0
+fi
+
+
+check_enable()
+{
+    if [ ${enable_3g} == 1 ]; then
+        result=${enable_3g}
+    fi
+}
+
+check_sim_slot()
+{
+    if [ ${enable_3g} == 1 ]; then
+        if [ ! -e ${ADD_TTYNAME} ]; then
+            rm -rf ${ADD_TTYNAME}
+        fi
+        
+        if [ -e ${port_3g} ]; then
+            ln -sf ${port_3g} ${ADD_TTYNAME}
+    
+            ${TASK} -C ${WVCONF} 2>&1 | tee ${WV_OUTPUT}
+            killall -9 ${TASK}
+            grep "ERROR" ${WV_OUTPUT}	
+            result=$?
+        else
+            result=0
+        fi
+    fi
+}
+
+
+case ${1} in
+    "info")
+        check_enable
+    ;;
+    "3g")
+        check_sim_slot
+    ;;
+    *)
+        result=0
+    ;;
+esac
+
+
+
+exit ${result}

@@ -1,0 +1,29 @@
+{
+	"event" : {    
+		"event_InputNum_1"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=1" } ,] } ,] ,
+		"event_InputNum_2"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=2" } ,] } ,] ,
+		"event_InputNum_3"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=3" } ,] } ,] ,
+		"event_InputNum_4"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=4" } ,] } ,] ,
+		"event_InputNum_5"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=5" } ,] } ,] ,
+		"event_InputNum_6"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=6" } ,] } ,] ,
+		"event_InputNum_7"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=7" } ,] } ,] ,
+		"event_InputNum_8"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=8" } ,] } ,] ,
+		"event_InputNum_9"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=9" } ,] } ,] ,
+		"event_InputNum_0"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=0" } ,] } ,] ,
+		"event_InputNum_Dot" : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=11" } ,] } ,] ,
+		"event_InputNum_Back": [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_InputNum_TempNum" : "=12" } ,] } ,] ,
+		"event_Input_smonth": [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=0" } ,] } ,] ,
+		"event_Input_sday"  : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=1" } ,] } ,] ,
+		"event_Input_emonth": [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=2" } ,] } ,] ,
+		"event_Input_eday"  : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=3" } ,] } ,] ,
+		"event_Input_shh"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=4" } ,] } ,] ,
+		"event_Input_smm"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=5" } ,] } ,] ,
+		"event_Input_ehh"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=6" } ,] } ,] ,
+		"event_Input_emm"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=7" } ,] } ,] ,
+		"event_Input_nnf"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=8" } ,] } ,] ,
+		"event_Input_npf"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=9" } ,] } ,] ,
+		"event_Input_pnf"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=10" } ,] } ,] ,
+		"event_Input_ppf"   : [ { "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } , "value" : [ { "V_state" : "=3" } , { "V_Input_choice" : "=11" } ,] } ,] ,
+		
+	}
+}

@@ -1,0 +1,7 @@
+mp-tools = A1-001
+FileSystem = Yocto (Yocto 4.1.15)
+kernel-rtx = 4.1.15 
+u-boot-rtx = 2015.04
+board : adlink-abb 
+verify=mmcblk0p1,3110
+ 

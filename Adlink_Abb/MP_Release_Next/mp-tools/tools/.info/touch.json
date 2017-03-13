@@ -1,0 +1,29 @@
+{
+    "touch": {
+		"enable": true,
+        "image": "images/mouse-32x32.png",
+        "vendor": "0x595a",
+        "product": "0x0008",
+        "x": 0,
+        "y": 0,
+        "width": 4096,
+        "height": 4096,
+        "rotate": {"->": 1,
+            "value": [
+				"normal", 
+				"CW", 
+				"CCW"
+            ]
+        },
+        "mirror": {"->": 0,
+            "value": [
+                "normal",
+                "horizontal",
+                "vertical",
+                "horizontal and vertical"
+            ]
+        },
+        "show": false
+        "scan time": 60000,
+    } ,
+}

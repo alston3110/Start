@@ -1,0 +1,47 @@
+#!/bin/bash
+
+. ./tools/info_config
+
+playdev=0
+recorddev=1
+
+if [ -z ${playfile} ]; then
+    playfile="./tools/daggers.wav"
+fi
+
+if [ -z ${recordfile} ]; then
+    recordfile="./tools/mic.wav"
+fi
+
+if [ -z ${recordtime} ]; then
+    recordtime=5
+fi
+
+
+if [ ! -f ${playfile} ]; then
+	echo "Tom======${playfile} is not exit!!!"
+    exit
+fi
+
+echo $$ > /run/lock/aplay.pid
+pid=$$
+while [ ${pid} -gt 0 ]
+do
+    if [ -f ${recordfile} ]; then
+        rm ${recordfile}
+    fi
+    if [ -f /run/lock/aplay.pid ]; then
+        pid=`cat /run/lock/aplay.pid`
+        if [ -z ${pid} ]; then
+            exit
+        fi
+    else
+        exit
+    fi
+    /usr/bin/aplay -d ${recordtime} -D plughw:${playdev},0 ${playfile} &
+
+    arecord -t wav -f cd -d ${recordtime} ${recordfile}
+
+    #amixer set "PCM" 140
+    /usr/bin/aplay -D plughw:${recorddev},0 ${recordfile}
+done

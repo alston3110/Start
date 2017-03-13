@@ -1,0 +1,33 @@
+{      
+	"value" : {
+		"V_state"   : {
+			"int"   : 0       ,
+		} ,
+
+		"V_test"   : {
+			"int"   : 0       ,
+		} ,
+		"V_test_value"   : {
+			"int"   : 1       ,
+		} ,
+		"V_test_cur"   : {
+			"int"   : 0       ,
+		} ,
+
+		"V_float"   : {
+			"float"   : 0.0       ,
+			"min"   : 0      ,
+			"max"   : 999.00      ,
+			"loop"  : "false"  ,
+		} ,
+		"V_int"   : {
+			"int"   : 9       ,
+			"min"   : 0      ,
+			"max"   : 9  ,
+			"loop"  : "false"  ,
+		} ,
+		"V_debug"   : {
+			"int"   : 1       ,
+		} ,
+	} ,
+}

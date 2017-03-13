@@ -1,0 +1,9 @@
+#!/bin/bash
+DIR=$0
+CURDIR=${DIR%/*}
+cd ${CURDIR}
+
+echo "plughw 0,0"
+/usr/bin/aplay -D plughw:0,0 audio8k16S.wav
+
+arecord -t wav -f cd -d 10 $CURDIR/$wav_linein

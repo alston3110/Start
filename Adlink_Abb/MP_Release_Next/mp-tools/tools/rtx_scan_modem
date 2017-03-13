@@ -1,0 +1,227 @@
+#!/bin/bash
+
+ACTION=$1
+TARGET=$2
+
+ADD_TTYNAME=/dev/tty3GModem
+JUDGE_CMD=/bin/rtx_modem_handler
+LOCK_File=/tmp/ScanModem.lock
+ret=1
+
+WV_OUTPUT=/tmp/3g.log
+DEBUG_OUT_DEV=/dev/null
+#DEBUG_OUT_DEV=/tmp/Jerry3G.log
+pin_status_cfg=/tmp/pin.status
+
+TASK=wvdial
+WV_Default=DEFAULT
+WV_Signal=SignalStatus
+WV_PinStatus=PinStatus
+WV_PinDefault=PinDEFAULT
+
+dbgout()
+{
+	echo "[3g_monitor] [${TARGET}]"$@ >> ${DEBUG_OUT_DEV}
+}
+
+pin_status()
+{	
+	PinRet=0
+	busyRet=1
+	dbgout "pin_status()"
+	
+	dbgout "TestPin=${TestPin}"
+
+	i_pin_status=0
+	echo "pin=0" > ${pin_status_cfg}
+	killall -9 ${TASK}
+	dbgout "${TASK} ${WV_PinStatus} &>${WV_OUTPUT}"
+	${TASK} ${WV_PinStatus} &>${WV_OUTPUT} &
+	sleep 3
+	killall -9 ${TASK}
+	grep "OK" ${WV_OUTPUT}	
+	RETVAL=$?
+	dbgout "grep \"OK\" ${WV_OUTPUT}=${RETVAL}"
+	grep "+CME ERROR: SIM busy" ${WV_OUTPUT}
+	busyRet=$?
+	dbgout "grep \"+CME ERROR: SIM busy\" ${WV_OUTPUT}=${busyRet}"
+	if [ 0 -eq ${RETVAL} ]; then
+		busyRet=1
+		grep "+CPIN: READY" ${WV_OUTPUT} 
+		RETVAL=$?
+		dbgout "grep \"+CPIN: READY\" ${WV_OUTPUT}=${RETVAL}"
+		if [ 0 -eq ${RETVAL} ]; then
+			# pin success
+			echo "pin=1" > ${pin_status_cfg}
+			echo "finish=1" >> ${pin_status_cfg}
+			return 0
+		fi
+		grep "+CPIN: SIM PIN" ${WV_OUTPUT}
+		RETVAL=$?
+		dbgout "grep \"+CPIN: SIM PIN\" ${WV_OUTPUT}=${RETVAL}"		
+		if [ 0 -eq ${RETVAL} ]; then
+			#if [ ! -f ${pin_status_cfg} ]; then	
+				# need pin or pin fail
+				echo "pin=0" > ${pin_status_cfg}
+				dbgout "${TASK} ${WV_PinDefault} &>${WV_OUTPUT}"
+				${TASK} ${WV_PinDefault} &>${WV_OUTPUT} &
+				sleep 3
+				killproc ${TASK}
+				grep "OK" ${WV_OUTPUT}
+				RETVAL=$?
+				dbgout "grep \"OK\" ${WV_OUTPUT}=${RETVAL}"
+				if [ 0 -eq ${RETVAL} ]; then
+					i_pin_status=1
+					echo "pin=1" > ${pin_status_cfg}
+					echo "finish=1" >> ${pin_status_cfg}
+					return 0
+				else
+					grep "+CME ERROR: incorrect password" ${WV_OUTPUT}
+					RETVAL=$?
+					dbgout "grep \"+CME ERROR: incorrect password\" ${WV_OUTPUT}=${RETVAL}"
+					if [ ! 0 -eq ${RETVAL} ]; then
+						grep "+CME ERROR: SIM PUK" ${WV_OUTPUT}
+						RETVAL=$?
+						dbgout "grep \"+CME ERROR: SIM PUK\" ${WV_OUTPUT}=${RETVAL}"
+						if [ 0 -eq ${RETVAL} ]; then
+							# pin fail and need puk
+							i_pin_status=-1
+							echo "pin=-1" > ${pin_status_cfg}
+						fi
+					fi
+				fi
+			#fi
+		else
+			grep "+CPIN: SIM PUK" ${WV_OUTPUT}
+			RETVAL=$?
+			dbgout "grep \"+CPIN: SIM PUK\" ${WV_OUTPUT}=${RETVAL}"
+			if [ 0 -eq ${RETVAL} ]; then
+				# pin fail and need puk
+				i_pin_status=-1
+				echo "pin=-1" > ${pin_status_cfg}
+			fi
+		fi
+	else
+		cat ${WV_OUTPUT} >> ${DEBUG_OUT_DEV}
+	fi
+	
+	if [ 1 -eq ${busyRet} ]; then
+		#if [ 0 -eq ${i_pin_status} ]; then
+		#	write_log 2 2 "Incorrect PIN code."
+		#else
+		#	write_log 2 2 "PUK is required."
+		#fi
+		echo "finish=1" >> ${pin_status_cfg}
+		PinRet=0
+	else
+		echo "finish=0" >> ${pin_status_cfg}
+		PinRet=1
+	fi
+}
+
+
+ScanSingle()
+{
+	if [ ! -e /dev/${TARGET} ]; then
+		echo "No device can support 3G Modem"
+		rm -rf ${LOCK_File}
+		exit 1	
+	fi
+	
+	${JUDGE_CMD} ${TARGET}; ret=$?
+	if [ ${ret} == "0" ] ; then
+		echo Success
+	else
+		rm -rf ${LOCK_File}
+		exit 1	
+	fi
+	
+	
+	ln -sf /dev/${TARGET} ${ADD_TTYNAME}
+	sync
+}
+
+ScanAll()
+{
+	for DEVID in `seq 0 1 50`
+	do
+		if [ ! -e /dev/ttyUSB${DEVID} ]; then
+			echo "No device can support 3G Modem"
+			rm -rf ${LOCK_File}
+			exit 1	
+		fi
+	
+		${JUDGE_CMD} ttyUSB${DEVID}; ret=$?
+		if [ ${ret} == "0" ] ; then
+			echo Success
+			break
+		fi
+	done
+
+	ln -sf /dev/ttyUSB${DEVID} ${ADD_TTYNAME}
+	sync
+}
+
+AddModem()
+{
+	if [ -e ${ADD_TTYNAME} ] ; then
+		echo "Cannot re-link on ${ADD_TTYNAME}"
+		dbgout "Cannot re-link on ${ADD_TTYNAME}"
+		rm -rf ${LOCK_File}
+		exit 1	
+	fi
+	
+	dbgout "`ll /dev/tty3G*`"
+	
+	if [ x"${TARGET}" == x ] ; then
+		rm -rf ${LOCK_File}
+		exit 1
+	elif [ x"${TARGET}" == x"ALL" ] ; then
+		ScanAll
+	else
+		sleep 1
+		ScanAll
+#		ScanSingle
+	fi
+
+	pin_status
+
+	${TASK} ${WV_Default} &
+}
+
+RemoveModem()
+{
+	if [ ! -L ${ADD_TTYNAME} ] ; then
+		rm -rf ${LOCK_File}
+		exit 1
+	fi
+	
+	if [ ! -e ${ADD_TTYNAME} ] ; then
+		rm -rf ${ADD_TTYNAME}
+	fi
+}
+
+#while [ -f ${LOCK_File} ] ; do
+#	sleep 1
+#done
+if [ -f ${LOCK_File} ] ; then
+	exit 1
+fi
+
+touch ${LOCK_File}
+
+case "$1" in
+  usb-serial-add)
+  	AddModem
+	;;
+  usb-serial-remove)
+	RemoveModem
+	;;
+  *)
+	echo $"Usage: $0 {usb-serial-add|usb-serial-remove}"
+	rm -rf ${LOCK_File}
+	exit 1
+esac
+
+rm -rf ${LOCK_File}
+exit 0

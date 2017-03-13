@@ -1,0 +1,90 @@
+#!/bin/sh
+
+# test for empty usb
+
+result=0
+checkfile=0
+checksum=0
+compare_file=tools/wall-1024x768-565.rgb
+num=0
+file_name=usb2
+dev_name=sda1
+
+num=$(mount | grep /run/media/sd | wc -l)
+
+if [ $(mount | grep /run/media/sd | wc -l) = 0 ]; then
+	echo "USB /dev/sdx : no device "
+	continue	
+fi
+
+if [ $num -eq 1 ]; then
+	dev_name='sda1'
+else
+	dev_name='sda1 sdb1'
+fi
+	
+#echo "dev_name= $dev_name"
+
+for USB in $dev_name
+do
+	#echo "test dev = $USB"
+	if [ $(mount | grep "/dev/$USB on /run/media/$USB" | wc -l) -gt 0 ]; then
+	        file_path=$(mount | grep "/dev/$USB on /" | awk '{print $3}')
+		if [ ! -z $file_path ]; then
+			if [ -f $file_path/$file_name ]; then
+				checkfile=1
+			fi
+		fi
+	fi
+	
+	if [ $checkfile -ne 1 ]; then
+		#echo "skip /dev/$USB"
+		continue
+	else
+		checkfile=0
+	fi
+
+	#echo "start test usb = $USB"
+	
+	if [ ! -z $file_path ]; then
+        	if [ ! -d $file_path/USB_TEST ]; then
+                	mkdir $file_path/USB_TEST
+                	chmod 755 $file_path/USB_TEST
+                	sync
+		else
+			rm -rf $file_path/USB_TEST/*
+			sync
+        	fi
+
+		if [ -f $compare_file ]; then
+			checksum=$(md5sum $compare_file | awk '{print $1}')
+			cp $compare_file $file_path/USB_TEST/USB_date
+			sync
+		else
+			echo "USB $USB : compare date lose"
+			exit 0
+		fi
+	fi
+
+	checksum1=$(md5sum $file_path/USB_TEST/USB_date | awk '{print $1}')
+	if  [ $checksum1 == $checksum ]; then 
+		result=1
+	fi		
+
+	if [ -d $file_path/USB_TEST ]; then
+		rm -rf $file_path/USB_TEST
+		sync
+	fi
+sleep 2
+done
+
+if [ ${result} -gt 0 ]; then
+    echo "USB ${file_name} : PASS"
+else
+    echo "USB ${file_name} : FAIL"
+fi
+
+sync
+exit $result 
+
+

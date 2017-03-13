@@ -1,0 +1,113 @@
+{          	 
+    "communication" : {
+        "format" : [
+            { "1" : "0x7E"     } ,
+            { "1" : "code"     } ,
+            { "2" : "length"   } ,
+            { "1" : "sequence" } ,
+            { "n" : "data"     } ,
+            { "2" : "checksum" }
+        ] ,
+        "commands" : {
+            "ack" : {
+                "code" : "0x00" ,
+                "type" : "sent"
+            } ,
+            "nak" : {
+                "code" : "0x01" ,
+                "type" : "sent" ,
+            } ,
+            "AD_control" : {
+                "code"     : "0x08" ,
+                "type"     : "recv" ,
+                "response" : "ack"  ,
+                 "data"     : [
+                    { "1" : "V_AD_temp" } ,
+                ] ,
+                "if"       : {
+                    "V_AD_temp" : [
+                        {
+                            "16" : {
+                                "equation" : [
+									"V_AD_action=1" ,
+                                ] ,
+                            }
+                        } ,
+                        {
+                            "32" : {
+                                "equation" : [
+									"V_AD_action=0" ,
+                                ] ,
+                            }
+                        } ,
+                    ]
+                }
+           } ,
+            "Message_control" : {
+                "code"     : "0x09" ,
+                "type"     : "recv" ,
+                "response" : "ack"  ,
+                 "data"     : [
+                    { "1" : "V_AD_temp" } ,
+                    { "1" : "V_message_image" } ,
+                    { "1" : "V_message_color" } ,
+                ] ,
+                "if"       : {
+                    "V_message_image<=127" : [
+                        {
+                            "1" : {
+                                "equation" : [
+									"layout.F_Debug.3.image.select=V_message_image" ,
+                                ] ,
+                            }
+                        } ,
+                    ] ,
+                    "V_message_color<=15" : [
+                        {
+                            "1" : {
+                                "equation" : [
+									"layout.F_Debug.3.color.select=V_message_color" ,
+                                ] ,
+                            }
+                        } ,
+                    ] ,
+                }
+           } ,
+
+           "update_progress" : {
+                "code"     : "0x22" ,
+                "type"     : "recv" ,
+                "response" : "ack"  ,
+                 "data"     : [
+                    { "1" : "V_state" } ,
+                ] ,
+           } ,
+           "eng_mode" : {
+                "code"     : "0x99" ,
+                "type"     : "recv" ,
+                "response" : "ack"  ,
+                 "data"     : [
+                    { "1" : "V_AD_action" } ,
+                ] ,
+                "if"       : {
+                    "V_AD_action" : [
+                        {
+                            "1" : {
+                                "equation" : [
+                                    "V_state=99"
+                                ] ,
+                            }
+                        } ,
+                        {
+                            "2" : {
+                                "equation" : [
+                                    "V_state=10"
+                                ] ,
+                            }
+                        }
+                    ]
+                }
+           } ,
+        } ,
+    } ,
+}

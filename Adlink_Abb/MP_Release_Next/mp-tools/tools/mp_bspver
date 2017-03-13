@@ -1,0 +1,22 @@
+#!/bin/bash
+
+. ./tools/info_config
+
+result=0
+
+bspver=$(cat /etc/version)
+
+if [ -z $BSP_VER ]; then
+    BSP_VER="20170216101322"
+fi
+
+echo "BSP version is $bspver"
+if [ -z $bspver ]; then
+    	result=0
+elif [ "$bspver" == $BSP_VER ]; then
+	result=1
+else
+	result=2
+fi
+
+exit $result

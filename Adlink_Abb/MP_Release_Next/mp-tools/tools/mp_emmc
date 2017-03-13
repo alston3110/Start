@@ -1,0 +1,43 @@
+#!/bin/sh
+emmc=0
+device=mmcblk0p1
+
+if [ -e /dev/$device ];then
+	if [ $(mount | grep "/dev/$device on /mnt/$device" | wc -l) = "0" ];then
+		if [ $( ls /mnt/$device 2> /dev/null | wc -l) = 0 ]; then 
+			mkdir -p /mnt/$device 
+		fi
+		mount /dev/$device /mnt/$device 
+		sleep 2	
+	fi
+
+	if [ ! -d /mnt/$device/EMMC_TEST ];then
+		mkdir -p /mnt/$device/EMMC_TEST
+		chmod 755 /mnt/$device/EMMC_TEST
+		sync
+	fi
+
+	echo $(date) > /mnt/$device/EMMC_TEST/EMMC_date
+
+	if [ $(mount | grep /mnt/$device | wc -l) -eq "1" ];then
+		sleep 2
+		if  [ -f /mnt/$device/EMMC_TEST/EMMC_date ];then
+			echo "EMMC $device : PASS"
+			emmc=1	
+		else
+			echo "EMMC $device : ...."
+		fi
+		sleep 2
+	fi
+	umount /mnt/$device 
+        if [ "$(mount | grep "/dev/$device on /mnt/$device" | wc -l)" -gt "0" ];then
+		umount /dev/$device 
+                sleep 2
+        fi
+
+else
+	emmc=0
+fi
+
+return $emmc 
+

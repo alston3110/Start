@@ -1,0 +1,44 @@
+#!/bin/bash
+result=0
+count=10
+dev_name=$(iwconfig 2>/dev/null | grep -o "^\w*" )
+
+if [ -f ./tools/log/${dev_name}.log ]; then
+    rm ./tools/log/${dev_name}.log
+fi
+
+
+if [ $(iwconfig 2>/dev/null | grep -o "^\w*" | wc -l ) = 0 ]; then
+	echo "PFT_WIFI	  : no device "
+	modprobe ath9k 
+else
+	if [ $(ifconfig | grep "wlan" | wc -l ) = 0 ]; then
+		ifconfig $(iwconfig 2>/dev/null | grep -o "^\w*" ) up
+		sleep 18
+	fi
+
+
+    	for (( i=0 ; ${i}<${count} ; i++ ))
+    	do
+        	number=$(iwlist $(ifconfig | grep "wlan" | awk '{print $1}') scan | grep Cell | wc -l)
+        	echo "$device scan list = $number" > /dev/ttymxc1 
+        	if [ "$number" -gt "0" ]; then
+            		result=1
+            		break
+        	fi
+        	sleep 2
+    	done
+   
+	ifconfig $(iwconfig 2>/dev/null | grep -o "^\w*") down
+fi 
+
+echo "${dev_name} = $result" > ./tools/log/${dev_name}.log
+
+if [ ${result} -gt 0 ]; then
+    echo "WIFI ${dev_name} : PASS"
+else
+    echo "WIFI ${dev_name} : FAIL"
+fi
+
+exit $result
+

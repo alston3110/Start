@@ -1,0 +1,15 @@
+#!/bin/sh
+
+one=1
+func_HDMI() {
+	echo 0 > /sys/class/graphics/fb3/blank
+	echo 24 > /sys/class/graphics/fb3/bits_per_pixel
+	dd if=./tools/hdmi.rgb of=/dev/fb3
+}
+
+func_HDMI
+while true ;do
+	/usr/bin/aplay -D plughw:1,0 tools/daggers.wav & 
+        sleep 10 
+	exit 0
+done

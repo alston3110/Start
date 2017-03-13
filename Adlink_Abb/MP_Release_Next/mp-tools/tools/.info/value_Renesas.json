@@ -1,0 +1,368 @@
+{      
+	"value" : {
+		"V_Renesas_in_update"   : {
+			"0: none ; 1 : ready ; 2 : update input value" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_in_0"   : {
+			"Peak Day Range" : 0 ,
+			"int"   : 5       ,
+		} ,
+		"V_Renesas_in_1"   : {
+			"Peak Day Range" : 0 ,
+			"int"   : 1       ,
+		} ,
+		"V_Renesas_in_2"   : {
+			"Peak Day Range" : 0 ,
+			"int"   : 10       ,
+		} ,
+		"V_Renesas_in_3"   : {
+			"Peak Day Range" : 0 ,
+			"int"   : 31       ,
+		} ,
+		"V_Renesas_in_4"   : {
+			"Peak Day Range" : 0 ,
+			"int"   : 10       ,
+		} ,
+		"V_Renesas_in_5"   : {
+			"Peak Day Range" : 0 ,
+			"int"   : 20       ,
+		} ,
+		"V_Renesas_in_6"   : {
+			"Peak Day Range" : 0 ,
+			"int"   : 10       ,
+		} ,
+		"V_Renesas_in_7"   : {
+			"Peak Day Range" : 0 ,
+			"int"   : 40       ,
+		} ,
+		"V_Renesas_in_8"   : {
+			"NDNT fee" : 0 ,
+			"float"   : 0.1       ,
+		} ,
+		"V_Renesas_in_9"   : {
+			"NDPT fee" : 0 ,
+			"float"   : 0.2       ,
+		} ,
+		"V_Renesas_in_10"   : {
+			"PDNT fee" : 0 ,
+			"float"   : 0.3       ,
+		} ,
+		"V_Renesas_in_11"   : {
+			"PDPT fee" : 0 ,
+			"float"   : 0.5       ,
+		} ,
+
+		"V_Renesas_0"   : {
+			"This is PLC request times" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_1"   : {
+			"This is intaneous energy" : 0 ,
+			"float"   : 0.0       ,
+		} ,
+		"V_Renesas_2"   : {
+			"This is intaneous current_r" : 0 ,
+			"float"   : 0.0       ,
+		} ,
+		"V_Renesas_3"   : {
+			"This is intaneous current_t" : 0 ,
+			"float"   : 0.0       ,
+		} ,
+		"V_Renesas_4"   : {
+			"float"   : 0.0       ,
+		} ,
+		"V_Renesas_5"   : {
+			"float"   : 0.0       ,
+		} ,
+		"V_Renesas_6"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_7"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_8"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_9"   : {
+			"int"   : 0       ,
+		} ,
+		
+		"V_Renesas_10"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_11"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_12"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_13"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_14"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_15"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_16"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_17"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_18"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_19"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_20"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_21"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_22"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_23"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_24"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_25"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_26"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_27"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_28"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_29"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_30"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_31"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_32"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_33"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_34"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_35"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_36"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_37"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_38"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_39"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_40"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_41"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_42"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_43"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_44"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_45"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_46"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_47"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_48"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_49"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_50"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_51"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_52"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_53"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_54"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_55"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_56"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_57"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_58"   : {
+			"Number of History" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_59"   : {
+			"valid number for draw" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_60"   : {
+			"History x axis(second)" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_61"   : {
+			"History different max energy" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_62"   : {
+			"History number of unit" : 9 ,
+			"int"   : 99       ,
+		} ,
+		"V_Renesas_63"   : {
+			"History max energy" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_64"   : {
+			"History x axis(year)" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_65"   : {
+			"History x axis(month)" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_66"   : {
+			"History x axis(day)" : 0 ,
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_67"   : {
+			"fee total" : 0 ,
+			"float"   : 0.0       ,
+		} ,
+		"V_Renesas_68"   : {
+			"History x axis(days)" : 0 ,
+			"int"   : 1       ,
+		} ,
+		
+		"V_Renesas_days_0"   : {
+			"History x axis(days)" : 0 ,
+			"int"   : 1       ,
+		} ,
+		"V_Renesas_days_1"   : {
+			"History x axis(days)" : 0 ,
+			"int"   : 1       ,
+		} ,
+		"V_Renesas_days_2"   : {
+			"History x axis(days)" : 0 ,
+			"int"   : 1       ,
+		} ,
+		"V_Renesas_days_3"   : {
+			"History x axis(days)" : 0 ,
+			"int"   : 1       ,
+		} ,
+		"V_Renesas_days_4"   : {
+			"History x axis(days)" : 0 ,
+			"int"   : 1       ,
+		} ,
+		"V_Renesas_days_5"   : {
+			"History x axis(days)" : 0 ,
+			"int"   : 1       ,
+		} ,
+		"V_Renesas_days_6"   : {
+			"History x axis(days)" : 0 ,
+			"int"   : 1       ,
+		} ,
+		"V_Renesas_cal_hour00"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_minute00"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_second00"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_hour01"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_minute01"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_second01"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_hour02"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_minute02"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_second02"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_cal_y"   : {
+			"History y axis divide unit" : 0 ,
+			"float"   : 0.0       ,
+		} ,
+		"V_Renesas_cal_total"   : {
+			"History total" : 0 ,
+			"float"   : 0.0       ,
+		} ,
+		
+		"V_Renesas_update"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_Index"   : {
+			"int"   : 0       ,
+		} ,
+		"V_Renesas_Index_old"   : {
+			"int"   : 0       ,
+		} ,
+		
+		"V_Input_choice"   : {
+			"99 : none , 0 : start month , 1 : start day" : 0 ,
+			"int"   : 99       ,
+		} ,
+		"V_InputNum_TempNum"   : {
+			"0-9 : input , great 10 : none" : 99 ,
+			"int"   : 99       ,
+		} ,
+		"V_InputNum_Temp"   : {
+			"inputtemp" : 0 ,
+			"float"   : 0.0       ,
+		} ,
+		
+	} ,
+}

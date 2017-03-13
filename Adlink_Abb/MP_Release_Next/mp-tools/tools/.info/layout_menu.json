@@ -1,0 +1,188 @@
+{          
+	"layout" : {
+		"F_middle_menu" : {
+			"x"      : 8    ,
+			"y"      : 158    ,
+			"width"  : 1266 ,
+			"height" : 442  ,
+			"frame"  : [
+				{
+					"name"		 : "80" ,
+					"block"      : "B_menu" ,
+					"image select" : 0 ,
+					"x"          : 100 ,
+					"y"          : 10 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "0" ,
+					"block"      : "B_menu_date00" ,
+					"x"          : 370 ,
+					"y"          : 10 ,
+					"event" 	 : "event_Input_smonth" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "1" ,
+					"block"      : "B_menu_date01" ,
+					"x"          : 450 ,
+					"y"          : 10 ,
+					"event" 	 : "event_Input_sday" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_menu_date02" ,
+					"x"          : 570 ,
+					"y"          : 10 ,
+					"event" 	 : "event_Input_emonth" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "3" ,
+					"block"      : "B_menu_date03" ,
+					"x"          : 650 ,
+					"y"          : 10 ,
+					"event" 	 : "event_Input_eday" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "81" ,
+					"block"      : "B_menu" ,
+					"image select" : 1 ,
+					"x"          : 100 ,
+					"y"          : 80 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "4" ,
+					"block"      : "B_menu_time00" ,
+					"x"          : 370 ,
+					"y"          : 80 ,
+					"event" 	 : "event_Input_shh" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "5" ,
+					"block"      : "B_menu_time01" ,
+					"x"          : 450 ,
+					"y"          : 80 ,
+					"event" 	 : "event_Input_smm" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "6" ,
+					"block"      : "B_menu_time02" ,
+					"x"          : 570 ,
+					"y"          : 80 ,
+					"event" 	 : "event_Input_ehh" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "7" ,
+					"block"      : "B_menu_time03" ,
+					"x"          : 650 ,
+					"y"          : 80 ,
+					"event" 	 : "event_Input_emm" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "82" ,
+					"block"      : "B_menu" ,
+					"image select" : 2 ,
+					"x"          : 100 ,
+					"y"          : 150 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "8" ,
+					"block"      : "B_menu_money00" ,
+					"x"          : 550 ,
+					"y"          : 150 ,
+					"event" 	 : "event_Input_nnf" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "83" ,
+					"block"      : "B_menu" ,
+					"image select" : 3 ,
+					"x"          : 100 ,
+					"y"          : 220 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "9" ,
+					"block"      : "B_menu_money01" ,
+					"x"          : 550 ,
+					"y"          : 220 ,
+					"event" 	 : "event_Input_npf" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "84" ,
+					"block"      : "B_menu" ,
+					"image select" : 4 ,
+					"x"          : 100 ,
+					"y"          : 290 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "10" ,
+					"block"      : "B_menu_money02" ,
+					"x"          : 550 ,
+					"y"          : 290 ,
+					"event" 	 : "event_Input_pnf" ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "85" ,
+					"block"      : "B_menu" ,
+					"image select" : 5 ,
+					"x"          : 100 ,
+					"y"          : 360 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "11" ,
+					"block"      : "B_menu_money03" ,
+					"x"          : 550 ,
+					"y"          : 360 ,
+					"event" 	 : "event_Input_ppf" ,
+					"show"       : true
+				} ,
+
+			] ,
+		} ,	
+
+		"F_ManageInputNum" : {
+			"x"      : 900    ,
+			"y"      : 50    ,
+			"width"  : 320 ,
+			"height" : 570 ,
+			"frame"  : [									
+				{
+					"name"		 : "31" ,
+					"block"      : "B_InputNum_BaseFrame" ,
+					"x"          : 32 ,
+					"y"          : 30 ,
+					"show"       : true
+				} ,										
+				{ "name" : "1"  , "block" : "B_InputNum_ButtonStr" , "image select" : 1  , "x" : 32  , "y" : 115 , "show" : true , "event" : "event_InputNum_1" , } ,
+				{ "name" : "2"  , "block" : "B_InputNum_ButtonStr" , "image select" : 2  , "x" : 117 , "y" : 115 , "show" : true , "event" : "event_InputNum_2" , } ,
+				{ "name" : "3"  , "block" : "B_InputNum_ButtonStr" , "image select" : 3  , "x" : 202 , "y" : 115 , "show" : true , "event" : "event_InputNum_3" , } ,
+				{ "name" : "4"  , "block" : "B_InputNum_ButtonStr" , "image select" : 4  , "x" : 32  , "y" : 200 , "show" : true , "event" : "event_InputNum_4" , } ,
+				{ "name" : "5"  , "block" : "B_InputNum_ButtonStr" , "image select" : 5  , "x" : 117 , "y" : 200 , "show" : true , "event" : "event_InputNum_5" , } ,
+				{ "name" : "6"  , "block" : "B_InputNum_ButtonStr" , "image select" : 6  , "x" : 202 , "y" : 200 , "show" : true , "event" : "event_InputNum_6" , } ,
+				{ "name" : "7"  , "block" : "B_InputNum_ButtonStr" , "image select" : 7  , "x" : 32  , "y" : 285 , "show" : true , "event" : "event_InputNum_7" , } ,
+				{ "name" : "8"  , "block" : "B_InputNum_ButtonStr" , "image select" : 8  , "x" : 117 , "y" : 285 , "show" : true , "event" : "event_InputNum_8" , } ,
+				{ "name" : "9"  , "block" : "B_InputNum_ButtonStr" , "image select" : 9  , "x" : 202 , "y" : 285 , "show" : true , "event" : "event_InputNum_9" , } ,
+				{ "name" : "10" , "block" : "B_InputNum_ButtonStr" , "image select" : 0  , "x" : 117 , "y" : 370 , "show" : true , "event" : "event_InputNum_0" , } ,
+				{ "name" : "11" , "block" : "B_InputNum_ButtonStr" , "image select" : 10 , "x" : 32  , "y" : 370 , "show" : true , "event" : "event_InputNum_Dot" , } ,				
+				{ "name" : "12" , "block" : "B_InputNum_ButtonStr" , "image select" : 11 , "x" : 202 , "y" : 370 , "show" : true , "event" : "event_InputNum_Back" , } ,
+				{ "name" : "14" , "block" : "B_InputNum_Display" , "x" : 32 , "y" : 30 , "show" : true } ,
+				{ "name" : "15" , "block" : "B_InputNum_Display_Float" , "x" : 32 , "y" : 30 , "show" : true } ,
+			] ,
+		} ,	
+	
+	} ,		
+}

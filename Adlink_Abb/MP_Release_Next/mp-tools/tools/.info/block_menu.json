@@ -1,0 +1,248 @@
+{          
+	"block" : {
+		"B_InputNum_BaseFrame" : {
+			"width"        : 255 ,
+			"height"       : 510 ,
+			"align"        : "middle" ,
+			"color"        : "color_W" ,
+			"image"        : "I_InputNumber" ,
+            "auto zoom"    : false ,
+		} ,		
+		"B_InputNum_ButtonStr" : {
+			"width"        : 85 ,
+			"height"       : 85 ,
+			"align"        : "middle" ,
+			"color"        : "color_black" ,
+			"image"        : "S_ManageInputNum" ,
+            "auto zoom"    : false ,
+		} ,	
+		"B_InputNum_ButtonConfirm" : {
+			"width"        : 255 ,
+			"height"       : 85 ,
+			"align"        : "middle" ,
+			"color"        : "color_black" ,
+			"image"        : "S_ManageInputNum" ,
+            "auto zoom"    : false ,
+		} ,
+		
+		"B_menu" : {
+			"width"        : 1000 ,
+			"height"       : 80 ,
+			"image"        : "S_menu" ,
+			"image select" : 0 ,
+			"color"        : [
+				"color_black" ,
+				"color_W" ,
+			] ,
+			"color select" : 0 ,
+		} ,					
+		"B_menu_date00" : {
+			"width"        : 70 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+			"color select" : 0 ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%2d" ,
+                "value"  : "V_Renesas_in_0" ,
+                "digits" : 2
+            }
+		} ,
+		"B_menu_date01" : {
+			"width"        : 70 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+           "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%2d" ,
+                "value"  : "V_Renesas_in_1" ,
+                "digits" : 2
+            }
+		} ,
+		"B_menu_date02" : {
+			"width"        : 70 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%2d" ,
+                "value"  : "V_Renesas_in_2" ,
+                "digits" : 2
+            }
+		} ,
+		"B_menu_date03" : {
+			"width"        : 70 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%2d" ,
+                "value"  : "V_Renesas_in_3" ,
+                "digits" : 2
+            }
+		} ,
+		"B_menu_time00" : {
+			"width"        : 70 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%2d" ,
+                "value"  : "V_Renesas_in_4" ,
+                "digits" : 2
+            }
+		} ,
+		"B_menu_time01" : {
+			"width"        : 70 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%2d" ,
+                "value"  : "V_Renesas_in_5" ,
+                "digits" : 2
+            }
+		} ,
+		"B_menu_time02" : {
+			"width"        : 70 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%2d" ,
+                "value"  : "V_Renesas_in_6" ,
+                "digits" : 2
+            }
+		} ,
+		"B_menu_time03" : {
+			"width"        : 70 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%2d" ,
+                "value"  : "V_Renesas_in_7" ,
+                "digits" : 2
+            }
+		} ,
+		
+		"B_menu_money00" : {
+			"width"        : 150 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%5f" ,
+                "value"  : "V_Renesas_in_8" ,
+                "digits" : 5
+            }
+		} ,
+		"B_menu_money01" : {
+			"width"        : 150 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%5f" ,
+                "value"  : "V_Renesas_in_9" ,
+                "digits" : 5
+            }
+		} ,
+		"B_menu_money02" : {
+			"width"        : 150 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%5f" ,
+                "value"  : "V_Renesas_in_10" ,
+                "digits" : 5
+            }
+		} ,
+		"B_menu_money03" : {
+			"width"        : 150 ,
+			"height"       : 80 ,
+			"color"        : [
+				"color_black" ,
+				"color_R" ,
+			] ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%5f" ,
+                "value"  : "V_Renesas_in_11" ,
+                "digits" : 5
+            }
+		} ,
+		"B_menu_money_fee" : {
+			"width"        : 150 ,
+			"height"       : 80 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : false ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "$ %.4f" ,
+                "value"  : "V_Renesas_67" ,
+                "digits" : 7
+            }
+		} ,
+
+	} ,
+}

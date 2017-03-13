@@ -1,0 +1,33 @@
+#!/bin/bash
+
+DIR=$0
+CURDIR=${DIR%/*}
+cd ${CURDIR}
+#echo "CURDIR = $CURDIR"
+
+result=0
+count=10
+filename="./log/${1}.log"
+#echo "filename=$filename"
+
+check_result()
+{
+    for (( i=0 ; ${i}<${count} ; i++ ))
+    do
+        if [ -f "${filename}" ]; then
+            res=`cat ${filename} | awk '{print $3}'`
+#            echo "======${1}=${res}"
+            if [ ${res} == 1 ]; then
+                result=1
+            fi
+            break
+        else
+#            echo "sleep count = $i"
+            sleep 1
+        fi
+    done
+}
+
+check_result $1
+
+exit $result 

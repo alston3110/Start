@@ -1,0 +1,4 @@
+#!/bin/bash
+sleep 3
+xwd -root -out ${1}
+echo "shotscreen ${1}"

@@ -1,0 +1,28 @@
+#!/bin/bash
+result=0
+bus=1
+#25LC0a0A memory size is 128 Bytes
+#WP_B(pin 3) WEL(SR bit 1)   Protected Blocks    Unprotected Blocks  Status Register
+#0 (low)     x               Protected           Protected           Protected
+#1 (high)    0               Protected           Protected           Protected
+#1 (high)    1               Protected           Writable            Writable
+
+dev_name="spi${bus}"
+
+if [ -f ./tools/log/${dev_name}.log ]; then
+    rm ./tools/log/${dev_name}.log
+fi
+
+if [ $(./tools/spi-test | grep "PASS!" | wc -l) -eq 1 ]; then
+    result=1
+fi
+
+if [ $result -eq 1 ];then
+  	echo "SPI : PASS"
+else
+    echo "SPI : Fail"
+fi
+
+echo "${dev_name} = ${result}" > ./tools/log/${dev_name}.log
+
+return ${result}                                                

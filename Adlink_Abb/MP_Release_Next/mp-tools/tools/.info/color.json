@@ -1,0 +1,10 @@
+{  
+	"color" : {
+		"color_W"   	: "0xFFFFFFFF" ,
+		"color_R"   	: "0xFF0000FF" ,
+		"color_G"   	: "0x00FF00FF" ,
+		"color_B"   	: "0x0000FFFF" ,
+		"color_black"   : "0x000000FF" ,
+		"color_gray"    : "0xDDDDDDFF" ,
+	} ,       
+}

@@ -1,0 +1,85 @@
+#!/bin/bash
+
+. ./tools/info_config
+
+result=0
+count=15
+port=0
+mode=4
+dev_list="1 5"
+
+if [ "${uartdev}"x != "x" ]; then
+    dev_list=${uartdev}
+fi
+
+if [ "${1}"x != "x" ]; then
+    dev_list=${1}
+fi
+
+if [ -z ${enable_rs485} ]; then
+    enable_rs485=0
+fi
+
+for loop in ${dev_list}
+do
+    dev_name="uart${loop}"
+    if [ -f ./tools/log/${dev_name}.log ]; then
+        rm ./tools/log/${dev_name}.log
+    fi
+done
+
+for loop in ${dev_list}
+do
+    dev_name="uart${loop}"
+
+    result=0
+    port=`expr ${loop} - 1`
+    if [ ${loop} == 1 ]; then
+        #mode=4 full
+        for (( i=0 ; ${i}<${count} ; i++ ))
+        do
+            if [ $(./tools/uart5 ${port} 4 | grep "PASS!" | wc -l) -eq 1 ]; then
+                result=1
+                break
+            else
+                sleep 1
+            fi
+        done
+    elif [ ${loop} == 2 ]; then
+        #mode=5 rs232 rtscts none
+        for (( i=0 ; ${i}<${count} ; i++ ))
+        do
+            if [ $(./tools/uart5 ${port} 0 | grep "PASS!" | wc -l) -eq 1 ]; then
+                result=1
+                break
+            else
+                sleep 1
+            fi
+        done
+    elif [ ${loop} == 5 ]; then
+        #mode=1 rs232
+        #mode=3 rs422
+        for (( i=0 ; ${i}<${count} ; i++ ))
+        do
+            if [ $(./tools/uart5 ${port} 1 | grep "PASS!" | wc -l) -eq 1 ] && \
+               [ $(./tools/uart5 ${port} 3 | grep "PASS!" | wc -l) -eq 1 ]; then
+                result=1
+                break
+            else
+                sleep 1
+            fi
+        done
+    fi
+    
+    echo "${dev_name} = $result" > ./tools/log/${dev_name}.log
+
+    if [ ${result} -gt 0 ]; then
+        echo "UART ${dev_name} : PASS"
+    else
+        echo "UART ${dev_name} : FAIL"
+    fi
+done
+
+exit $result
+
+

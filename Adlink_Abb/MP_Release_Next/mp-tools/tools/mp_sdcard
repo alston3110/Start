@@ -1,0 +1,57 @@
+#!/bin/sh
+result=0
+file=tools/wall-1024x768-565.rgb
+sd=mmcblk1p1
+checksum=0
+
+if [ $(ls /dev/$sd 2> /dev/null | wc -l) = 0 ]; then
+	echo "SDCARD /dev/$sd : no device "
+	continue	
+fi
+
+if [ $(mount | grep "/dev/$sd on /" | wc -l) -gt 0 ]; then
+	file_path=$(mount | grep "/dev/$sd on /" | awk '{print $3}')
+fi
+
+if [ ! -z $file_path ]; then
+	if [ ! -d $file_path/SD_TEST ]; then
+		mkdir $file_path/SD_TEST
+		chmod 755 $file_path/SD_TEST
+		sync
+        else
+                rm -rf $file_path/SD_TEST/*
+                sync
+	fi
+        if [ -f $file ]; then
+                checksum=$(md5sum $file | awk '{print $1}')
+                cp -avrf $file $file_path/SD_TEST/SD_date
+                sync
+        else
+                echo "SDCARD $sd : compare date lose"
+                exit 0
+        fi
+	#echo $(date) > $file_path/SD_TEST/SD_date
+fi
+
+checksum1=$(md5sum $file_path/SD_TEST/SD_date | awk '{print $1}')
+
+if [ -z $file_path ];then
+	echo "SDCARD   : can't found"
+else
+	if  [ $checksum1 == $checksum ]; then 
+		echo "SDCARD   : PASS" 
+		result=1 
+	else
+		echo "SDCARD   : ...." 
+	fi
+fi
+
+if [ -d $file_path/SD_TEST ]; then
+        rm -rf $file_path/SD_TEST
+        sync
+fi
+
+sync
+
+exit $result
+

@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# test for empty usb
+
+result=0
+checksum=0
+file=tools/wall-1024x768-565.rgb
+
+for USB in sda1
+do
+
+if [ $(ls /dev/$USB 2> /dev/null | wc -l) = 0 ]; then
+	echo "USB /dev/$USB : no device "
+	continue	
+fi
+
+if [ $(mount | grep "/dev/$USB on /run/media/$USB" | wc -l) -gt 0 ]; then
+        file_path=$(mount | grep "/dev/$USB on /" | awk '{print $3}')
+fi
+
+if [ ! -z $file_path ]; then
+        if [ ! -d $file_path/USB_TEST ]; then
+                mkdir $file_path/USB_TEST
+                chmod 755 $file_path/USB_TEST
+                sync
+	else
+		rm -rf $file_path/USB_TEST/*
+		sync
+        fi
+
+	if [ -f $file ]; then
+		checksum=$(md5sum $file | awk '{print $1}')
+		cp $file $file_path/USB_TEST/USB_date
+		sync
+	else
+		echo "USB $USB : compare date lose"
+		exit 0
+	fi
+	#echo $(date) > $file_path/USB_TEST/USB_date
+fi
+
+checksum1=$(md5sum $file_path/USB_TEST/USB_date | awk '{print $1}')
+if  [ $checksum1 == $checksum ]; then 
+	echo "USB $USB : PASS"
+	result=1
+else
+	echo "USB $USB : FAIL"
+fi		
+
+if [ -d $file_path/USB_TEST ]; then
+	rm -rf $file_path/USB_TEST
+	sync
+fi
+
+sleep 2
+done
+
+sync
+exit $result 
+
+

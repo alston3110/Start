@@ -1,0 +1,952 @@
+{          
+	"layout" : {
+		"F_Background" : {
+			"x"      : 0    ,
+			"y"      : 0    ,
+			"width"  : 1280 ,
+			"height" : 720  ,
+			"frame"  : [
+				{
+					"name"		 : "1" ,
+					"block"      : "B_Background" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_row_bar" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "21" ,
+					"block"      : "B_row_bar" ,
+					"x"          : 0 ,
+					"y"          : 150 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "22" ,
+					"block"      : "B_row_bar" ,
+					"x"          : 0 ,
+					"y"          : 712 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "3" ,
+					"block"      : "B_clo_bar" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "31" ,
+					"block"      : "B_clo_bar" ,
+					"x"          : 1272 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+			] ,
+		} ,
+					
+		"F_top" : {
+			"x"      : 8    ,
+			"y"      : 8    ,
+			"width"  : 1266 ,
+			"height" : 142  ,
+			"frame"  : [
+				{
+					"name"		 : "0" ,
+					"block"      : "B_PLC_count" ,
+					"x"          : 20 ,
+					"y"          : 20 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "1" ,
+					"block"      : "B_info" ,
+					"x"          : 500 ,
+					"y"          : 30 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_time" ,
+					"x"          : 900 ,
+					"y"          : 40 ,
+					"show"       : true
+				} ,
+			] ,
+		} ,	
+		"F_middle_instan" : {
+			"x"      : 8    ,
+			"y"      : 158    ,
+			"width"  : 1266 ,
+			"height" : 442  ,
+			"frame"  : [
+				{
+					"name"		 : "1" ,
+					"block"      : "B_info" ,
+					"image select" : 0 ,
+					"x"          : 50 ,
+					"y"          : 10 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "11" ,
+					"block"      : "B_info" ,
+					"image select" : 1 ,
+					"x"          : 50 ,
+					"y"          : 70 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_INS_energe" ,
+					"x"          : 50 ,
+					"y"          : 130 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "3" ,
+					"block"      : "B_INS_current" ,
+					"x"          : 220 ,
+					"y"          : 130 ,
+					"show"       : true
+				} ,
+			] ,
+		} ,	
+		"F_middle_day" : {
+			"x"      : 8    ,
+			"y"      : 328    ,
+			"width"  : 1266 ,
+			"height" : 442  ,
+			"frame"  : [
+				{
+					"name"		 : "1" ,
+					"block"      : "B_info" ,
+					"image select" : 8 ,
+					"x"          : 50 ,
+					"y"          : 30 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_info" ,
+					"image select" : 9 ,
+					"x"          : 50 ,
+					"y"          : 90 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "51" ,
+					"block"      : "B_Day_energe_1" ,
+					"x"          : 50 ,
+					"y"          : 160 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "52" ,
+					"block"      : "B_Day_energe_2" ,
+					"x"          : 50 ,
+					"y"          : 160 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "53" ,
+					"block"      : "B_Day_energe_3" ,
+					"x"          : 50 ,
+					"y"          : 160 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "54" ,
+					"block"      : "B_Day_energe_4" ,
+					"x"          : 50 ,
+					"y"          : 160 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "6" ,
+					"block"      : "B_menu_money_fee" ,
+					"x"          : 50 ,
+					"y"          : 210 ,
+					"show"       : true
+				} ,
+			] ,
+		} ,	
+		"F_middle_histogram_back" : {
+			"x"      : 450    ,
+			"y"      : 160    ,
+			"width"  : 800 ,
+			"height" : 500  ,
+			"frame"  : [
+				{
+					"name"		 : "1" ,
+					"block"      : "B_histogram_back" ,
+					"x"          : 0 ,
+					"y"          : 40 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "11" ,
+					"block"      : "B_histogram_x_year" ,
+					"x"          : 0 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "12" ,
+					"block"      : "B_histogram_x_month" ,
+					"x"          : 65 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "13" ,
+					"block"      : "B_histogram_x_day" ,
+					"x"          : 130 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_histogram_x_hour00" ,
+					"x"          : 200 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "21" ,
+					"block"      : "B_histogram_x_minute00" ,
+					"x"          : 290 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "3" ,
+					"block"      : "B_histogram_x_hour01" ,
+					"x"          : 290 ,
+					"y"          : 395 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "31" ,
+					"block"      : "B_histogram_x_minute01" ,
+					"x"          : 380 ,
+					"y"          : 395 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "4" ,
+					"block"      : "B_histogram_x_hour02" ,
+					"x"          : 640 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "41" ,
+					"block"      : "B_histogram_x_minute02" ,
+					"x"          : 730 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "51" ,
+					"block"      : "B_histogram_y_1" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "52" ,
+					"block"      : "B_histogram_y_2" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "53" ,
+					"block"      : "B_histogram_y_3" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "54" ,
+					"block"      : "B_histogram_y_4" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : false
+				} ,
+			] ,
+		} ,	
+		"F_middle_histogram" : {
+			"x"      : 450    ,
+			"y"      : 200    ,
+			"width"  : 800 ,
+			"height" : 350  ,
+			"frame"  : [
+				{
+					"name"		 : "10" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 10 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "11" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "12" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "13" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "14" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "15" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "16" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "17" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "18" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "19" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "20" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "21" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "22" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "23" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "24" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "25" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "26" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "27" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "28" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "29" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "30" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "31" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "32" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "33" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "34" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "35" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "36" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "37" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "38" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "39" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "40" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "41" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "42" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "43" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "44" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "45" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "46" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "47" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "48" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "49" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "50" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "51" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "52" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "53" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "54" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "55" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "56" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "57" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "58" ,
+					"block"      : "B_histogram_bar" ,
+					"x"          : 26 ,
+					"y"          : 350 ,
+					"show"       : true
+				} ,
+			] ,
+		} ,	
+		"F_middle_week" : {
+			"x"      : 8    ,
+			"y"      : 328    ,
+			"width"  : 1266 ,
+			"height" : 442  ,
+			"frame"  : [
+				{
+					"name"		 : "1" ,
+					"block"      : "B_info" ,
+					"image select" : 3 ,
+					"x"          : 50 ,
+					"y"          : 30 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_info" ,
+					"image select" : 9 ,
+					"x"          : 50 ,
+					"y"          : 90 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "51" ,
+					"block"      : "B_Day_energe_1" ,
+					"x"          : 50 ,
+					"y"          : 160 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "52" ,
+					"block"      : "B_Day_energe_2" ,
+					"x"          : 50 ,
+					"y"          : 160 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "53" ,
+					"block"      : "B_Day_energe_3" ,
+					"x"          : 50 ,
+					"y"          : 160 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "54" ,
+					"block"      : "B_Day_energe_4" ,
+					"x"          : 50 ,
+					"y"          : 160 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "6" ,
+					"block"      : "B_menu_money_fee" ,
+					"x"          : 50 ,
+					"y"          : 210 ,
+					"show"       : true
+				} ,
+			] ,
+		} ,	
+		"F_middle_histogram_week_back" : {
+			"x"      : 450    ,
+			"y"      : 160    ,
+			"width"  : 800 ,
+			"height" : 500  ,
+			"frame"  : [
+				{
+					"name"		 : "1" ,
+					"block"      : "B_histogram_back" ,
+					"x"          : 0 ,
+					"y"          : 40 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "11" ,
+					"block"      : "B_histogram_x_year" ,
+					"x"          : 0 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "12" ,
+					"block"      : "B_histogram_x_month" ,
+					"x"          : 65 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "13" ,
+					"block"      : "B_histogram_x_day" ,
+					"x"          : 130 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_histogram_x_days00" ,
+					"x"          : 200 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "21" ,
+					"block"      : "B_histogram_x_days01" ,
+					"x"          : 290 ,
+					"y"          : 395 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "3" ,
+					"block"      : "B_histogram_x_days02" ,
+					"x"          : 290 ,
+					"y"          : 395 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "31" ,
+					"block"      : "B_histogram_x_days03" ,
+					"x"          : 380 ,
+					"y"          : 395 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "4" ,
+					"block"      : "B_histogram_x_days04" ,
+					"x"          : 640 ,
+					"y"          : 395 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "41" ,
+					"block"      : "B_histogram_x_days05" ,
+					"x"          : 730 ,
+					"y"          : 395 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "41" ,
+					"block"      : "B_histogram_x_days06" ,
+					"x"          : 700 ,
+					"y"          : 395 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "51" ,
+					"block"      : "B_histogram_y_1" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "52" ,
+					"block"      : "B_histogram_y_2" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "53" ,
+					"block"      : "B_histogram_y_3" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : false
+				} ,
+				{
+					"name"		 : "54" ,
+					"block"      : "B_histogram_y_4" ,
+					"x"          : 0 ,
+					"y"          : 0 ,
+					"show"       : false
+				} ,
+			] ,
+		} ,	
+		"F_middle_week_histogram" : {
+			"x"      : 450    ,
+			"y"      : 200    ,
+			"width"  : 800 ,
+			"height" : 350  ,
+			"frame"  : [
+				{
+					"name"		 : "10" ,
+					"block"      : "B_histogram_week_bar" ,
+					"x"          : 0 ,
+					"y"          : 150 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "11" ,
+					"block"      : "B_histogram_week_bar" ,
+					"x"          : 110 ,
+					"y"          : 100 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "12" ,
+					"block"      : "B_histogram_week_bar" ,
+					"x"          : 220 ,
+					"y"          : 50 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "13" ,
+					"block"      : "B_histogram_week_bar" ,
+					"x"          : 330 ,
+					"y"          : 120 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "14" ,
+					"block"      : "B_histogram_week_bar" ,
+					"x"          : 440 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "15" ,
+					"block"      : "B_histogram_week_bar" ,
+					"x"          : 550 ,
+					"y"          : 200 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "16" ,
+					"block"      : "B_histogram_week_bar" ,
+					"x"          : 660 ,
+					"y"          : 150 ,
+					"show"       : true
+				} ,
+			] ,
+		} ,
+		
+		"F_bottom" : {
+			"x"      : 8    ,
+			"y"      : 612    ,
+			"width"  : 1266 ,
+			"height" : 112  ,
+			"frame"  : [
+				{
+					"name"		 : "1" ,
+					"block"      : "B_item_back" ,
+					"color select" : 0 ,
+					"event"		 : "event_day" ,
+					"x"          : 50 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "11" ,
+					"block"      : "B_item_front" ,
+					"x"          : 55 ,
+					"y"          : 5 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "12" ,
+					"block"      : "B_item" ,
+					"image select" : 0 ,
+					"color select" : 1 ,
+					"x"          : 50 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "2" ,
+					"block"      : "B_item_back" ,
+					"color select" : 0 ,
+					"event"		 : "event_week" ,
+					"x"          : 360 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "21" ,
+					"block"      : "B_item_front" ,
+					"x"          : 365 ,
+					"y"          : 5 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "22" ,
+					"block"      : "B_item" ,
+					"image select" : 1 ,
+					"color select" : 1 ,
+					"x"          : 360 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "4" ,
+					"block"      : "B_item_back" ,
+					"color select" : 0 ,
+					"event"		 : "event_menu" ,
+					"x"          : 860 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "41" ,
+					"block"      : "B_item_front" ,
+					"x"          : 865 ,
+					"y"          : 5 ,
+					"show"       : true
+				} ,
+				{
+					"name"		 : "42" ,
+					"block"      : "B_item" ,
+					"image select" : 3 ,
+					"color select" : 1 ,
+					"x"          : 860 ,
+					"y"          : 0 ,
+					"show"       : true
+				} ,
+			] ,
+		} ,	
+	
+	} ,		
+}

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+. ./tools/info_config
+
+result=0
+port=4
+mode=2
+count=3
+
+check_enable()
+{
+    if [ ${enable_rs485} == 1 ]; then
+        result=${enable_rs485}
+    fi
+}
+
+check_rs485()
+{
+    if [ ${enable_rs485} == 1 ]; then
+        for (( i=0 ; ${i}<${count} ; i++ ))
+        do
+            if [ $(./tools/uart5 ${port} ${mode} 115200 client | grep "PASS!" | wc -l) -eq 1 ]; then
+                result=1
+                break
+            else
+                sleep 1
+            fi
+        done
+    else
+        result=1
+    fi
+    
+    if [ ${result} -gt 0 ]; then
+        echo "UART ${dev_name} : PASS"
+    else
+        echo "UART ${dev_name} : FAIL"
+    fi
+}
+
+case ${1} in
+    "info")
+        check_enable
+    ;;
+    "client")
+        check_rs485
+    ;;
+    *)
+        check_rs485
+    ;;
+esac
+
+exit ${result}
+
+

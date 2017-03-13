@@ -1,0 +1,158 @@
+{          	
+    "animation" : {
+        "fade_in_left" : {
+            "speed": "50ms",
+            "frame": 30,
+            "x": -100,
+            "y": -100,
+            "color": "0x00000000",
+            "screen" : "F_car" ,
+            "start" : false ,
+            "loop"  : true ,
+            "action": {
+                "->": 0,
+                "value": [
+                    "move in from left",
+                    "move in from right",
+                    "move in from top",
+                    "move in from bottom",
+                    "move in from any",
+                    "color in",
+                    "color out"
+                ]
+            }
+        } ,
+        "fade_in_right" : {
+            "speed": "50ms",
+            "frame": 30,
+            "x": -100,
+            "y": -100,
+            "color": "0x00000000",
+            "screen" : "F_car" ,
+            "start" : false ,
+            "loop"  : true ,
+            "action": {
+                "->": 1,
+                "value": [
+                    "move in from left",
+                    "move in from right",
+                    "move in from top",
+                    "move in from bottom",
+                    "move in from any",
+                    "color in",
+                    "color out"
+                ]
+            }
+        } ,
+        "fade_in_top" : {
+            "speed": "50ms",
+            "frame": 90,
+            "x": -100,
+            "y": -100,
+            "color": "0x00000000",
+            "screen" : "F_car" ,
+            "start" : false ,
+            "loop"  : true ,
+            "action": {
+                "->": 2,
+                "value": [
+                    "move in from left",
+                    "move in from right",
+                    "move in from top",
+                    "move in from bottom",
+                    "move in from any",
+                    "color in",
+                    "color out"
+                ]
+            }
+        } ,
+        "fade_in_bottom" : {
+            "speed": "50ms",
+            "frame": 90,
+            "x": -100,
+            "y": -100,
+            "color": "0x00000000",
+            "screen" : "F_car" ,
+            "start" : false ,
+            "loop"  : true ,
+            "action": {
+                "->": 3,
+                "value": [
+                    "move in from left",
+                    "move in from right",
+                    "move in from top",
+                    "move in from bottom",
+                    "move in from any",
+                    "color in",
+                    "color out"
+                ]
+            }
+        } ,
+        "fade_in_any" : {
+            "speed": "50ms",
+            "frame": 30,
+            "x": 100,
+            "y": 100,
+            "color": "0x00000000",
+            "screen" : "F_car" ,
+            "start" : false ,
+            "loop"  : true ,
+            "action": {
+                "->": 4,
+                "value": [
+                    "move in from left",
+                    "move in from right",
+                    "move in from top",
+                    "move in from bottom",
+                    "move in from any",
+                    "color in",
+                    "color out"
+                ]
+            }
+        } ,
+        "fade_in_color" : {
+            "speed": "100ms",
+            "frame": 30,
+            "x": -100,
+            "y": -100,
+            "color": "0x00000000",
+            "screen" : "F_car" ,
+            "start" : false ,
+            "loop"  : true ,
+            "action": {
+                "->": 5,
+                "value": [
+                    "move in from left",
+                    "move in from right",
+                    "move in from top",
+                    "move in from bottom",
+                    "move in from any",
+                    "color in",
+                    "color out"
+                ]
+            }
+        } ,
+        "fade_out_color" : {
+            "speed": "100ms",
+            "frame": 30,
+            "x": -100,
+            "y": -100,
+            "color": "0x00000000",
+            "screen" : "F_car" ,
+            "start" : false ,
+            "loop"  : true ,
+            "action": {
+                "->": 6,
+                "value": [
+                    "move in from left",
+                    "move in from right",
+                    "move in from top",
+                    "move in from bottom",
+                    "move in from any",
+                    "color in",
+                    "color out"
+                ]
+            }
+        } ,
+	} ,
+}

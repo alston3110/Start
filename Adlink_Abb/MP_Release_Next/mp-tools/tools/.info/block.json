@@ -1,0 +1,427 @@
+{          
+	"block" : {
+		"B_Background" : {
+			"width"        : 1280 ,
+			"height"       : 720 ,
+			"color"        : "color_W" ,
+            "auto zoom"    : true ,
+		} ,
+		"B_row_bar" : {
+			"width"        : 1280 ,
+			"height"       : 8 ,
+			"color"        : "color_B" ,
+            "auto zoom"    : true ,
+		} ,
+		"B_clo_bar" : {
+			"width"        : 8 ,
+			"height"       : 720 ,
+			"color"        : "color_B" ,
+            "auto zoom"    : true ,
+		} ,
+        "B_time" : {
+            "width"  : 400,
+            "height" : 100,
+            "color"  : "color_black",
+            "image"  : "asc_40" ,
+            "printf" : {
+                "images" : true ,
+                "dayformat" : true ,
+                "format" : "%H:%M %d.%b" ,
+                "digits" : 12
+            }
+        } ,
+		"B_item_back" : {
+			"width"        : 192 ,
+			"height"       : 96 ,
+			"color"        : [
+				"color_black" ,
+				"color_W" ,
+			] ,
+			"color select" : 0 ,
+            "auto zoom"    : true ,
+		} ,
+		"B_item_front" : {
+			"width"        : 182 ,
+			"height"       : 86 ,
+			"color"        : [
+				"color_black" ,
+				"color_W" ,
+			] ,
+			"color select" : 1 ,
+            "auto zoom"    : true ,
+		} ,
+		"B_item" : {
+			"width"        : 192 ,
+			"height"       : 96 ,
+			"image"        : "S_item" ,
+			"image select" : 0 ,
+			"color"        : [
+				"color_black" ,
+				"color_W" ,
+			] ,
+			"color select" : 1 ,
+			"align"		   : "middle" , 
+		} ,					
+		"B_info" : {
+			"width"        : 800 ,
+			"height"       : 96 ,
+			"image"        : "S_info" ,
+			"image select" : 0 ,
+			"color"        : [
+				"color_black" ,
+				"color_W" ,
+			] ,
+			"color select" : 0 ,
+		} ,					
+		"B_INS_energe" : {
+			"width"        : 400 ,
+			"height"       : 80 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.0f W" ,
+                "value"  : "V_Renesas_1" ,
+                "digits" : 15
+            }
+		} ,
+		"B_INS_current" : {
+			"width"        : 400 ,
+			"height"       : 80 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.1f A" ,
+                "value"  : "V_Renesas_2" ,
+                "digits" : 15
+            }
+		} ,
+		"B_Day_energe_1" : {
+			"width"        : 400 ,
+			"height"       : 80 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.1f kWh" ,
+                "value"  : "V_Renesas_cal_total" ,
+                "digits" : 15
+            }
+		} ,
+		"B_Day_energe_2" : {
+			"width"        : 400 ,
+			"height"       : 80 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.2f kWh" ,
+                "value"  : "V_Renesas_cal_total" ,
+                "digits" : 15
+            }
+		} ,
+		"B_Day_energe_3" : {
+			"width"        : 400 ,
+			"height"       : 80 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.3f kWh" ,
+                "value"  : "V_Renesas_cal_total" ,
+                "digits" : 15
+            }
+		} ,
+		"B_Day_energe_4" : {
+			"width"        : 400 ,
+			"height"       : 80 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.4f kWh" ,
+                "value"  : "V_Renesas_cal_total" ,
+                "digits" : 15
+            }
+		} ,
+		"B_histogram_back" : {
+			"width"        : 800 ,
+			"height"       : 350 ,
+			"color"        : "color_gray" ,
+            "auto zoom"    : true ,
+		} ,
+		"B_histogram_x_hour00" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d : " ,
+                "value"  : "V_Renesas_cal_hour00" ,
+                "digits" : 5
+            }
+		} ,
+		"B_histogram_x_minute00" : {
+			"width"        : 50 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d" ,
+                "value"  : "V_Renesas_cal_minute00" ,
+                "digits" : 2
+            }
+		} ,
+		"B_histogram_x_hour01" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d : " ,
+                "value"  : "V_Renesas_cal_hour01" ,
+                "digits" : 5
+            }
+		} ,
+		"B_histogram_x_minute01" : {
+			"width"        : 50 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d" ,
+                "value"  : "V_Renesas_cal_minute01" ,
+                "digits" : 2
+            }
+		} ,
+		"B_histogram_x_hour02" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d : " ,
+                "value"  : "V_Renesas_cal_hour02" ,
+                "digits" : 5
+            }
+		} ,
+		"B_histogram_x_minute02" : {
+			"width"        : 50 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d" ,
+                "value"  : "V_Renesas_cal_minute02" ,
+                "digits" : 2
+            }
+		} ,
+		"B_histogram_x_year" : {
+			"width"        : 70 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d/" ,
+                "value"  : "V_Renesas_64" ,
+                "digits" : 3
+            }
+		} ,
+		"B_histogram_x_month" : {
+			"width"        : 70 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d/" ,
+                "value"  : "V_Renesas_65" ,
+                "digits" : 3
+            }
+		} ,
+		"B_histogram_x_day" : {
+			"width"        : 50 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%02d" ,
+                "value"  : "V_Renesas_66" ,
+                "digits" : 2
+            }
+		} ,
+		"B_histogram_x_days00" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "S_days" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%1d" ,
+                "value"  : "V_Renesas_days_0" ,
+                "digits" : 1
+            }
+		} ,
+		"B_histogram_x_days01" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "S_days" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%1d" ,
+                "value"  : "V_Renesas_days_1" ,
+                "digits" : 1
+            }
+		} ,
+		"B_histogram_x_days02" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "S_days" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%1d" ,
+                "value"  : "V_Renesas_days_2" ,
+                "digits" : 1
+            }
+		} ,
+		"B_histogram_x_days03" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "S_days" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%1d" ,
+                "value"  : "V_Renesas_days_3" ,
+                "digits" : 1
+            }
+		} ,
+		"B_histogram_x_days04" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "S_days" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%1d" ,
+                "value"  : "V_Renesas_days_4" ,
+                "digits" : 1
+            }
+		} ,
+		"B_histogram_x_days05" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "S_days" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%1d" ,
+                "value"  : "V_Renesas_days_5" ,
+                "digits" : 1
+            }
+		} ,
+		"B_histogram_x_days06" : {
+			"width"        : 100 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "S_days" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%1d" ,
+                "value"  : "V_Renesas_days_6" ,
+                "digits" : 1
+            }
+		} ,
+		"B_histogram_y_1" : {
+			"width"        : 400 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.1f kWh" ,
+                "value"  : "V_Renesas_cal_y" ,
+                "digits" : 15
+            }
+		} ,
+		"B_histogram_y_2" : {
+			"width"        : 400 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.0f Wh" ,
+                "value"  : "V_Renesas_cal_y" ,
+                "digits" : 15
+            }
+		} ,
+		"B_histogram_y_3" : {
+			"width"        : 400 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.0f Wh" ,
+                "value"  : "V_Renesas_cal_y" ,
+                "digits" : 15
+            }
+		} ,
+		"B_histogram_y_4" : {
+			"width"        : 400 ,
+			"height"       : 50 ,
+			"color"        : "color_gray" ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "%.1f Wh" ,
+                "value"  : "V_Renesas_cal_y" ,
+                "digits" : 15
+            }
+		} ,
+		"B_histogram_bar" : {
+			"width"        : 16 ,
+			"height"       : 512 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+		} ,
+		"B_histogram_week_bar" : {
+			"width"        : 110 ,
+			"height"       : 512 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+		} ,
+
+		"B_PLC_count" : {
+			"width"        : 500 ,
+			"height"       : 80 ,
+			"color"        : "color_black" ,
+            "auto zoom"    : true ,
+			"image"        : "asc_40" ,
+            "printf" : {
+				"images" : true ,
+                "format" : "Req : %d" ,
+                "value"  : "V_Renesas_0" ,
+                "digits" : 15
+            }
+		} ,
+	} ,
+}

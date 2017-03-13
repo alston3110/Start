@@ -1,0 +1,71 @@
+{
+	"base" : {
+		"output" : {
+			"width"  : 1280 ,
+			"height" : 720  ,
+			"rotate" : { "->" : 0 , "value" : [ "normal" , "CW" , "CCW" ] } ,
+			"mirror" : { "->" : 0 , "value" : [ "normal" , "horizontal" , "vertical" , "horizontal and vertical" ] } ,
+		} ,
+		"virtual" : {
+			"width"  : 1280 ,
+			"height" : 720
+		}
+	} ,
+	
+	"system font" : [ 
+		{ "font0" : "Arial" } ,
+	] ,
+	
+	"loading" : {
+		"background" : "images/desktop.jpg" ,
+		"message"    : {
+			"image" : {
+				"id"       : "loading_message-arial-36" ,
+				"font"     : "font0" ,
+				"size"     : 36 ,
+				"text"     : "please wait" 	
+			} ,
+			"color"    : "0xFFFFFFFF" ,
+			"x"        : 0 ,
+			"y"        : 0 ,
+            "align"    : "middle"
+		} ,
+		"effect"    : {
+			"image"   : [ 
+				"images/loading-0.png" ,
+			] ,
+			"color"    : "0xFFFFFFFF" ,
+			"x"        : 0 ,
+			"y"        : 0 ,
+            "align"    : "middle" ,
+			"animation" : {
+				"speed"     : "100ms" ,
+				"frame"     : 10 ,
+				"action"    : { "->" : 0 , "value" : [ "rotate" , "change" ] } ,
+				"auto play" : "true" ,
+				"play loop" : "true" 
+			}
+		}
+	} ,
+
+	"include" : [
+        "./.info/mouse.json" ,
+        "./.info/touch.json" ,
+		"./.info/color.json" ,
+		"./.info/value.json" ,
+		"./.info/value_Renesas.json" ,
+		"./.info/string.json" ,
+		"./.info/string_menu.json" ,
+		"./.info/image.json" ,
+		"./.info/block.json" ,
+		"./.info/block_menu.json" ,
+		"./.info/event.json" ,
+		"./.info/event_menu.json" ,
+		"./.info/layout.json" ,
+		"./.info/layout_menu.json" ,
+        "./.info/animation.json" ,
+        "./.info/state.json" ,
+        "./.info/net.json" ,
+        "./.info/communication.json" ,
+   ]
+}

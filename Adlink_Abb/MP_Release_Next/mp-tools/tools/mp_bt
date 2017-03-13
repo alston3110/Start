@@ -1,0 +1,143 @@
+#!/bin/bash
+result=0
+count=5
+dev_list="0"
+
+dev_name="hci${dev_list}"
+if [ -f ./tools/log/${dev_name}.log ]; then
+    rm ./tools/log/${dev_name}.log
+fi
+
+if [ $(lsmod | grep "bluetooth" | wc -l) = 0 ]; then
+	modprobe ath3k
+fi 
+
+if [ $(hciconfig | grep "BD Address:" | wc -l) = 0 ]; then
+	echo "BLUETOOTH : no device "
+else
+    hciconfig ${dev_name} reset
+    sleep 1
+	if [ $(hciconfig | grep "DOWN" | wc -l) = 1 ]; then
+		hciconfig ${dev_name} up
+		sleep 2
+	fi
+    echo "Tom====${dev_name}"
+    for (( i=0 ; ${i}<${count} ; i++ ))
+    do
+        number=$(hcitool scan | grep ":" | wc -l) 
+        sleep 1
+        echo "Bluetooth scan list = $number" > /dev/ttymxc1 
+        if [ "$number" -gt "0" ]; then
+            result=1
+            break
+        fi
+    done
+fi
+
+echo "${dev_name} = $result" > ./tools/log/${dev_name}.log
+
+if [ ${result} -gt 0 ]; then
+    echo "WIFI ${dev_name} : PASS"
+else
+    echo "WIFI ${dev_name} : FAIL"
+fi
+
+exit $result 
+
+#########################################################
+#hciconfig --help
+#hciconfig - HCI device configuration utility
+#Usage:
+#	hciconfig
+#	hciconfig [-a] hciX [command ...]
+#Commands:
+#up                 	Open and initialize HCI device
+#down               	Close HCI device
+#reset              	Reset HCI device
+#rstat              	Reset statistic counters
+#auth               	Enable Authentication
+#noauth             	Disable Authentication
+#encrypt            	Enable Encryption
+#noencrypt          	Disable Encryption
+#piscan             	Enable Page and Inquiry scan
+#noscan             	Disable scan
+#iscan              	Enable Inquiry scan
+#pscan              	Enable Page scan
+#ptype      [type]  	Get/Set default packet type
+#lm         [mode]  	Get/Set default link mode
+#lp         [policy]	Get/Set default link policy
+#name       [name]  	Get/Set local name
+#class      [class] 	Get/Set class of device
+#voice      [voice] 	Get/Set voice setting
+#iac        [iac]   	Get/Set inquiry access code
+#inqtpl     [level] 	Get/Set inquiry transmit power level
+#inqmode    [mode]  	Get/Set inquiry mode
+#inqdata    [data]  	Get/Set inquiry data
+#inqtype    [type]  	Get/Set inquiry scan type
+#inqparms   [win:int]	Get/Set inquiry scan window and interval
+#pageparms  [win:int]	Get/Set page scan window and interval
+#pageto     [to]    	Get/Set page timeout
+#afhmode    [mode]  	Get/Set AFH mode
+#sspmode    [mode]  	Get/Set Simple Pairing Mode
+#aclmtu     <mtu:pkt>	Set ACL MTU and number of packets
+#scomtu     <mtu:pkt>	Set SCO MTU and number of packets
+#putkey     <bdaddr>	Store link key on the device
+#delkey     <bdaddr>	Delete link key from the device
+#oobdata            	Display local OOB data
+#commands           	Display supported commands
+#features           	Display device features
+#version            	Display version information
+#revision           	Display revision information
+#block      <bdaddr>	Add a device to the blacklist
+#unblock    <bdaddr>	Remove a device from the blacklist
+#lerandaddr <bdaddr>	Set LE Random Address
+#leadv              	Enable LE advertising
+#noleadv            	Disable LE advertising
+#lestates           	Display the supported LE states
+
+
+####################################################
+#hcitool --help  
+#hcitool - HCI Tool ver 4.101
+#Usage:
+#	hcitool [options] <command> [command parameters]
+#Options:
+#	--help	Display help
+#	-i dev	HCI device
+#Commands:
+#	dev 	Display local devices
+#	inq 	Inquire remote devices
+#	scan	Scan for remote devices
+#	name	Get name from remote device
+#	info	Get information from remote device
+#	spinq	Start periodic inquiry
+#	epinq	Exit periodic inquiry
+#	cmd 	Submit arbitrary HCI commands
+#	con 	Display active connections
+#	cc  	Create connection to remote device
+#	dc  	Disconnect from remote device
+#	sr  	Switch master/slave role
+#	cpt 	Change connection packet type
+#	rssi	Display connection RSSI
+#	lq  	Display link quality
+#	tpl 	Display transmit power level
+#	afh 	Display AFH channel map
+#	lp  	Set/display link policy settings
+#	lst 	Set/display link supervision timeout
+#	auth	Request authentication
+#	enc 	Set connection encryption
+#	key 	Change connection link key
+#	clkoff	Read clock offset
+#	clock	Read local or remote clock
+#	lescan	Start LE scan
+#	lewladd	Add device to LE White List
+#	lewlrm	Remove device from LE White List
+#	lewlsz	Read size of LE White List
+#	lewlclr	Clear LE White list
+#	lecc	Create a LE Connection
+#	ledc	Disconnect a LE Connection
+#	lecup	LE Connection Update
+#
+#For more information on the usage of each command use:
+#	hcitool <command> --help
+

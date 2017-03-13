@@ -1,0 +1,396 @@
+{          	
+    "state" : {        
+        "main" : {
+            "screen"    : [ "F_Background" , "F_top" , "F_middle_instan" , "F_middle_day" , "F_middle_histogram_back" , "F_middle_histogram" , "F_bottom" ] ,       
+            "init"      : {
+				"value" : [
+                    { "V_state" : 100 } ,
+                    { "layout.F_bottom.11.show" : 1 } ,
+                    { "layout.F_bottom.21.show" : 0 } ,
+                    { "layout.F_bottom.41.show" : 0 } ,
+                    { "layout.F_bottom.12.color.select" : 0 } ,
+                    { "layout.F_bottom.22.color.select" : 1 } ,
+                    { "layout.F_bottom.42.color.select" : 1 } ,
+                    { "layout.F_top.1.image.select" : 7 } ,
+                    { "layout.F_middle_histogram_back.51.show" : 0 } ,
+                    { "layout.F_middle_histogram_back.52.show" : 0 } ,
+                    { "layout.F_middle_histogram_back.53.show" : 0 } ,
+                    { "layout.F_middle_histogram_back.54.show" : 0 } ,
+                    { "layout.F_middle_day.51.show" : 0 } ,
+                    { "layout.F_middle_day.52.show" : 0 } ,
+                    { "layout.F_middle_day.53.show" : 0 } ,
+                    { "layout.F_middle_day.54.show" : 0 } ,
+                    { "V_Renesas_Index" : 10 } ,
+                    { "V_Input_choice" : 99 } ,
+				] ,
+				"if"	:	{				
+					"V_Renesas_60>0" :
+					[
+						{ "1" : 
+							[ 
+								"V_Renesas_cal_hour00=V_Renesas_60/3600" ,
+								"V_Renesas_cal_minute00=V_Renesas_60/60-V_Renesas_cal_hour00*60" ,
+								"V_Renesas_cal_second00=V_Renesas_60%60" ,
+								"V_Renesas_cal_hour01=V_Renesas_cal_hour00+1" ,
+								"V_Renesas_cal_minute01=V_Renesas_cal_minute00" ,
+								"V_Renesas_cal_second01=V_Renesas_cal_second00" ,
+								"V_Renesas_cal_hour02=V_Renesas_cal_hour01+1" ,
+								"V_Renesas_cal_minute02=V_Renesas_cal_minute00" ,
+								"V_Renesas_cal_second02=V_Renesas_cal_second00" ,
+							] 
+						} ,
+					] ,											
+					"V_Renesas_cal_hour01>23" :
+					[
+						{ "1" : 
+							[ 
+								"V_Renesas_cal_hour01%=24" ,
+							] 
+						} ,
+					] ,											
+					"V_Renesas_cal_hour02>23" :
+					[
+						{ "1" : 
+							[ 
+								"V_Renesas_cal_hour02%=24" ,
+							] 
+						} ,
+					] ,																					
+					"V_Renesas_61>0" :
+					[
+						{ "0" : 
+							[ 
+								"V_Renesas_61=1" ,
+							] 
+						} ,
+						{ "1" : 
+							[ 
+								"V_Renesas_cal_y=V_Renesas_61*V_Renesas_62" ,
+							] 
+						} ,
+					] ,																					
+					"V_Renesas_62" :
+					[
+						{ "0" : 
+							[ 
+								"layout.F_middle_day.51.show=1" ,
+								"layout.F_middle_histogram_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*1" ,
+								"V_Renesas_cal_y=V_Renesas_61*1" ,
+							] 
+						} ,
+						{ "1" : 
+							[ 
+								"layout.F_middle_day.51.show=1" ,
+								"layout.F_middle_histogram_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*0.1" ,
+								"V_Renesas_cal_y=V_Renesas_61*0.1" ,
+							] 
+						} ,
+						{ "2" : 
+							[ 
+								"layout.F_middle_day.52.show=1" ,
+								"layout.F_middle_histogram_back.52.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*0.01" ,
+								"V_Renesas_cal_y=V_Renesas_61*10" ,
+							] 
+						} ,
+						{ "3" : 
+							[ 
+								"layout.F_middle_day.53.show=1" ,
+								"layout.F_middle_histogram_back.53.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*0.001" ,
+								"V_Renesas_cal_y=V_Renesas_61*1" ,
+							] 
+						} ,
+						{ "4" : 
+							[ 
+								"layout.F_middle_day.54.show=1" ,
+								"layout.F_middle_histogram_back.54.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*0.0001" ,
+								"V_Renesas_cal_y=V_Renesas_61*0.1" ,
+							] 
+						} ,
+						{ "10" : 
+							[ 
+								"layout.F_middle_day.51.show=1" ,
+								"layout.F_middle_histogram_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*10" ,
+								"V_Renesas_cal_y=V_Renesas_61*10" ,
+							] 
+						} ,
+						{ "11" : 
+							[ 
+								"layout.F_middle_day.51.show=1" ,
+								"layout.F_middle_histogram_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*10" ,
+								"V_Renesas_cal_y=V_Renesas_61*100" ,
+							] 
+						} ,
+						{ "12" : 
+							[ 
+								"layout.F_middle_day.51.show=1" ,
+								"layout.F_middle_histogram_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*10" ,
+								"V_Renesas_cal_y=V_Renesas_61*1000" ,
+							] 
+						} ,
+						{ "13" : 
+							[ 
+								"layout.F_middle_day.51.show=1" ,
+								"layout.F_middle_histogram_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*10" ,
+								"V_Renesas_cal_y=V_Renesas_61*10000" ,
+							] 
+						} ,
+					] ,																					
+					"V_Renesas_in_update" :
+					[
+						{ "1" : 
+							[ 
+								"V_Renesas_in_update=2" ,
+							] 
+						} ,
+					] ,
+				} ,
+				"for" : {
+					"loop"	:	48 ,
+					"if"	:	{				
+						"V_Renesas_59>0" :
+						[
+							{ "1" : 
+								[ 
+									"layout.F_middle_histogram.[V_Renesas_Index].x=(V_Renesas_Index-10)*16+10" ,
+									"layout.F_middle_histogram.[V_Renesas_Index].y=350" ,
+								] 
+							} ,
+						] ,				
+						"(V_Renesas_Index-10)<V_Renesas_59" :
+						[
+							{ "0" : 
+								[ 
+									"V_Renesas_Index+=1",
+								] 
+							} ,
+							{ "1" : 
+								[ 
+									"V_Renesas_Index_old=V_Renesas_Index+1",
+									"layout.F_middle_histogram.[V_Renesas_Index].x=(V_Renesas_Index-10)*16+10" ,
+									"layout.F_middle_histogram.[V_Renesas_Index].y=(1-(V_Renesas_[V_Renesas_Index_old]-V_Renesas_[V_Renesas_Index])/V_Renesas_61)*350" ,
+									"V_Renesas_Index+=1",
+								] 
+							} ,
+						] ,												
+					} ,
+				} ,                
+            } ,
+			"if"	:	{				
+				"V_Renesas_update" :
+				[
+					{ "1" : 
+						[ 
+							"V_state=0" ,
+							"V_Renesas_update=0" ,
+						] 
+					} ,
+				] ,											
+			} ,
+            "switch" : {
+                "V_state" : [
+                    { "0" : "main" },
+                    { "1" : "week" },
+                    { "3" : "menu" },
+                ]
+            } ,       
+        } ,
+
+        "week" : {
+            "screen"    : [ "F_Background" , "F_top" , "F_middle_instan" , "F_middle_week" , "F_middle_histogram_week_back" , "F_middle_week_histogram" , "F_bottom" ] ,       
+            "init"      : {          
+				"value" : [
+                    { "V_state" : 100 } ,
+                    { "layout.F_bottom.11.show" : 0 } ,
+                    { "layout.F_bottom.21.show" : 1 } ,
+                    { "layout.F_bottom.41.show" : 0 } ,
+                    { "layout.F_bottom.12.color.select" : 1 } ,
+                    { "layout.F_bottom.22.color.select" : 0 } ,
+                    { "layout.F_bottom.42.color.select" : 1 } ,
+                    { "layout.F_top.1.image.select" : 7 } ,
+                    { "layout.F_middle_histogram_week_back.51.show" : 0 } ,
+                    { "layout.F_middle_histogram_week_back.52.show" : 0 } ,
+                    { "layout.F_middle_histogram_week_back.53.show" : 0 } ,
+                    { "layout.F_middle_histogram_week_back.54.show" : 0 } ,
+                    { "layout.F_middle_week.51.show" : 0 } ,
+                    { "layout.F_middle_week.52.show" : 0 } ,
+                    { "layout.F_middle_week.53.show" : 0 } ,
+                    { "layout.F_middle_week.54.show" : 0 } ,
+                    { "V_Input_choice" : 99 } ,
+				] ,
+				"if"	:	{				
+					"V_Renesas_62" :
+					[
+						{ "0" : 
+							[ 
+								"layout.F_middle_day.51.show=1" ,
+								"layout.F_middle_histogram_week_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*1" ,
+								"V_Renesas_cal_y=V_Renesas_61*1" ,
+							] 
+						} ,
+						{ "1" : 
+							[ 
+								"layout.F_middle_week.51.show=1" ,
+								"layout.F_middle_histogram_week_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*0.1" ,
+								"V_Renesas_cal_y=V_Renesas_61*0.1" ,
+							] 
+						} ,
+						{ "2" : 
+							[ 
+								"layout.F_middle_week.52.show=1" ,
+								"layout.F_middle_histogram_week_back.52.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*0.01" ,
+								"V_Renesas_cal_y=V_Renesas_61*10" ,
+							] 
+						} ,
+						{ "3" : 
+							[ 
+								"layout.F_middle_week.53.show=1" ,
+								"layout.F_middle_histogram_week_back.53.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*0.001" ,
+								"V_Renesas_cal_y=V_Renesas_61*1" ,
+							] 
+						} ,
+						{ "4" : 
+							[ 
+								"layout.F_middle_week.54.show=1" ,
+								"layout.F_middle_histogram_week_back.54.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*0.0001" ,
+								"V_Renesas_cal_y=V_Renesas_61*0.1" ,
+							] 
+						} ,
+						{ "10" : 
+							[ 
+								"layout.F_middle_week.51.show=1" ,
+								"layout.F_middle_histogram_week_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*10" ,
+								"V_Renesas_cal_y=V_Renesas_61*10" ,
+							] 
+						} ,
+						{ "11" : 
+							[ 
+								"layout.F_middle_week.51.show=1" ,
+								"layout.F_middle_histogram_week_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*10" ,
+								"V_Renesas_cal_y=V_Renesas_61*100" ,
+							] 
+						} ,
+						{ "12" : 
+							[ 
+								"layout.F_middle_week.51.show=1" ,
+								"layout.F_middle_histogram_week_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*10" ,
+								"V_Renesas_cal_y=V_Renesas_61*1000" ,
+							] 
+						} ,
+						{ "13" : 
+							[ 
+								"layout.F_middle_week.51.show=1" ,
+								"layout.F_middle_histogram_week_back.51.show=1" ,
+								"V_Renesas_cal_total=V_Renesas_63*10" ,
+								"V_Renesas_cal_y=V_Renesas_61*10000" ,
+							] 
+						} ,
+					] ,																					
+					"V_Renesas_68>0" :
+					[
+						{ "1" : 
+							[ 
+								"V_Renesas_days_0=V_Renesas_68" ,
+								"V_Renesas_days_1=(V_Renesas_68+1)" ,
+								"V_Renesas_days_2=(V_Renesas_68+2)" ,
+								"V_Renesas_days_3=(V_Renesas_68+3)" ,
+								"V_Renesas_days_4=(V_Renesas_68+4)" ,
+								"V_Renesas_days_5=(V_Renesas_68+5)" ,
+								"V_Renesas_days_6=(V_Renesas_68+6)" ,
+							] 
+						} ,
+					] ,
+					"V_Renesas_in_update" :
+					[
+						{ "1" : 
+							[ 
+								"V_Renesas_in_update=2" ,
+							] 
+						} ,
+					] ,
+				} ,										
+            } ,
+			"if"	:	{				
+				"V_Renesas_update" :
+				[
+					{ "1" : 
+						[ 
+							"V_state=1" ,
+							"V_Renesas_update=0" ,
+						] 
+					} ,
+				] ,											
+			} ,
+            "switch" : {
+                "V_state" : [
+                    { "0" : "main" },
+                    { "1" : "week" },
+                    { "3" : "menu" },
+                ]
+            } ,       
+        } ,
+        
+        "menu" : {
+            "screen"    : [ "F_Background" , "F_top" , "F_middle_menu" , "F_ManageInputNum" , "F_bottom" ] ,       
+            "init"      : {          
+				"value" : [
+                    { "V_state" : 100 } ,
+                    { "layout.F_bottom.11.show" : 0 } ,
+                    { "layout.F_bottom.21.show" : 0 } ,
+                    { "layout.F_bottom.41.show" : 1 } ,
+                    { "layout.F_bottom.12.color.select" : 1 } ,
+                    { "layout.F_bottom.22.color.select" : 1 } ,
+                    { "layout.F_bottom.42.color.select" : 0 } ,
+                    { "layout.F_top.1.image.select" : 10 } ,
+                    { "V_Renesas_in_update" : 1 } ,
+                    { "layout.F_middle_menu.0.color.select" : 0 } ,
+                    { "layout.F_middle_menu.1.color.select" : 0 } ,
+                    { "layout.F_middle_menu.2.color.select" : 0 } ,
+                    { "layout.F_middle_menu.3.color.select" : 0 } ,
+                    { "layout.F_middle_menu.4.color.select" : 0 } ,
+                    { "layout.F_middle_menu.5.color.select" : 0 } ,
+                    { "layout.F_middle_menu.6.color.select" : 0 } ,
+                    { "layout.F_middle_menu.7.color.select" : 0 } ,
+                    { "layout.F_middle_menu.8.color.select" : 0 } ,
+                    { "layout.F_middle_menu.9.color.select" : 0 } ,
+                    { "layout.F_middle_menu.10.color.select" : 0 } ,
+                    { "layout.F_middle_menu.11.color.select" : 0 } ,
+				] ,
+				"if"	:	{				
+					"V_Input_choice<12" :
+					[
+						{ "1" : 
+							[ 
+								"layout.F_middle_menu.[V_Input_choice].color.select=1" ,
+							] 
+						} ,
+					] ,															
+				} ,               
+            } ,
+            "switch" : {
+                "V_state" : [
+                    { "0" : "main" },
+                    { "1" : "week" },
+                    { "3" : "menu" },
+                ]
+            } ,       
+        } ,
+
+    } ,
+}

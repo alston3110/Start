@@ -1,0 +1,89 @@
+#!/bin/bash
+
+LOGDEV=/tmp/rtx_modem.log
+
+DEVID=$1
+
+ret=1
+
+#Determin At Key from device
+#EHS5-E  1e2d:0058
+
+AtKey=03
+EHS5E=`lsusb | grep -i 1e2d:0058`
+if [ x"${EHS5E}" != x ]; then
+	AtKey=02
+fi
+
+
+dbgout()
+{
+	echo "[cy_modem_handler] "$@ >> ${LOGDEV}
+	dummy=
+}
+
+dbgout "[start] cy_modem_handler $@"
+
+#-----------
+# functions 
+#-----------
+
+err_abort()
+{
+	dbgout "err abort : $1" 
+	exit 1
+}
+
+noerr_abort()
+{
+	dbgout "warning : $1"
+	exit 0
+}
+
+is_modem()
+{
+	local CHECK_DEVID=$1	
+	
+	local DEVCFG="/sys/class/tty/${CHECK_DEVID}/device"
+	
+	if [ ! -e "${DEVCFG}/uevent" ]; then
+		dbgout "device config not found! ${DEVCFG}/uevent"
+		return 1
+	fi
+
+	. ${DEVCFG}/uevent
+	if [ x"${PHYSDEVBUS}" = x -a x"${PHYSDEVDRIVER}" = x ]; then
+		PHYSDEVDRIVER=`ls -l ${DEVCFG}/driver | sed 's/^[a-zA-Z0-9 :./>-]*drivers[/]//'`
+		PHYSDEVBUS=`ls -l ${DEVCFG}/subsystem | sed 's/^[a-zA-Z0-9 :./>-]*bus[/]//'`
+	fi
+	dbgout "PHYSDEVBUS=${PHYSDEVBUS}, PHYSDEVDRIVER=${PHYSDEVDRIVER}"
+	#PHYSDEVBUS=usb-serial
+	#PHYSDEVDRIVER=option1
+	
+	if [ ! "${PHYSDEVBUS}" == "usb" -o ! "${PHYSDEVDRIVER}" == "cdc_acm" ]; then
+		if [ ! "${PHYSDEVBUS}" == "usb-serial" -o ! "${PHYSDEVDRIVER}" == "option1" ]; then
+			return 1
+		fi
+		
+		usleep 500000
+	
+		#Cayin is 03
+		if (grep "${AtKey}" ${DEVCFG}/../ep_*/bmAttributes &>/dev/null); then
+			PRODUCT_INFO=`cat ${DEVCFG}/../../product 2>/dev/null`
+			return 0
+		else
+			return 1
+		fi
+	else
+		usleep 500000
+		
+		PRODUCT_INFO=`cat ${DEVCFG}/../product 2>/dev/null`
+		return 0
+	fi
+}
+
+is_modem ${DEVID}; ret=$?
+dbgout "is_modem ${DEVID}; ret=${ret}"
+[ ${ret} == "0" ] && echo ${DEVID} is ok 
+[ ${ret} == "1" ] && echo ${DEVID} is not ok
+exit ${ret}

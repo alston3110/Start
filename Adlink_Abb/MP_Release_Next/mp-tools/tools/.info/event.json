@@ -1,0 +1,36 @@
+{          
+	"event" : {
+		"event_day"   : [
+            {
+                "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } ,
+                "value" : [
+                    { "V_state" : "=0" } ,
+                ]
+            } ,
+        ] ,        
+		"event_week"   : [
+            {
+                "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } ,
+                "value" : [
+                    { "V_state" : "=1" } ,
+                ]
+            } ,
+        ] ,        
+		"event_month"   : [
+            {
+                "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } ,
+                "value" : [
+                    { "V_state" : "=2" } ,
+                ]
+            } ,
+        ] ,        
+		"event_menu"   : [
+            {
+                "trigger" : {"->" : 2 , "value" : [ "move in" , "move out" , "click" ] } ,
+                "value" : [
+                    { "V_state" : "=3" } ,
+                ]
+            } ,
+        ] ,        
+	} ,
+}

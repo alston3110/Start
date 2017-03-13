@@ -1,0 +1,20 @@
+#!/bin/bash
+. ./tools/info_config
+eth=eth0
+
+if [ -d /home/root/.mp-log ]; then
+	if [ -f mp_result.log ]; then
+		cp mp_result.log /home/root/.mp-log/
+		sync
+	fi
+fi
+
+if [ "$(ping -I $eth -c 3 $ftp_ip | grep $ftp_ip | wc -l)" -gt "2" ];then
+	ftpput -u $ftp_name -p $ftp_pw $ftp_ip $1 
+
+else
+	echo "can't ping ftp_ip"
+
+fi
+
+

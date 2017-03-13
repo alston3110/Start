@@ -1,0 +1,34 @@
+#!/bin/bash
+result=0
+bus=0
+#24LC00 address is 0x50
+#24LC00 memory size is 128bits = 16Bytes : 0 ~ 15
+chip_addr=0x57
+addr=10
+value=0x38
+
+if [ ! -z ${1} ]; then
+    bus=${1}
+fi
+
+dev_name="i2c${bus}"
+
+if [ -f ./tools/log/${dev_name}.log ]; then
+    rm ./tools/log/${dev_name}.log
+fi
+
+i2cset -y ${bus} ${chip_addr} ${addr} ${value} b
+
+res=`i2cget -y ${bus} ${chip_addr} ${addr} b`
+#echo "res=$res"
+if [ ${res} == ${value} ];then
+  	echo "I2C BUS${bus} : PASS"
+	result=1
+else
+    echo "I2C BUS${bus} : Fail"
+fi
+
+echo "${dev_name} = $result" > ./tools/log/${dev_name}.log
+
+
+exit $result                                                
