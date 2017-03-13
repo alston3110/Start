@@ -1,0 +1,21 @@
+WMQ1 - New 1
+WMQ2 - 可以輸入Login/Password/Path
+WMQ3 - Fix MAC輸入錯誤(長度過長時,錯誤截取)
+WMQ4 - 抓取Serial_number / mac (搭配 MP_Test_W13_WM)
+WMQ5 - 多系統時間顯示
+WMQ6 - 增加RTC測試選項 (搭配 MP_Test_W14_WM)
+WMQ7 - 增加HW 檢查選項 (搭配 MP_Test_W15_WM) + GPIO DSR Detect
+     - MP_Test_W16_WM (DVT - GPIO變更) --更改測試項目Fac_Test=Finish (16/13->18/15)
+     - MP_Test_W17_WM (變更外卡開機及MP測試)
+     - MP_Test_W18_WM (變更抓內卡ethaddr位址的方式)
+     - MP_Test_W19_WM (調整Time-date 放的位置,更改config - mcuversion - 130718)
+WMQ8 - 修改找不到MP_Test路徑問題
+     - MP_Test_W20_WM (變更FTP server ip address : Air_Remote(WEP))
+WMQ9 - 增加時間計數
+     - MP_Test_W21_WM (變更runintest檔名,修改DDR測試內外卡讀取參數機制.)
+WMQ10 - 加入RUNIN / WM-MP_TEST_10 名稱 (Release)
+      - MP_Test_W22_WM (增加RUNIN)
+------------------------------------------------------------release AAI
+WMQ11-T- 加入VERSION 顯示 / 版面加大
+      - MP_Test-T_W23_WM ( BSP/MCU VERSION display)
+	

@@ -1,0 +1,6 @@
+[ Wrapping_Machine ] 2014/01/15 10:57:39
+mcu_version=XXX runin= 245 wifi= NA sdcard= NA mem= NA rtc= NA
+Number= 1234567890-12.log Eth_Mac= 00:12:34:56:78:90
+11.Test DDR= NOT tested
+12.Test SDCARD= Pass
+===========END==========

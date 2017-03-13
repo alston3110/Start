@@ -1,0 +1,37 @@
+*****start*****
+Setting the hostname to freescale
+Mounting filesystems
+EXT4-fs (mmcblk0p1): re-mounted. Opts: (null)
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+cp: write error: No space left on device
+mount: sysfs already mounted or /sys busy
+mount: according to mtab, /sys is already mounted on /sys
+mount: mount point /proc/bus/usb does not exist
+starting pid 2731, tty '': '/etc/rc.d/rc_gpu.S'
+starting pid 2737, tty '': '/etc/rc.d/rc_mxc.S'
+
+arm-none-linux-gnueabi-gcc (Freescale MAD -- Linaro 2011.07 -- Built at 2011/08/10 09:20) 4.6.2 20110630 (prerelease)
+root filesystem built on Tue, 20 Aug 2013 12:26:13 +0800
+Freescale Semiconductor, Inc.
+
+freescale login: root
+login[2742]: root login on 'ttymxc3'
+/mnt/mmcblk1p1/home/user/MP_TEST/MP_Test
+root@freescale ~$ /mnt/mmcblk1p1/home/user/MP_TEST/MP_Test
+Wrong model...
+Please replace the model or update code.
+root@freescale ~$ 

@@ -1,0 +1,612 @@
+*****start*****
+ 0 
+mmc2 is current device
+
+MMC read: dev # 2, block # 26624, count 12288 ... 12288 blocks read: OK
+## Booting kernel from Legacy Image at 10800000 ...
+   Image Name:   Linux-3.0.35
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    4029564 Bytes =  3.8 MB
+   Load Address: 10008000
+   Entry Point:  10008000
+   Verifying Checksum ... OK
+   Loading Kernel Image ... OK
+OK
+
+Starting kernel ...
+
+Uncompressing Linux... done, booting the kernel.
+Linux version 3.0.35 (retronix@retronix-VirtualBox) (gcc version 4.6.2 20110630 (prerelease) (Freescale MAD -- Linaro 2011.07 -- Built at 2011/08/10 09:20) ) #8 SMP PREEMPT Mon Oct 14 17:00:30 CST 2013
+CPU: ARMv7 Processor [412fc09a] revision 10 (ARMv7), cr=10c53c7d
+CPU: VIPT nonaliasing data cache, VIPT aliasing instruction cache
+Machine: Freescale i.MX 6Quad/DualLite/Solo Q7 Board
+Memory policy: ECC disabled, Data cache writealloc
+CPU identified as i.MX6Q, silicon rev 1.2
+PERCPU: Embedded 7 pages/cpu @8c008000 s5440 r8192 d15040 u32768
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 205824
+Kernel command line: console=ttymxc0,115200 ip=off root=/dev/mmcblk1p1 rootfstype=ext4 rootwait rw video=mxcfb0:dev=hdmi,1920x1080M@60,if=RGB24,bpp=32 fbmem=28M,28M,28M vmalloc=400M
+PID hash table entries: 4096 (order: 2, 16384 bytes)
+Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+Memory: 640MB 172MB = 812MB total
+Memory: 810728k/810728k available, 237848k reserved, 0K highmem
+Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+    DMA     : 0xf4600000 - 0xffe00000   ( 184 MB)
+    vmalloc : 0xc0800000 - 0xf2000000   ( 792 MB)
+    lowmem  : 0x80000000 - 0xc0000000   (1024 MB)
+    pkmap   : 0x7fe00000 - 0x80000000   (   2 MB)
+    modules : 0x7f000000 - 0x7fe00000   (  14 MB)
+      .init : 0x80008000 - 0x8003f000   ( 220 kB)
+      .text : 0x8003f000 - 0x80ab5944   (10715 kB)
+      .data : 0x80ab6000 - 0x80b19d00   ( 400 kB)
+       .bss : 0x80b19d24 - 0x80b6874c   ( 315 kB)
+SLUB: Genslabs=13, HWalign=32, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+Preemptible hierarchical RCU implementation.
+NR_IRQS:624
+MXC GPIO hardware
+sched_clock: 32 bits at 3000kHz, resolution 333ns, wraps every 1431655ms
+arm_max_freq=1GHz
+MXC_Early serial console at MMIO 0x2020000 (options '115200')
+bootconsole [ttymxc0] enabled
+Console: colour dummy device 80x30
+Calibrating delay loop... 1581.05 BogoMIPS (lpj=7905280)
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: ok
+hw perfevents: enabled with ARMv7 Cortex-A9 PMU driver, 7 counters available
+CPU1: Booted secondary processor
+Brought up 2 CPUs
+SMP: Total of 2 processors activated (3162.11 BogoMIPS).
+print_constraints: dummy: 
+NET: Registered protocol family 16
+print_constraints: vddpu: 725 <--> 1300 mV at 700 mV fast normal 
+print_constraints: vddcore: 725 <--> 1300 mV at 1150 mV fast normal 
+print_constraints: vddsoc: 725 <--> 1300 mV at 1200 mV fast normal 
+print_constraints: vdd2p5: 2000 <--> 2775 mV at 2400 mV fast normal 
+print_constraints: vdd1p1: 800 <--> 1400 mV at 1100 mV fast normal 
+print_constraints: vdd3p0: 2625 <--> 3400 mV at 3000 mV fast normal 
+hw-breakpoint: found 6 breakpoint and 1 watchpoint registers.
+hw-breakpoint: 1 breakpoint(s) reserved for watchpoint single-step.
+hw-breakpoint: maximum watchpoint size is 4 bytes.
+L310 cache controller enabled
+l2x0: 16 ways, CACHE_ID 0x410000c7, AUX_CTRL 0x02070000, Cache size: 1048576 B
+bio: create slab <bio-0> at 0
+mxs-dma mxs-dma-apbh: initialized
+print_constraints: VDDA: 2500 mV 
+print_constraints: VDDIO: 3300 mV 
+machine_constraints_voltage: VDDD: unsupportable voltage constraints
+reg-fixed-voltage reg-fixed-voltage.2: Failed to register regulator: -22
+reg-fixed-voltage: probe of reg-fixed-voltage.2 failed with error -22
+print_constraints: vmmc: 3300 mV 
+vgaarb: loaded
+SCSI subsystem initialized
+spi_imx imx6q-ecspi.0: probed
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+Freescale USB OTG Driver loaded, $Revision: 1.55 $
+mc_pfuze 1-0008: ID: 0,Full lay: 1 ,Metal lay: 1
+mc_pfuze 1-0008: FAB: 0 ,FIN: 0
+print_constraints: PFUZE100_SW1A: 300 <--> 1875 mV at 1300 mV 
+print_constraints: PFUZE100_SW1B: 300 <--> 1875 mV at 300 mV 
+print_constraints: PFUZE100_SW1C: 300 <--> 1875 mV at 1300 mV 
+print_constraints: PFUZE100_SW2: 800 <--> 3950 mV at 3300 mV 
+print_constraints: PFUZE100_SW3A: 400 <--> 1975 mV at 1500 mV 
+print_constraints: PFUZE100_SW3B: 400 <--> 1975 mV at 1500 mV 
+print_constraints: PFUZE100_SW4: 800 <--> 3950 mV at 3150 mV 
+print_constraints: PFUZE100_SWBST: 5000 <--> 5150 mV at 5000 mV 
+print_constraints: PFUZE100_VSNVS: 1200 <--> 3000 mV at 1800 mV 
+print_constraints: PFUZE100_VREFDDR: at 750 mV 
+print_constraints: PFUZE100_VGEN1: 800 <--> 1550 mV at 1500 mV 
+print_constraints: PFUZE100_VGEN2: 800 <--> 1550 mV at 1500 mV 
+print_constraints: PFUZE100_VGEN3: 1800 <--> 3300 mV at 2800 mV 
+print_constraints: PFUZE100_VGEN4: 1800 <--> 3300 mV at 1800 mV 
+print_constraints: PFUZE100_VGEN5: 1800 <--> 3300 mV at 3000 mV 
+print_constraints: PFUZE100_VGEN6: 1800 <--> 3300 mV at 3300 mV 
+imx-ipuv3 imx-ipuv3.0: IPU DMFC NORMAL mode: 1(0~1), 5B(4,5), 5F(6,7)
+imx-ipuv3 imx-ipuv3.1: IPU DMFC NORMAL mode: 1(0~1), 5B(4,5), 5F(6,7)
+mxc_mipi_csi2 mxc_mipi_csi2: i.MX MIPI CSI2 driver probed
+mxc_mipi_csi2 mxc_mipi_csi2: i.MX MIPI CSI2 dphy version is 0x3130302a
+MIPI CSI2 driver module loaded
+Advanced Linux Sound Architecture Driver Version 1.0.24.
+Bluetooth: Core ver 2.16
+NET: Registered protocol family 31
+Bluetooth: HCI device and connection manager initialized
+Bluetooth: HCI socket layer initialized
+Bluetooth: L2CAP socket layer initialized
+Bluetooth: SCO socket layer initialized
+cfg80211: Calling CRDA to update world regulatory domain
+i2c-core: driver [max17135] using legacy suspend method
+i2c-core: driver [max17135] using legacy resume method
+EFM32 rtc probe start
+rtc-efm32-i2c 2-000c: rtc core: registered rtc-efm32-i2c as rtc0
+EFM32 rtc probe succeed
+Switching to clocksource mxc_timer1
+NET: Registered protocol family 2
+IP route cache hash table entries: 32768 (order: 5, 131072 bytes)
+TCP established hash table entries: 131072 (order: 8, 1048576 bytes)
+TCP bind hash table entries: 65536 (order: 7, 786432 bytes)
+TCP: Hash tables configured (established 131072 bind 65536)
+TCP reno registered
+UDP hash table entries: 512 (order: 2, 16384 bytes)
+UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+PMU: registered new PMU device of type 0
+Static Power Management for Freescale i.MX6
+wait mode is enabled for i.MX6
+cpaddr = c0880000 suspend_iram_base=c0918000
+PM driver module loaded
+link up failed, DB_R0:0x0015b700, DB_R1:0x08200000!
+IMX PCIe port: link down!
+IMX usb wakeup probe
+add wake up source irq 75
+IMX usb wakeup probe
+cpu regulator mode:ldo_bypass
+_regulator_get: get() with no identifier
+mx6_cpu_regulator_init: failed to get pu regulator
+i.MXC CPU frequency driver
+JFFS2 version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+msgmni has been set to 1583
+alg: No test for stdrng (krng)
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+MIPI DSI driver module loaded
+mxc_sdc_fb mxc_sdc_fb.0: register mxc display driver hdmi
+mxc_hdmi mxc_hdmi: Detected HDMI controller 0x13:0xa:0xa0:0xc1
+fbcvt: 1920x1080@60: CVT Name - 2.073M9
+imx-ipuv3 imx-ipuv3.0: IPU DMFC DP HIGH RESOLUTION: 1(0,1), 5B(2~5), 5F(6,7)
+Console: switching to colour frame buffer device 240x67
+mxc_sdc_fb mxc_sdc_fb.1: register mxc display driver hdmi
+mxc_hdmi mxc_hdmi: Error only one HDMI output support now!
+mxc_sdc_fb mxc_sdc_fb.1: NO mxc display driver found!
+mxc_sdc_fb mxc_sdc_fb.2: register mxc display driver lcd
+mxc_sdc_fb mxc_sdc_fb.2: ipu0-di0 already in use
+mxc_sdc_fb: probe of mxc_sdc_fb.2 failed with error -16
+imx-sdma imx-sdma: loaded firmware 1.1
+imx-sdma imx-sdma: initialized
+fbcvt: 1920x1080@60: CVT Name - 2.073M9
+Serial: IMX driver
+imx-uart.0: ttymxc0 at MMIO 0x2020000 (irq = 58) is a IMX
+console [ttymxc0] enabled, bootconsole disabled
+console [ttymxc0] enabled, bootconsole disabled
+imx-uart.1: ttymxc1 at MMIO 0x21e8000 (irq = 59) is a IMX
+imx-uart.2: ttymxc2 at MMIO 0x21ec000 (irq = 60) is a IMX
+imx-uart.3: ttymxc3 at MMIO 0x21f0000 (irq = 61) is a IMX
+imx-uart.4: ttymxc4 at MMIO 0x21f4000 (irq = 62) is a IMX
+[drm] Initialized drm 1.1.0 20060810
+[drm] Initialized vivante 1.0.0 20120216 on minor 0
+brd: module loaded
+loop: module loaded
+Uniform Multi-Platform E-IDE driver
+ide-gd driver 1.18
+No sata disk.
+m25p80 spi0.0: unrecognized JEDEC id ffffff
+GPMI NAND driver registered. (IMX)
+vcan: Virtual CAN interface driver
+CAN device driver interface
+flexcan netdevice driver
+flexcan imx6q-flexcan.0: device registered (reg_base=c09e8000, irq=142)
+FEC Ethernet Driver
+fec_enet_mii_bus: probed
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+fsl-ehci fsl-ehci.0: Freescale On-Chip EHCI Host Controller
+fsl-ehci fsl-ehci.0: new USB bus registered, assigned bus number 1
+fsl-ehci fsl-ehci.0: irq 75, io base 0x02184000
+fsl-ehci fsl-ehci.0: USB 2.0 started, EHCI 1.00
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 1 port detected
+add wake up source irq 72
+fsl-ehci fsl-ehci.1: Freescale On-Chip EHCI Host Controller
+fsl-ehci fsl-ehci.1: new USB bus registered, assigned bus number 2
+fsl-ehci fsl-ehci.1: irq 72, io base 0x02184200
+fsl-ehci fsl-ehci.1: USB 2.0 started, EHCI 1.00
+hub 2-0:1.0: USB hub found
+hub 2-0:1.0: 1 port detected
+Initializing USB Mass Storage driver...
+usbcore: registered new interface driver usb-storage
+USB Mass Storage support registered.
+ARC USBOTG Device Controller driver (1 August 2005)
+mousedev: PS/2 mouse device common for all mice
+input: gpio-keys as /devices/platform/gpio-keys/input/input0
+input: max11801_ts as /devices/platform/imx-i2c.1/i2c-1/1-0048/input/input1
+i2c-core: driver [isl29023] using legacy suspend method
+i2c-core: driver [isl29023] using legacy resume method
+i2c /dev entries driver
+Linux video capture interface: v2.00
+mxc_v4l2_output mxc_v4l2_output.0: V4L2 device registered as video16
+mxc_v4l2_output mxc_v4l2_output.0: V4L2 device registered as video17
+i2c-core: driver [mag3110] using legacy suspend method
+i2c-core: driver [mag3110] using legacy resume method
+input: mma845x as /devices/virtual/input/input2
+imx2-wdt imx2-wdt.0: IMX2+ Watchdog Timer enabled. timeout=60s (nowayout=1)
+Bluetooth: Virtual HCI driver ver 1.3
+Bluetooth: HCI UART driver ver 2.2
+Bluetooth: HCIATH3K protocol initialized
+Bluetooth: Generic Bluetooth USB driver ver 0.6
+usbcore: registered new interface driver btusb
+sdhci: Secure Digital Host Controller Interface driver
+sdhci: Copyright(c) Pierre Ossman
+mmc0: SDHCI controller on platform [sdhci-esdhc-imx.3] using DMA
+mmc1: SDHCI controller on platform [sdhci-esdhc-imx.2] using DMA
+mmc2: SDHCI controller on platform [sdhci-esdhc-imx.1] using DMA
+mxc_vdoa mxc_vdoa: i.MX Video Data Order Adapter(VDOA) driver probed
+VPU initialized
+mxc_asrc registered
+Thermal calibration data is 0x5754df69
+Thermal sensor with ratio = 180
+Anatop Thermal registered as thermal_zone0
+anatop_thermal_probe: default cooling device is cpufreq!
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+usbcore: registered new interface driver snd-usb-audio
+mxc_hdmi_soc mxc_hdmi_soc.0: MXC HDMI Audio
+sgtl5000 0-000a: Failed to get supply 'VDDD': -19
+print_constraints: 0-000a: 850 <--> 1600 mV at 1200 mV normal 
+usb 2-1: new high speed USB device number 2 using fsl-ehci
+mmc0: new high speed DDR MMC card at address 0001
+sgtl5000 0-000a: sgtl5000 revision 17
+mmcblk0: mmc0:0001 MMC04G 3.60 GiB 
+mmcblk0boot0: mmc0:0001 MMC04G partition 1 2.00 MiB
+mmcblk0boot1: mmc0:0001 MMC04G partition 2 2.00 MiB
+ mmcblk0: p1
+ mmcblk0boot1: unknown partition table
+ mmcblk0boot0: unknown partition table
+asoc: sgtl5000 <-> imx-ssi.1 mapping ok
+input: sgtl5000-audio Headphone Jack as /devices/platform/soc-audio.1/sound/card0/input3
+asoc: mxc-hdmi-soc <-> imx-hdmi-soc-dai.0 mapping ok
+ALSA device list:
+  #0: sgtl5000-audio
+  #1: imx-hdmi-soc
+NET: Registered protocol family 26
+hub 2-1:1.0: USB hub found
+hub 2-1:1.0: 4 ports detected
+TCP cubic registered
+NET: Registered protocol family 17
+mmc1: new high speed SDHC card at address 1234
+can: controller area network core (rev 20090105 abi 8)
+mmcblk1: mmc1:1234 SA04G 3.63 GiB 
+NET: Registered protocol family 29
+can: raw protocol (rev 20090105)
+can: broadcast manager protocol (rev 20090105 t)
+Bluetooth: RFCOMM TTY layer initialized
+Bluetooth: RFCOMM socket layer initialized
+Bluetooth: RFCOMM ver 1.11
+Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+Bluetooth: BNEP filters: protocol multicast
+Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+lib80211: common routines for IEEE802.11 drivers
+VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 4
+Bus freq driver module loaded
+ mmcblk1: p1
+Bus freq driver Enabled
+mxc_dvfs_core_probe
+DVFS driver module loaded
+regulator_init_complete: PFUZE100_VGEN6: incomplete constraints, leaving on
+regulator_init_complete: PFUZE100_VGEN3: incomplete constraints, leaving on
+regulator_init_complete: PFUZE100_VGEN2: incomplete constraints, leaving on
+regulator_init_complete: PFUZE100_VGEN1: incomplete constraints, leaving on
+rtc-efm32-i2c 2-000c: setting system clock to 2013-01-01 00:00:17 UTC (1356998417)
+mmc2: new high speed SD card at address 0002
+mmcblk2: mmc2:0002       491 MiB 
+ mmcblk2: p1
+usb 2-1.1: new high speed USB device number 3 using fsl-ehci
+scsi0 : usb-storage 2-1.1:1.0
+usb 2-1.3: new high speed USB device number 4 using fsl-ehci
+usb 2-1.4: new high speed USB device number 5 using fsl-ehci
+scsi1 : usb-storage 2-1.4:1.0
+scsi 0:0:0:0: Direct-Access     JetFlash Transcend 4GB    8.07 PQ: 0 ANSI: 4
+sd 0:0:0:0: [sda] 7864320 512-byte logical blocks: (4.02 GB/3.75 GiB)
+sd 0:0:0:0: [sda] Write Protect is off
+sd 0:0:0:0: [sda] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+ sda: sda1
+sd 0:0:0:0: [sda] Attached SCSI removable disk
+scsi 1:0:0:0: Direct-Access     Ut163    USB2FlashStorage 0.00 PQ: 0 ANSI: 2
+sd 1:0:0:0: [sdb] 1974271 512-byte logical blocks: (1.01 GB/963 MiB)
+sd 1:0:0:0: [sdb] Write Protect is off
+sd 1:0:0:0: [sdb] Asking for cache data failed
+sd 1:0:0:0: [sdb] Assuming drive cache: write through
+sd 1:0:0:0: [sdb] Asking for cache data failed
+sd 1:0:0:0: [sdb] Assuming drive cache: write through
+ sdb: sdb1
+sd 1:0:0:0: [sdb] Asking for cache data failed
+sd 1:0:0:0: [sdb] Assuming drive cache: write through
+sd 1:0:0:0: [sdb] Attached SCSI removable disk
+EXT4-fs (mmcblk1p1): recovery complete
+EXT4-fs (mmcblk1p1): mounted filesystem with ordered data mode. Opts: (null)
+VFS: Mounted root (ext4 filesystem) on device 179:25.
+Freeing init memory: 220K
+starting pid 1486, tty '': '/etc/rc.d/rcS'
+Mounting /proc and /sys 
+Starting the hotplug events dispatcher udevd
+udevd (1495): /proc/1495/oom_adj is deprecated, please use /proc/1495/oom_score_adj instead.
+Synthesizing initial hotplug events
+EXT4-fs (sdb1): recovery complete
+EXT4-fs (sdb1): mounted filesystem with ordered data mode. Opts: (null)
+Setting the hostname to imx6-linux
+Mounting filesystems
+EXT4-fs (mmcblk1p1): re-mounted. Opts: (null)
+mount: sysfs already mounted or /sys busy
+mount: according to mtab, /sys is already mounted on /sys
+mount: mount point /proc/bus/usb does not exist
+mount: special device /dev/mmcblk1p2 does not exist
+Running sysctl
+Setting up networking on loopback device: 
+Setting up networking on eth0: 
+udhcpc (v1.20.2) started
+eth0: Freescale FEC PHY driver [Generic PHY] (mii_bus:phy_addr=1:07, irq=-1)
+Sending discover...
+Sending discover...
+PHY: 1:07 - Link is Up - 1000/Full
+Sending discover...
+Sending select for 172.18.0.145...
+Lease of 172.18.0.145 obtained, lease time 691200
+Deleting routers
+adding dns 172.18.9.45
+Starting the port mapper: 
+Starting the ssh server: 
+Starting the apache webserver: 
+/usr/bin/httpd: error while loading shared libraries: libexpat.so.0: cannot open shared object file: No such file or directory
+Starting SMB services: gtk: creating gdk-pixbuf.loaders
+pango: creating module list
+Gasp
+convert from ImageMagick was not found!!
+	 use the --magick-path option or install ImageMagick.
+Check for ImageMagick ...starting pid 2864, tty '': '/etc/rc.d/rc_gpu.S'
+starting pid 2872, tty '': '/etc/rc.d/rc_mxc.S'
+login[2874]: root login on 'tty2'
+
+arm-none-linux-gnueabi-gcc (4.4.4_09.06.2010) 4.4.4
+root filesystem built on Mon, 29 Jul 2013 12:28:59 +0800
+Freescale Semiconductor, Inc.
+
+imx6-linux login: root
+Password: 
+login[2878]: root login on 'ttymxc0'
+root@imx6-linux ~$ /mnt/mmcblk1p1/MP_Test_Window/MP_Test
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+01
+
+>>> Start Test LED >>>
+Please check LED : (y)->Pass ; (n)->Fail
+y
+<<< Finish LED Test --- ##01##.Pass  <<<
+02
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test PWM >>>
+Please check PWM : (y)->Pass ; (n)->Fail
+y
+<<< Finish PWM Test --- ##02##.Pass  <<<
+20
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test Audio >>>
+Please check Audio : (y)->Pass ; (n)->Fail
+y
+<<< Finish Audio Test --- ##20##.Pass  <<<
+24
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test TouchPanel >>>
+Please check TouchPanel : (y)->Pass ; (n)->Fail
+X,Y = (291,467)
+X,Y = (291,467)
+y
+<<< Finish TouchPanel Test --- ##24##.Pass  <<<
+23
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test 3AXIS >>>
+Please check 3AXIS : (y)->Pass ; (n)->Fail
+ix,iy,iz = 400,-112,-16560
+ix,iy,iz = 336,-80,-16480
+ix,iy,iz = 304,-144,-16464
+ix,iy,iz = 352,-64,-16512
+y
+<<< Finish 3AXIS Test --- ##23##.Pass  <<<
+03
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test USB >>>
+OTG device Mount to USB_D1, Fail
+No SATA Device
+/mnt/sda1 Pass 
+/mnt/sdb1 Pass 
+/mnt/sdc1 Pass 
+<<< Finish USB Test --- ##03##.Pass  <<<
+12
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test SDCARD >>>
+<<< Finish SDCARD Test --- ##12##.Pass  <<<
+10
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test RS232 >>>
+<<< Finish RS232 Test --- ##10##.Pass  <<<
+04
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test WIFI >>>
+wlan0 scan wifi(13),wifitimes = 1
+<<< Finish WIFI Test --- ##04##.Pass  <<<
+08
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+
+>>> Start Test Ethernet - eth0 >>>
+<<< Finish Ethernet Test --- ##08##.Pass  <<<
+qq
+Number=[1234567890-0.log] Eth_Mac=[] Q7.0.0001 [version:130517] runin=[NA] wifi=[NA] sdcard=[NA] mem=[NA] rtc=[NA]
+
+Input Test Item : 
+01.LED 
+02.PWM 
+03.USB 
+04.WIFI 
+07.SATA 
+08.Ethernet 
+10.RS232 
+12.SDCARD 
+20.Audio  
+23.3AXIS 
+24.TouchPanel 
+00.AutuRun 
+qq.Exit
+root@imx6-linux ~$ 

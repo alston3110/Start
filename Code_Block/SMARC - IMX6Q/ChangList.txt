@@ -1,0 +1,4 @@
+SC1 - New 1
+SC2 - DDR TimeOut 
+    - MP_Test_SC2 - modify uart test
+

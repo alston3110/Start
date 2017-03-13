@@ -1,0 +1,9 @@
+[ Wrapping_Machine ] 2013/12/27 02:08:41
+Wrapping.0.130702  runin= 245 wifi= NA sdcard= NA mem= NA rtc= NA
+Number= B012700002-1.log Eth_Mac= 00:12:34:45:56:54
+1.Test LED= Pass
+20.Test Audio= Pass
+4.Test WIFI= Pass
+8.Test Ethernet= Pass
+12.Test SDCARD= Fail
+===========END==========

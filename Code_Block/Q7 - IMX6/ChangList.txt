@@ -1,0 +1,21 @@
+Q7 - IMX6 - 4 - OK	release1(20140415)
+	-- MP_Test_Window_04
+			(MX6_LinuxBSP : uboot + kernel + filesystem - wrappingmachine)
+			/etc/udev/rules.d/85-usb-sdcard-insert.rules (auto-mounte)
+Q7 - Ibase - 5 - OK modify for MP (20140516)
+	-- MP_Test_Window_5
+
+Q7 - Ibase - 6 - OK modify for MP (20140519)
+			add sec detect
+Q7 - Ibase - 7 - OK modify Login window for MP (20140520)
+
+Q7 - Ibase - 8 - OK Judge "MP TEST FINISH" and Show PASS
+				(Release version - QC-ICOM8)
+
+Q7 - Ibase - 9 - TEST	(STOP KEY is work)
+
+Q7 - Ibase - 10 - OK  SPI TEST (SPI Flash)
+	-- MP_Test_Window_8 (modify flash read size)
+Q7 - Ibase - 11 - OK  Cancel Button
+
+Q7 - 3.14.28 - 1 - OK (New Carry Board, New kernel, New Uboot + MP_Test_Q7_1) (20151125)

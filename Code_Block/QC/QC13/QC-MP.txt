@@ -1,0 +1,17 @@
+[ Wrapping_Machine ] 2013/08/05 09:48:42
+Wrapping.0.130702 version:130517 runin= NA wifi= NA sdcard= NA mem= NA rtc= NA
+Number= D012700291-82.log Eth_Mac= 00:50:C2:F0:F1:93 9514ETH_Mac= 00:50:c2:f0:f1:93
+1.Test LED= Pass
+13.Test GPIO= Pass
+20.Test Audio= Pass
+22.Test Lvds= Pass
+23.Test 3AXIS= Pass
+24.Test TouchPanel= Pass
+3.Test USB= Pass
+4.Test WIFI= Pass
+8.Test Ethernet= Pass
+21.Test Ethernet= Pass
+10.Test RS232= Fail
+11.Test DDR= Pass
+12.Test SDCARD= Pass
+===========END==========

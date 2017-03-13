@@ -1,0 +1,795 @@
+# depslib dependency file v1.0
+1372904525 source:d:\work\retronix\qc-test\qc\main.cpp
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+	"include/Timer.h"
+
+1372999089 d:\work\retronix\qc-test\qc\resource.h
+
+1372833683 d:\work\retronix\qc-test\qc\include\timer.h
+
+1372999089 source:d:\work\retronix\qc-test\qc\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1373004133 source:d:\work\retronix\qc-test\qc\src\timer.cpp
+	"../include/common.h"
+
+1373006319 source:d:\work\retronix\qc-test\qc\src\rs232.cpp
+	"../include/common.h"
+
+1372834289 d:\work\retronix\qc-test\qc\include\rs232.h
+
+1373006914 source:d:\work\retronix\qc-test\qc\src\console.cpp
+	"../include/common.h"
+
+1372846319 d:\work\retronix\qc-test\qc\include\console.h
+
+1373004616 source:d:\work\retronix\qc-test\qc\src\main.cpp
+	"../include/common.h"
+
+1373006520 d:\work\retronix\qc-test\qc\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1373005884 source:d:\work\retronix\qc-test\qc\src\report.cpp
+	"../include/common.h"
+
+1373004104 source:d:\work\retronix\qc-test\qc\src\test.cpp
+	"../include/common.h"
+
+1372928831 source:d:\work\retronix\qc-test\qc\src\productnumber.cpp
+	"../include/common.h"
+
+1372999157 source:d:\work\retronix\qc-test\qc\src\status.cpp
+	"../include/common.h"
+
+1372934799 source:d:\work\retronix\qc-test\qc\src\waitpcb.cpp
+	"../include/common.h"
+
+1373425144 source:d:\temp\code block\qc\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1374050287 d:\temp\code block\qc\resource.h
+
+1373601981 source:d:\temp\code block\qc\src\console.cpp
+	"../include/common.h"
+
+1373006522 d:\temp\code block\qc\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\qc\include\timer.h
+
+1372834290 d:\temp\code block\qc\include\rs232.h
+
+1372846320 d:\temp\code block\qc\include\console.h
+
+1373423607 source:d:\temp\code block\qc\src\main.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\qc\src\productnumber.cpp
+	"../include/common.h"
+
+1373882770 source:d:\temp\code block\qc\src\report.cpp
+	"../include/common.h"
+
+1374032849 source:d:\temp\code block\qc\src\rs232.cpp
+	"../include/common.h"
+
+1372999158 source:d:\temp\code block\qc\src\status.cpp
+	"../include/common.h"
+
+1373533941 source:d:\temp\code block\qc\src\timer.cpp
+	"../include/common.h"
+
+1373966456 source:d:\temp\code block\qc\src\test.cpp
+	"../include/common.h"
+
+1374050287 source:d:\temp\code block\qc10\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1374050287 d:\temp\code block\qc10\resource.h
+
+1373601981 source:d:\temp\code block\qc10\src\console.cpp
+	"../include/common.h"
+
+1373006522 d:\temp\code block\qc10\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\qc10\include\timer.h
+
+1372834290 d:\temp\code block\qc10\include\rs232.h
+
+1372846320 d:\temp\code block\qc10\include\console.h
+
+1373423607 source:d:\temp\code block\qc10\src\main.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\qc10\src\productnumber.cpp
+	"../include/common.h"
+
+1373882770 source:d:\temp\code block\qc10\src\report.cpp
+	"../include/common.h"
+
+1374041250 source:d:\temp\code block\qc10\src\rs232.cpp
+	"../include/common.h"
+
+1372999158 source:d:\temp\code block\qc10\src\status.cpp
+	"../include/common.h"
+
+1373966456 source:d:\temp\code block\qc10\src\test.cpp
+	"../include/common.h"
+
+1373533941 source:d:\temp\code block\qc10\src\timer.cpp
+	"../include/common.h"
+
+1373601982 source:d:\work\retronix\qc-test\qc11 - debug port in\src\console.cpp
+	"../include/common.h"
+
+1373006522 d:\work\retronix\qc-test\qc11 - debug port in\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1375177500 d:\work\retronix\qc-test\qc11 - debug port in\resource.h
+
+1372833684 d:\work\retronix\qc-test\qc11 - debug port in\include\timer.h
+
+1372834290 d:\work\retronix\qc-test\qc11 - debug port in\include\rs232.h
+
+1372846320 d:\work\retronix\qc-test\qc11 - debug port in\include\console.h
+
+1375161759 source:d:\work\retronix\qc-test\qc11 - debug port in\src\main.cpp
+	"../include/common.h"
+
+1372928832 source:d:\work\retronix\qc-test\qc11 - debug port in\src\productnumber.cpp
+	"../include/common.h"
+
+1375176785 source:d:\work\retronix\qc-test\qc11 - debug port in\src\report.cpp
+	"../include/common.h"
+
+1374041252 source:d:\work\retronix\qc-test\qc11 - debug port in\src\rs232.cpp
+	"../include/common.h"
+
+1375161844 source:d:\work\retronix\qc-test\qc11 - debug port in\src\status.cpp
+	"../include/common.h"
+
+1375161985 source:d:\work\retronix\qc-test\qc11 - debug port in\src\timer.cpp
+	"../include/common.h"
+
+1375162259 source:d:\work\retronix\qc-test\qc11 - debug port in\src\test.cpp
+	"../include/common.h"
+
+1375175791 source:d:\work\retronix\qc-test\qc11 - debug port in\resource.rc
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1375159149 source:d:\work\retronix\qc-test\qc11 - debug port in\src\maintab.cpp
+	"../include/common.h"
+
+1375171492 source:d:\work\retronix\qc-test\qc11 - debug port in\src\rundlg.cpp
+	"../include/common.h"
+
+1375160751 source:d:\work\retronix\qc-test\qc11 - debug port in\src\settingdlg.cpp
+	"../include/common.h"
+
+1373601982 source:d:\temp\code block\qc12\src\console.cpp
+	"../include/common.h"
+
+1373006522 d:\temp\code block\qc12\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1375686916 d:\temp\code block\qc12\resource.h
+
+1372833684 d:\temp\code block\qc12\include\timer.h
+
+1372834290 d:\temp\code block\qc12\include\rs232.h
+
+1372846320 d:\temp\code block\qc12\include\console.h
+
+1375161760 source:d:\temp\code block\qc12\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\qc12\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\qc12\src\productnumber.cpp
+	"../include/common.h"
+
+1375686546 source:d:\temp\code block\qc12\src\report.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\qc12\src\rs232.cpp
+	"../include/common.h"
+
+1375686594 source:d:\temp\code block\qc12\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\qc12\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\qc12\src\status.cpp
+	"../include/common.h"
+
+1375684525 source:d:\temp\code block\qc12\src\test.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\qc12\src\timer.cpp
+	"../include/common.h"
+
+1375686916 source:d:\temp\code block\qc12\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1375693095 source:d:\temp\code block\qc13\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1375693095 d:\temp\code block\qc13\resource.h
+
+1373601982 source:d:\temp\code block\qc13\src\console.cpp
+	"../include/common.h"
+
+1373006522 d:\temp\code block\qc13\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\qc13\include\timer.h
+
+1372834290 d:\temp\code block\qc13\include\rs232.h
+
+1372846320 d:\temp\code block\qc13\include\console.h
+
+1375161760 source:d:\temp\code block\qc13\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\qc13\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\qc13\src\productnumber.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\qc13\src\rs232.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\qc13\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\qc13\src\status.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\qc13\src\timer.cpp
+	"../include/common.h"
+
+1375689037 source:d:\temp\code block\qc13\src\report.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\qc13\src\rundlg.cpp
+	"../include/common.h"
+
+1375689008 source:d:\temp\code block\qc13\src\test.cpp
+	"../include/common.h"
+
+1375693095 source:d:\temp\code block\qc14\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1375693095 d:\temp\code block\qc14\resource.h
+
+1375161760 source:d:\temp\code block\qc14\src\main.cpp
+	"../include/common.h"
+
+1375698309 d:\temp\code block\qc14\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\qc14\include\timer.h
+
+1372834290 d:\temp\code block\qc14\include\rs232.h
+
+1372846320 d:\temp\code block\qc14\include\console.h
+
+1375159150 source:d:\temp\code block\qc14\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\qc14\src\productnumber.cpp
+	"../include/common.h"
+
+1375689037 source:d:\temp\code block\qc14\src\report.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\qc14\src\rs232.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\qc14\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\qc14\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\qc14\src\status.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\qc14\src\timer.cpp
+	"../include/common.h"
+
+1375699579 source:d:\temp\code block\qc14\src\console.cpp
+	"../include/common.h"
+
+1375699906 source:d:\temp\code block\qc14\src\test.cpp
+	"../include/common.h"
+
+1375693095 source:d:\temp\code block\qc15\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1375693095 d:\temp\code block\qc15\resource.h
+
+1375700575 source:d:\temp\code block\qc15\src\console.cpp
+	"../include/common.h"
+
+1375698309 d:\temp\code block\qc15\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\qc15\include\timer.h
+
+1372834290 d:\temp\code block\qc15\include\rs232.h
+
+1372846320 d:\temp\code block\qc15\include\console.h
+
+1375161760 source:d:\temp\code block\qc15\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\qc15\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\qc15\src\productnumber.cpp
+	"../include/common.h"
+
+1375689037 source:d:\temp\code block\qc15\src\report.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\qc15\src\rs232.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\qc15\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\qc15\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\qc15\src\status.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\qc15\src\timer.cpp
+	"../include/common.h"
+
+1375693095 source:d:\temp\code block\q7-1\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1375693095 d:\temp\code block\q7-1\resource.h
+
+1375700575 source:d:\temp\code block\q7-1\src\console.cpp
+	"../include/common.h"
+
+1375698309 d:\temp\code block\q7-1\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\q7-1\include\timer.h
+
+1372834290 d:\temp\code block\q7-1\include\rs232.h
+
+1372846320 d:\temp\code block\q7-1\include\console.h
+
+1375161760 source:d:\temp\code block\q7-1\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\q7-1\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\q7-1\src\productnumber.cpp
+	"../include/common.h"
+
+1375689037 source:d:\temp\code block\q7-1\src\report.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\q7-1\src\rs232.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\q7-1\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\q7-1\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\q7-1\src\status.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\q7-1\src\timer.cpp
+	"../include/common.h"
+
+1377513910 source:d:\temp\code block\q7-1\src\test.cpp
+	"../include/common.h"
+
+1377592764 source:d:\temp\code block\q7\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1377663858 d:\temp\code block\q7\resource.h
+
+1375700575 source:d:\temp\code block\q7\src\console.cpp
+	"../include/common.h"
+
+1375698309 d:\temp\code block\q7\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\q7\include\timer.h
+
+1372834290 d:\temp\code block\q7\include\rs232.h
+
+1372846320 d:\temp\code block\q7\include\console.h
+
+1375161760 source:d:\temp\code block\q7\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\q7\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\q7\src\productnumber.cpp
+	"../include/common.h"
+
+1377663748 source:d:\temp\code block\q7\src\report.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\q7\src\rs232.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\q7\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\q7\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\q7\src\status.cpp
+	"../include/common.h"
+
+1377587588 source:d:\temp\code block\q7\src\test.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\q7\src\timer.cpp
+	"../include/common.h"
+
+1378439158 source:d:\temp\code block\q7 - imx6\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1377663858 d:\temp\code block\q7 - imx6\resource.h
+
+1375700575 source:d:\temp\code block\q7 - imx6\src\console.cpp
+	"../include/common.h"
+
+1375698309 d:\temp\code block\q7 - imx6\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\q7 - imx6\include\timer.h
+
+1372834290 d:\temp\code block\q7 - imx6\include\rs232.h
+
+1372846320 d:\temp\code block\q7 - imx6\include\console.h
+
+1375161760 source:d:\temp\code block\q7 - imx6\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\q7 - imx6\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\q7 - imx6\src\productnumber.cpp
+	"../include/common.h"
+
+1378971341 source:d:\temp\code block\q7 - imx6\src\report.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\q7 - imx6\src\rs232.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\q7 - imx6\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\q7 - imx6\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\q7 - imx6\src\status.cpp
+	"../include/common.h"
+
+1377587588 source:d:\temp\code block\q7 - imx6\src\test.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\q7 - imx6\src\timer.cpp
+	"../include/common.h"
+
+1378439158 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1377663858 d:\temp\code block\q7 - imx6\q7 - imx6 - 2\resource.h
+
+1375700575 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\console.cpp
+	"../include/common.h"
+
+1375698309 d:\temp\code block\q7 - imx6\q7 - imx6 - 2\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\q7 - imx6\q7 - imx6 - 2\include\timer.h
+
+1372834290 d:\temp\code block\q7 - imx6\q7 - imx6 - 2\include\rs232.h
+
+1372846320 d:\temp\code block\q7 - imx6\q7 - imx6 - 2\include\console.h
+
+1375161760 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\productnumber.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\rs232.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\status.cpp
+	"../include/common.h"
+
+1378978355 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\test.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\timer.cpp
+	"../include/common.h"
+
+1378978766 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 2\src\report.cpp
+	"../include/common.h"
+
+1378439158 source:d:\temp\code block\q7 - imx6\q7 - imx6\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1377663858 d:\temp\code block\q7 - imx6\q7 - imx6\resource.h
+
+1375700575 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\console.cpp
+	"../include/common.h"
+
+1375698309 d:\temp\code block\q7 - imx6\q7 - imx6\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\q7 - imx6\q7 - imx6\include\timer.h
+
+1372834290 d:\temp\code block\q7 - imx6\q7 - imx6\include\rs232.h
+
+1372846320 d:\temp\code block\q7 - imx6\q7 - imx6\include\console.h
+
+1375161760 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\productnumber.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\rs232.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\status.cpp
+	"../include/common.h"
+
+1397456316 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\test.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\timer.cpp
+	"../include/common.h"
+
+1397454846 source:d:\temp\code block\q7 - imx6\q7 - imx6\src\report.cpp
+	"../include/common.h"
+
+1378439158 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1377663858 d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\resource.h
+
+1375700575 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\console.cpp
+	"../include/common.h"
+
+1375698309 d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\include\common.h
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"../resource.h"
+	"Timer.h"
+	"RS232.h"
+	"console.h"
+
+1372833684 d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\include\timer.h
+
+1372834290 d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\include\rs232.h
+
+1372846320 d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\include\console.h
+
+1375161760 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\main.cpp
+	"../include/common.h"
+
+1375159150 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\maintab.cpp
+	"../include/common.h"
+
+1372928832 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\productnumber.cpp
+	"../include/common.h"
+
+1397454846 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\report.cpp
+	"../include/common.h"
+
+1374041252 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\rs232.cpp
+	"../include/common.h"
+
+1375689018 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\rundlg.cpp
+	"../include/common.h"
+
+1375160752 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\settingdlg.cpp
+	"../include/common.h"
+
+1375161846 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\status.cpp
+	"../include/common.h"
+
+1397456316 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\test.cpp
+	"../include/common.h"
+
+1375161986 source:d:\temp\code block\q7 - imx6\q7 - imx6 - 4 - ok\src\timer.cpp
+	"../include/common.h"
+
